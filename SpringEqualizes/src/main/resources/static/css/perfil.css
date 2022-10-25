@@ -1,0 +1,215 @@
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #212529;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #164B66;
+    border-radius: 20px;
+}
+
+/* FIM SCROLLBAR */
+
+/* CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    text-decoration: none !important;
+    list-style-type: none;
+}
+
+/* VARIÁVEIS */
+:root {
+    --bg-dark: #212529;
+    --azul: #164B66;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-size: 1.6rem;
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: var(--azul);
+}
+
+.logout a span {
+    padding: 0.5rem;
+}
+
+.logout a span:hover {
+    background-color: #fff;
+    color: #ff0000;
+    border-radius: 50%;
+    padding: 0.5rem;
+
+}
+
+
+/* MENU */
+
+.linha2 {
+    height: 90vh !important;
+    overflow-y: auto;
+}
+
+.perfilEscola {
+    background-color: #0C7EB3;
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    color: #fff;
+    font-weight: bold;
+    padding: 1rem;
+
+}
+
+nav.escola {
+    background-color: var(--azul);
+
+    padding: 0 !important;
+}
+
+
+.perfilEmpresa {
+    
+    background-color: #132E41;
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    color: #fff;
+    font-weight: bold;
+    padding: 1rem;
+
+}
+
+nav.empresa {
+    background-color: #0C7EB3;
+    padding: 0 !important;
+}
+
+
+ul {
+    padding: 0;
+}
+
+
+li a {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+    padding: 0.5rem 1.6rem;
+
+
+    transition: all 0.2s;
+}
+
+li a:hover {
+    background-color: #fff;
+}
+
+main {
+    background-color: #fff;
+}
+
+
+
+h2 {
+    color: var(--bg-dark);
+    margin: 3rem 0;
+    text-align: center;
+}
+
+h3 {
+    background-color: var(--azul);
+    color: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+
+
+label {
+    color: var(--azul);
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+}
+
+input:focus {
+    border: 0.2rem solid var(--azul);
+}
+
+
+/* PEDIDOS - PÁG PERFIL EMPRESAS */
+
+table {
+    width: 100%;
+}
+
+table, tr, td, th {
+    border: 0.1rem solid var(--azul);
+    padding: 0.1rem;
+}
+
+.aberto, .novos, .andamento, .concluidos {
+    display: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    html {
+        font-size: 55%;
+    }
+
+    .linha2 {
+        height: auto;
+    }
+
+    nav {
+        height: auto;
+
+    }
+
+    main {
+        height: auto !important;
+    }
+
+
+}

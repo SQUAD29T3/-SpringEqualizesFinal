@@ -1,0 +1,129 @@
+/* INÍCIO HEADER */
+
+.jumbotron {
+  font-family: fantasy;
+  text-align: center;
+
+}
+
+
+/* TÍTULO JUMBOTRON */
+.display-5 {
+
+  color: #0C7EB3;
+  background-color: transparent;
+  text-shadow: none;
+
+}
+
+
+
+p {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* FIM HEADER  */
+
+
+/* INÍCIO MAIN  */
+
+
+
+.main2 {
+
+  background-color: transparent;
+  text-align: center;
+
+}
+
+.pFormulario {
+
+  text-align: center;
+  font-family: fantasy;
+  font-size: 3rem;
+
+}
+
+.p2Formulario {
+  text-align: center;
+}
+
+/* FIM MAIN  */
+
+
+
+form {
+  background-color: #164B66;
+  width: 100%;
+}
+
+.estados {
+
+  color: #3c434bc4;
+
+}
+
+option {
+  
+  font-family: monospace, Geneva, Tahoma, sans-serif;
+
+
+}
+
+label {
+
+  font-family: monospace;
+}
+
+
+/* INPUTS DE EMAIL E SENHA */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+select {
+
+  width: 100%;
+
+  color: #212529;
+  font-weight: bold;
+  size: 1.6rem;
+  padding: 1rem;
+
+  border: none;
+  outline: none;
+
+}
+
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+
+  box-shadow: 0 0 0.2rem 0.2rem #0C7EB3;
+
+}
+
+
+/* INPUTs RADIO */
+
+input[type="checkbox"] {
+  width: 2rem;
+  transition: all .2s;
+}
+
+
+input[type="checkbox"]:checked {
+  transform: rotateX(360deg);
+}
+
+button {
+  width: 100%;
+  color: #0C7EB3;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  border: none;
+
+}
