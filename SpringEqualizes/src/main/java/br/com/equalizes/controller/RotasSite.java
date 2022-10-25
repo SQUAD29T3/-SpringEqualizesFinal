@@ -1,11 +1,15 @@
 package br.com.equalizes.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class RotasSite {
+	
 	
 	@GetMapping("/")
 	// INICIALIZA A APLICAÇÃO
@@ -28,12 +32,7 @@ public class RotasSite {
 		return modelAndView;
 	}
 	
-	@GetMapping("/contato")
-	// PÁGINA CONATO
-	public ModelAndView contato() {
-		ModelAndView modelAndView = new ModelAndView("site/contato");
-		return modelAndView;
-	}
+
 	
 	@GetMapping("/login")
 	// PÁGINA LOGIN

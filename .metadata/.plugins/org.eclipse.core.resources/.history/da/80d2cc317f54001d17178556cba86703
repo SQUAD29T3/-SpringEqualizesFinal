@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- BOOTSTRAP CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<!-- ICON DO SITE (E) -->
+	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
+
+
+	<link rel="stylesheet" th:href="@{/css/admin.css}">
+
+	<title> Fale conosco | Equalizes </title>
+
+</head>
+
+<body>
+
+
+
+	<header class="container-fluid">
+
+
+		<img th:src="@{/img/logo_equalizes_white.png}" alt="logo" class="logo">
+
+
+		<!-- INÍCIO MENU -->
+
+		<aside>
+			<div id="menu-opener" onclick="menuToggle()">
+				<span class="material-symbols-outlined menuIcon">
+					menu
+				</span>
+			</div>
+			<div id="menu-area">
+				<ul>
+
+					<a href="/admin">
+						<li>
+
+							<span class="material-symbols-outlined">
+								home
+							</span>
+
+							INÍCIO
+
+						</li>
+					</a>
+
+					<a href="#">
+						<li>
+
+							<span class="material-symbols-outlined">
+								contact_mail
+							</span>
+							SOLICITAÇÕES DE CONTATO
+
+						</li>
+					</a>
+
+					<a href="">
+						<li>
+
+							<span class="material-symbols-outlined">
+								group_add
+							</span>
+
+							SOLICITAÇÕES DE PARCERIAS
+
+						</li>
+					</a>
+
+
+					<a href="">
+						<li class="nav-item dropdown">
+
+							<span class="material-symbols-outlined text-light">
+								handshake
+							</span>
+
+							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">PARCEIROS</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item text-center btn-hover" href="">ESCOLAS</a>
+
+								<hr class="dropdown-divider">
+
+								<a class="dropdown-item text-center btn-hover" href="">EMPRESAS</a>
+
+						</li>
+					</a>
+
+
+				</ul>
+			</div>
+		</aside>
+
+		<!-- FIM MENU -->
+
+
+	</header>
+
+
+
+	<div class="container-fluid">
+
+		
+		<!-- INÍCIO CONTATOS -->
+
+
+		<div class="row">
+
+			<div class="col-12 mb-3">
+
+				<h1> Solicitação de contato</h1>
+
+			</div>
+
+
+		</div>
+
+
+		<main>
+
+			<div class="row">
+
+				<!-- INÍCIO FORMULÁRIO -->
+				<div class="col-12">
+
+					<form method="post" th:object="${contatos}">
+
+						<div class="col-12">
+
+							<input type="text" name="nome" id="nome_contato" th:field="${nome}" />
+
+						</div>
+
+						<div class="col-12 mt-3">
+
+							<input type="email" name="email" id="email_contato" th:value="${email}" />
+
+						</div>
+
+						<div class="col-12 mt-3">
+
+							<select name="assunto" id="assunto_contato" th:value="${assunto}" />
+
+								<option value="0">Escolha o assunto</option>
+								<option value="Assuntos financeiros">Assuntos financeiros</option>
+								<option value="Assuntos relacionados a marketing">Assuntos relacionados a marketing
+								</option>
+								<option value="Dúvidas sobre como ser uma empresa parceira">Dúvidas sobre como ser uma
+									empresa parceira</option>
+								<option value="Dúvidas sobre como ser uma escola parceira">Dúvidas sobre como ser uma
+									escola parceira</option>
+								<option value="Dúvidas sobre como doar sendo pessoa física">Dúvidas sobre como doar
+									sendo pessoa física</option>
+
+							</select>
+
+						</div>
+
+
+						<div class="col-12 mt-3">
+							<textarea name="mensagem" id="mensagem_contato" cols="30" rows="5"
+								th:value="${mensagem}"></textarea>
+
+						</div>
+
+
+						<div class="col-12 mt-3">
+
+							<input type="date" class="form-control" name="dataContato" id="dataContato"  />
+
+			
+						</div>
+						
+						<div class="col-12 mt-3">
+
+							<input type="date" class="form-control" name="dataResposta" id="dataResposta"  />
+						
+							<input type="text" class="form-control" name="status" th:value="${status}"  />
+
+							<input type="submit" value="Enviar">
+
+						</div>
+
+
+
+					</form>
+
+					<!-- FIM FORMULÁRIO -->
+
+
+				</div>
+
+
+
+			</div>
+
+
+			<!-- CARDS CONTATO -->
+
+			<div class="row mt-5 alinhamento-linha">
+
+				<!-- CARD PHONE -->
+
+				<div class="col-md-4 mt-3">
+
+					<div class="div-contatos">
+
+						<div class="icon">
+
+							<i class="ri-phone-fill ri-xl"></i>
+
+						</div>
+						<p> (11) 1111-1111 </p>
+
+					</div>
+
+
+				</div>
+
+
+				<!-- CARD EMAIL -->
+				<div class="col-md-4 mt-3">
+
+					<div class="div-contatos">
+
+						<div class="icon">
+							<i class="ri-mail-fill ri-xl"></i>
+						</div>
+
+						<p> equalizes@equalizes.org.com.br </p>
+
+					</div>
+
+
+				</div>
+
+
+				<!-- CARD ENDEREÇO -->
+				<div class="col-md-4 mt-3">
+
+					<div class="div-contatos">
+
+						<div class="icon">
+							<i class="ri-map-pin-add-fill ri-xl"></i>
+						</div>
+
+						<p> Rua SQUAD 29, T3, SP/SP - 55555-555. </p>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+
+		</main>
+
+		<!-- FIM CONTATOS -->
+
+
+		<!-- ICON SCROLL TOP -->
+
+		<i onclick="subirTela()" class="ri-arrow-up-s-line" id="icon-top"></i>
+
+		<!-- ICON SCROLL TOP -->
+
+
+		<!-- RODAPÉ -->
+
+		<footer>
+
+
+			<div class="row">
+
+				<div class="col-12 text-center mt-4">
+
+					<img th:src="@{/img/logo_equalizes_white.png}" alt="logo" class="logo">
+
+				</div>
+
+			</div>
+
+
+
+			<div class="row">
+
+				<div class="col-12 text-center mt-4">
+
+
+					<div class="icon-redeSociais">
+
+						<a href="https://github.com/SQUAD29T3" target="_blank"> <i class="ri-github-fill"></i></a>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+			<div class="row">
+				<div class="col-12">
+
+					<p class="text-light text-center pt-4"> &copy 2022 - Equalizes - Squad 29 </p>
+
+				</div>
+			</div>
+
+
+		</footer>
+
+		<!-- FIM RODAPÉ -->
+
+	</div>
+
+
+	<!-- INSERINDO VALOR AO INPUT DATA -->
+	<script>
+		const inputDate = document.querySelector('#dataResposta');
+		const dataHoje = new Date();
+
+		const d = dataHoje.getDate().toString().padStart(2, '0'); // Dia com 2 digitos;
+		const m = String(dataHoje.getMonth() + 1).padStart(2, '0'); // Mês com 2 digitos
+		const y = dataHoje.getFullYear(); // Ano com 4 digitos
+
+
+		inputDate.value = `${y}-${m}-${d}`;
+
+	</script>
+
+
+	<!-- JAVASCRIPT EXTERNO -->
+	<script th:src="@{/js/all.js}"></script>
+
+
+	<!-- BOOTSTRAP JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

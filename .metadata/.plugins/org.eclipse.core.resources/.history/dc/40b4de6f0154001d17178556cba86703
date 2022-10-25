@@ -1,0 +1,78 @@
+package br.com.equalizes.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class RotasSite {
+	
+	@GetMapping("/")
+	// INICIALIZA A APLICAÇÃO
+	public String index() {
+		return "index";
+	}
+	
+
+	@GetMapping("/cadastroEscola")
+	// PÁGINA CADASTRO DE ESCOLAS
+	public ModelAndView cadastroEscola() {
+		ModelAndView modelAndView = new ModelAndView("site/parceiros-escolas");
+		return modelAndView;
+	}
+	
+	@GetMapping("/cadastroEmpresa")
+	// PÁGINA CADASTRO DE EMPRESAS
+	public ModelAndView cadastroEmpresa() {
+		ModelAndView modelAndView = new ModelAndView("site/parceiros-empresas");
+		return modelAndView;
+	}
+	
+	/*
+	@GetMapping("/contato")
+	// PÁGINA CONATO
+	public ModelAndView contato() {
+		ModelAndView modelAndView = new ModelAndView("site/contato");
+		return modelAndView;
+	}
+	*/
+	
+	
+	// === CADASTRO DE SOLICITAÇÕES DE CONTATO
+
+			// CHAMA A VIEW CADASTRAR E PASSA UM OBJETO VAZIO
+			@GetMapping("/contato")
+			public ModelAndView cadastrar() {
+				ModelAndView modelAndView = new ModelAndView("admin/cargo/cadastrar");
+				modelAndView.addObject("cargos", new Cargo());
+				return modelAndView;
+			}
+
+			@PostMapping("/cadastrarCargo")
+			public ModelAndView cadastrar(Cargo cargos) throws IOException {
+
+				ModelAndView modelAndView = new ModelAndView("redirect:/listarCargos");
+				cargoRepository.save(cargos);
+				return modelAndView;
+			}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/login")
+	// PÁGINA LOGIN
+	public ModelAndView login() {
+		ModelAndView modelAndView = new ModelAndView("site/login");
+		return modelAndView;
+	}
+
+	
+	
+	
+	
+}
