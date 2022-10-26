@@ -7,10 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity(name = "contato")
 @Table(name = "contato")
 public class Contato {
+
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
@@ -18,11 +21,14 @@ public class Contato {
 	private long contatoId;
 
 	@Column(name = "nome", updatable = false, nullable = false)
+	@NotBlank
 	private String nome;
+
 	@Column(name = "email", updatable = false, nullable = false)
+	@Email
 	private String email;
 	@Column(name = "assunto_texto", updatable = false, nullable = false)
-	private String assuntoTexto;
+		private String assuntoTexto;
 	@Column(name = "processado", updatable = true, nullable = false)
 	private boolean processado;
 

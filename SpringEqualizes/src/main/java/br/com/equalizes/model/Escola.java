@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "escola")
 @Table(name = "escola", uniqueConstraints = { @UniqueConstraint(name = "escola_um_cnpj", columnNames = "cnpj"),
@@ -17,19 +20,24 @@ public class Escola {
 	@Id
 	@Column(name = "escola_id", nullable = false, updatable = false)
 	private long escolaId;
-	@Column(name = "cnpj", nullable = false, updatable = false, length = 14)
+ 	@Column(name = "cnpj", nullable = false, updatable = false, length = 14)
+	@Pattern(regexp = "[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}")
 	private long cnpj;
 	@Column(name = "nome", nullable = false)
+	@NotBlank
 	private String nome;
 	@Column(name = "turnos")
 	private String turnos;
 	@Column(name = "qt_alunos")
 	private long qtAlunos;
 	@Column(name = "diretor")
+	@NotBlank
 	private String diretor;
 	@Column(name = "vice_diretor")
+	@NotBlank
 	private String viceDiretor;
 	@Column(name = "coordenador")
+	@NotBlank
 	private String coordenador;
 	@Column(name = "secretaria")
 	private String secretaria;
@@ -38,18 +46,24 @@ public class Escola {
 	@Column(name = "cep", length = 8)
 	private String cep;
 	@Column(name = "cidade")
+	@NotBlank
 	private String cidade;
 	@Column(name = "bairro")
+	@NotBlank
 	private String bairro;
 	@Column(name = "rua")
+	@NotBlank
 	private String rua;
 	@Column(name = "numero")
+	@NotNull
 	private int numero;
 	@Column(name = "complemento")
 	private String complemento;
 	@Column(name = "email", nullable = false, updatable = true)
+	@Email
 	private String email;
 	@Column(name = "telefone", nullable = false, updatable = true, length = 13)
+	@NotNull
 	private long telefone;
 
 	/*

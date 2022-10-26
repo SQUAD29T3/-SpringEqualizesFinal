@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity(name = "perfil")
 @Table(name = "perfil", uniqueConstraints = { @UniqueConstraint(name = "perfil_escola", columnNames = "id_escola"),
@@ -19,16 +22,21 @@ public class PerfilEscola {
 	@Column(name = "perfil_id", nullable = false, updatable = false)
 	private long perfilId;
 	@Column(name = "nome_perfil", nullable = false, updatable = true)
+	@NotBlank
 	private String nome;
 	@Column(name = "senha_perfil", nullable = false, updatable = true)
+	@Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$")
 	private String senha;
 	@Column(name = "perfil_ativo", updatable = true, nullable = false)
+	@NotNull
 	private boolean perfilAtivo;
 	@Column(name = "data_criado", updatable = false, nullable = false)
+	@NotNull
 	private LocalDateTime dataCriado;
 	@Column(name = "data_modificado", updatable = true, nullable = true)
 	private LocalDateTime dataModificado;
 	@Column(name = "id_escola", nullable = false, updatable = false)
+	@NotNull
 	private long idEscola;
 	@Column(name = "id_interese", nullable = true, updatable = true)
 	private long idInterese;

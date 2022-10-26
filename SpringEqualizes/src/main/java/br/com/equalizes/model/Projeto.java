@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "projeto")
 @Table(name = "projeto", uniqueConstraints = { @UniqueConstraint(name = "projeto_escola", columnNames = "id_escola"),
@@ -20,12 +22,16 @@ public class Projeto {
 	@Column(name = "projeto_id", nullable = false, updatable = false)
 	private long projetoId;
 	@Column(name = "empresa_id", nullable = false, updatable = false)
+	@NotNull
 	private long empresaId;
 	@Column(name = "escola_id", nullable = false, updatable = false)
+	@NotNull
 	private long escolaId;
 	@Column(name = "interese_id", nullable = false, updatable = false)
+	@NotNull
 	private long intereseId;
 	@Column(name = "data_criado", nullable = false, updatable = false)
+	@NotNull
 	private LocalDateTime dataCriado;
 	@Column(name = "data_completo", nullable = true, updatable = true)
 	private LocalDateTime dataCompleto;

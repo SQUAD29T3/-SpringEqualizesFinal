@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity(name = "empresa")
 @Table(name = "empresa", uniqueConstraints = { @UniqueConstraint(name = "empresa_um_cnpj", columnNames = "cnpj"),
@@ -14,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(name = "empresa_email_unico", columnNames = "email") })
 public class Empresa {
 
-	// @SequenceGenerator(name = "empresa_sequence", sequenceName =
+		// @SequenceGenerator(name = "empresa_sequence", sequenceName =
 	// "empresa_sequence", allocationSize = 1)
 
 	// talvez gere bugs
@@ -24,36 +28,50 @@ public class Empresa {
 	@Column(name = "empresa_id", nullable = false, updatable = false)
 	private long empresaId;
 	@Column(name = "cnpj", nullable = false, updatable = false, length = 14)
+	@NotNull
+	@Pattern(regexp = "[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}")
 	private long cnpj;
 	@Column(name = "nome_fantasia", nullable = false, updatable = true)
+	@NotBlank
 	private String nomeFantasia;
 	@Column(name = "razao_social", nullable = false)
+	@NotBlank
 	private String razaoSocial;
 	@Column(name = "ativ_empresarial")
+	@NotBlank
 	private String ativEmpresarial;
 	@Column(name = "propietario", updatable = true)
+	@NotBlank
 	private String propietario;
 	@Column(name = "socios", updatable = true)
+	@NotBlank
 	private String socios;
 	@Column(name = "administrador", updatable = true)
+	@NotBlank
 	private String administrador;
 	@Column(name = "uf", nullable = false, updatable = false)
 	private String uf;
 	@Column(name = "cep", nullable = false, length = 8, updatable = false)
 	private long cep;
 	@Column(name = "cidade")
+	@NotBlank
 	private String cidade;
 	@Column(name = "bairro")
+	@NotBlank
 	private String bairro;
 	@Column(name = "rua")
+	@NotBlank
 	private String rua;
 	@Column(name = "numero")
+	@NotNull
 	private int numero;
 	@Column(name = "complemento")
 	private String complemento;
 	@Column(name = "email", nullable = false, updatable = true)
+	@Email
 	private String email;
 	@Column(name = "telefone", nullable = false, updatable = true, length = 13)
+	@NotNull
 	private long telefone;
 
 	/**

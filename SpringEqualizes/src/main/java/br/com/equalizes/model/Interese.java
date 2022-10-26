@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "interese")
 @Table(name = "interese", uniqueConstraints = @UniqueConstraint(name = "interese_perfil", columnNames = "perfil_id"))
@@ -18,15 +19,21 @@ public class Interese {
 	@Column(name = "interese_id", nullable = false, updatable = false)
 	private long intereseId;
 	@Column(name = "perfil_id", nullable = false, updatable = false)
+	@NotNull
 	private long perfilId;
 	@Column(name = "texto", nullable = false, updatable = true)
+	@NotNull
 	private String texto;
 	@Column(name = "imagem", nullable = true, updatable = true)
 	private String imagem;
 	@Column(name = "data_criado", nullable = false, updatable = false)
+	@NotNull
 	private LocalDateTime dataCriado;
 	@Column(name = "data_alterado", nullable = true, updatable = false)
 	private LocalDateTime dataModificado;
+
+	public Interese() {
+	}
 
 	/**
 	 * @param intereseId
