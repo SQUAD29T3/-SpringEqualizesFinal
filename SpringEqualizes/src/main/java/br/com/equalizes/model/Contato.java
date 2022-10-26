@@ -1,4 +1,5 @@
-package com.exemplo.teste.contato;
+package br.com.equalizes.model;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +11,12 @@ import javax.persistence.Table;
 @Entity(name = "contato")
 @Table(name = "contato")
 public class Contato {
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	@Column(name = "contato_id", updatable = false, nullable = false)
 	private long contatoId;
+
 	@Column(name = "nome", updatable = false, nullable = false)
 	private String nome;
 	@Column(name = "email", updatable = false, nullable = false)

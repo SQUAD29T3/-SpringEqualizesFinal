@@ -1,4 +1,4 @@
-package com.exemplo.teste.perfil_escola;
+package br.com.equalizes.model;
 
 import java.time.LocalDateTime;
 

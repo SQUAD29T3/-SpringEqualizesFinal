@@ -1,4 +1,4 @@
-package com.exemplo.teste.perfil_empresa;
+package br.com.equalizes.model;
 
 import java.time.LocalDateTime;
 

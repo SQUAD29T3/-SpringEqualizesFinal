@@ -1,7 +1,8 @@
-package com.exemplo.teste.empresa;
+package br.com.equalizes.controller;
 
 import java.util.List;
 
+import br.com.equalizes.model.Empresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/empresa")
-public class EmpresaController {
+public class  EmpresaController {
 
 	private final EmpresaService empresaService;
 

@@ -1,10 +1,12 @@
-package com.exemplo.teste.empresa;
+package br.com.equalizes.controller;
+
+import br.com.equalizes.model.Empresa;
+import br.com.equalizes.repository.EmpresaRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmpresaService {

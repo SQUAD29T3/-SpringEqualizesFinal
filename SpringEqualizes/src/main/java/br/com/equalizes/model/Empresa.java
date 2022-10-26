@@ -1,4 +1,4 @@
-package com.exemplo.teste.empresa;
+package br.com.equalizes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
