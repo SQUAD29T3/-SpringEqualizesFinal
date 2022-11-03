@@ -1,10 +1,12 @@
 package br.com.equalizes.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,6 +49,38 @@ public class EscolaController {
 	}
 	
 	
+	// EXIBE TODOS OS CADASTROS PARA O ADM
+	@GetMapping("/listarEscolas")
+	public ModelAndView listarEscolas() {
+		ModelAndView mv = new ModelAndView("admin/parceiros-escolas/listar");
+
+		List<Escola> escolas = escolaRepository.findAll();
+		mv.addObject("escolas", escolas);
+
+		return mv;
+	}
+	
+	
+	// == // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
+	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O REQUERIMENTO
+	@GetMapping("/{id}/responderSolicitacaoCadastroEscola")
+	public ModelAndView editar(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("admin/parceiros-escolas/editar");
+
+		Escola escolas = escolaRepository.getOne(id);
+		mv.addObject("escolas", escolas);
+
+		return mv;
+	}
+
+	// ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
+	@PostMapping("/{id}/responderSolicitacaoCadastroEscola")
+	public ModelAndView editar(Escola escola) {
+		ModelAndView mv = new ModelAndView("redirect:/listarEscolas");
+		escolaRepository.save(escola);
+
+		return mv;
+	}
 	
 	
 

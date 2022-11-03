@@ -1,0 +1,6 @@
+package br.com.equalizes.model;
+
+
+public class PerfilEscola extends Escola {
+
+}
