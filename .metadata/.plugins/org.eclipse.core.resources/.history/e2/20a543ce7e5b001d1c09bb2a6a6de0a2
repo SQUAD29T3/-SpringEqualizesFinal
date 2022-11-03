@@ -1,0 +1,91 @@
+package br.com.equalizes.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+@Entity
+@Table(name = "escola")
+public class Escola {
+	
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "cnpj", length = 20, nullable = false)
+	private String cnpj;
+	
+	@Column(name = "nomeEscola", nullable = false)
+	private String nome;
+	
+	@Column(name = "turnos")
+	private int turnos;
+	
+	@Column(name = "qt_alunos")
+	private int qtAlunos;
+	
+	@Column(name = "diretor")
+	private String diretor;
+	
+	@Column(name = "vice_diretor")
+	private String viceDiretor;
+	
+	@Column(name = "coordenador")
+	private String coordenador;
+	
+	@Column(name = "secretaria")
+	private String secretaria;
+	
+
+	@Column(name = "cep", length = 10)
+	private String cep;
+	
+	@Column(name = "uf", length = 15, nullable = false)
+	private String uf;
+	
+	
+	@Column(name = "cidade", length = 20, nullable = false)
+	private String cidade;
+	
+	@Column(name = "bairro", length = 20, nullable = false)
+	private String bairro;
+	
+	@Column(name = "rua", length = 20, nullable = false)
+	private String rua;
+	
+	@Column(name = "numero", length = 6, nullable = false)
+	private String numero;
+	
+	@Column(name = "complemento", length = 50, nullable = false)
+	private String complemento;
+	
+	@Column(name = "email", length = 50, nullable = false)
+	private String email;
+	
+	@Column(name = "telefone", length = 20, nullable = false)
+	private String telefone;
+
+	@Column(nullable = false, name = "dataCadastro")
+    @DateTimeFormat(iso = ISO.DATE)
+    private LocalDate dataCadastro;
+	
+	@Column(nullable = true, name = "dataResposta")
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataResposta;	
+	
+	@Column(name = "statusCadastro", length = 15)
+	private String statusCadastro;
+	
+	public Escola() {}
+	
+
+}

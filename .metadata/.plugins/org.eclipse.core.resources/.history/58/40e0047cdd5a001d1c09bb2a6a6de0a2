@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- BOOTSTRAP CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<!-- ICON DO SITE (E) -->
+	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
+
+	<!-- ICON SITE REMIXICON -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+	<!-- CSS EXTERNO -->
+	<link rel="stylesheet" th:href="@{/css/all.css}">
+
+	<link rel="stylesheet" th:href="@{/css/parceiros.css}">
+
+
+	<title> Empresas parceiras | Equalizes </title>
+
+</head>
+
+<body>
+
+
+	<div class="container-fluid">
+
+		<!-- INÍCIO MENU -->
+
+		<div class="row">
+
+			<div class="col-12 mb-5">
+
+				<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="/">
+
+							< <img th:src="@{/img/logo_equalizes_white.png}" alt="logo" class="logo">
+
+						</a>
+						<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+							aria-label="Toggle navigation" style="background-color: #164B66;">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse text-center" id="collapsibleNavId">
+							<ul class="navbar-nav me-auto mt-2 mt-lg-0">
+								<li class="nav-item active">
+									<a class="nav-link text-light btn-hover" href="/"> HOME <span
+											class="visually-hidden">(current)</span></a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-light btn-hover" href="/"> MISSÃO </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-light btn-hover" href="/"> PROJETO </a>
+								</li>
+
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle text-light btn-hover" href="#" id="dropdownId"
+										data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SEJA UM
+										PARCEIRO</a>
+									<div class="dropdown-menu" aria-labelledby="dropdownId">
+										<a class="dropdown-item text-center btn-hover"
+											href="/cadastroEscola">ESCOLAS</a>
+
+										<hr class="dropdown-divider">
+
+										<a class="dropdown-item text-center btn-hover" href="#">EMPRESAS</a>
+									</div>
+								</li>
+
+								<li class="nav-item">
+									<a class="nav-link text-light btn-hover" href="/contato"> CONTATO </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-light btn-login float-right" href="/login"> LOGIN </a>
+								</li>
+
+							</ul>
+
+						</div>
+					</div>
+				</nav>
+
+			</div>
+
+		</div>
+
+		<!-- FIM MENU -->
+
+
+		<header>
+			<div class="jumbotron">
+				<div class="container-fluid">
+					<h1 class="display-5">SEJA UMA EMPRESA PARCEIRA DO PROJETO EQUALIZES</h1>
+					<p class="text-center">Venha conosco nessa jornada para assegurar educação inclusiva,
+						equitativa e de qualidade para todos!
+					</p>
+				</div>
+			</div>
+
+			<!-- Inicio Checks -->
+			<div class="row">
+
+				<div class="col-sm-4 text-light  text-center"> &#10003 Assistência </div>
+				<div class="col-sm-4 text-light  text-center"> &#10003 Diferencial </div>
+				<div class="col-sm-4 text-light text-center"> &#10003 Equidade </div>
+
+			</div>
+
+
+			<div class="row mt-2 mb-3">
+
+				<div class="col-sm-4 text-light  text-center"> &#10003 Imagem </div>
+				<div class="col-sm-4 text-light  text-center"> &#10003 Inclusão </div>
+				<div class="col-sm-4 text-light text-center"> &#10003 Oportunidade </div>
+
+			</div>
+
+
+			<!-- Fim Checks -->
+
+		</header>
+
+
+		<main class="main2">
+
+
+			<!-- Inicio Formulario -->
+
+			<form action="" method="">
+
+
+				<div class="row m-0">
+
+					<div class="col-12 mt-4">
+						<p class="pFormulario">
+							Faça seu Cadastro Abaixo
+						</p>
+						<p class="p2Formulario">Entraremos em contato através do e-mail cadastrado
+						</p>
+					</div>
+
+				</div>
+
+
+				<!-- INÍCIO INPUTS -->
+				<div class="row ms-2 me-2">
+
+					<div class="row m-0">
+
+						<div class="col-sm-6 mt-3">
+
+							<label>Razão Social:</label> <br>
+							<input type="text" name="razaoSocial" placeholder="Digite a Razão Social da Empresa"
+								required />
+
+
+						</div>
+
+
+						<div class="col-sm-6 mt-3">
+
+							<label>CNPJ:</label> <br>
+							<input type="text" name="cnpj" maxlength="20" id="cnpj"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+								placeholder="Digite o CNPJ (Apenas Números)" required />
+
+
+						</div>
+
+					</div>
+
+					<div class="row m-0">
+
+						<div class="col-md-6 mt-3">
+							<label for="rua">Rua:</label>
+							<input type="text" name="rua" disabled />
+						</div>
+
+						<div class="col-md-2 mt-3">
+							<label for="numero">Nº:</label>
+							<input type="text" name="numero" maxlength="6" required />
+						</div>
+
+						<div class="col-md-4 mt-3">
+							<label for="complemento">Complemento:</label>
+							<input type="text" name="complemento" maxlength="50" />
+						</div>
+
+						<div class="col-md-6 mt-3">
+							<label for="bairro">Bairro:</label>
+							<input type="text" name="bairro" disabled />
+						</div>
+
+						<div class="col-md-6 mt-3">
+
+							<label>Cidade:</label>
+							<input type="text" name="cidade" disabled />
+
+						</div>
+
+
+						<div class="col-md-6 mt-3">
+
+							<label>Estado:</label>
+
+							<input type="text" name="uf" disabled />
+
+						</div>
+
+
+						<div class="col-md-6 mt-3">
+
+							<label>CEP:</label>
+							<input type="text" maxlength="8" name="cep"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+								placeholder="Digite o Cep" />
+
+
+						</div>
+
+
+					</div>
+
+
+					<div class="row m-0">
+
+						<div class="col-sm-6 mt-3">
+
+							<label>Telefone:</label> <br>
+							<input type="text" name="telefone" id="telefone"
+								placeholder="(xx) xxxxx-xxxx" maxlength="20" required />
+
+						</div>
+
+
+						<div class="col-sm-6 mt-3">
+
+							<label>E-mail Institucional:</label> <br>
+							<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+								placeholder="Digite o E-mail">
+
+						</div>
+
+
+					</div>
+
+
+					<div class="row m-0">
+
+						<div class="col-sm-12 mt-3">
+							<label>Você confirma a autencidade dos dados informados acima?</label>
+						</div>
+
+
+
+						<div class="col-sm-12">
+
+							<input type="checkbox" id="sim" name="opc" value="sim">
+							<label for="sim">Sim</label>
+
+						</div>
+
+					</div>
+
+
+					<div class="col-12 mt-3 mb-4">
+						<button type="submit" id="botao">Enviar</button>
+					</div>
+
+				</div>
+
+				<!-- FIM INPUTS -->
+
+			</form>
+
+			<!-- Fim Formulario -->
+
+
+		</main>
+
+
+		<!-- ICON SCROLL TOP -->
+
+		<i onclick="subirTela()" class="ri-arrow-up-s-line" id="icon-top"></i>
+
+		<!-- ICON SCROLL TOP -->
+
+
+		<!-- RODAPÉ -->
+
+		<footer>
+
+
+			<div class="row">
+
+				<div class="col-12 text-center mt-4">
+
+					<img th:src="@{/img/logo_equalizes_white.png}" alt="logo" class="logo">
+
+				</div>
+
+			</div>
+
+
+
+			<div class="row">
+
+				<div class="col-12 text-center mt-4">
+
+					<div class="icon-redeSociais">
+
+						<a href="https://github.com/SQUAD29T3" target="_blank"> <i class="ri-github-fill"></i></a>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+			<div class="row">
+				<div class="col-12">
+
+					<p class="text-light text-center pt-4"> &copy 2022 - Equalizes - Squad 29 </p>
+
+				</div>
+			</div>
+
+
+		</footer>
+
+		<!-- FIM RODAPÉ -->
+
+	</div>
+
+
+	<!-- JAVASCRIPT EXTERNO -->
+	<script th:src="@{/js/all.js}"></script>
+	<script th:src="@{/js/parceiros.js}"></script>
+
+	<!-- BOOTSTRAP JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+	<script>
+		$('#cep').mask('00000-000');
+		$('#cnpj').mask('00.000.000/0000-00', {reverse: true});
+		$('#telefone').mask('(00) 0000-0000');
+	</script>
+
+
+
+</body>
+
+</html>

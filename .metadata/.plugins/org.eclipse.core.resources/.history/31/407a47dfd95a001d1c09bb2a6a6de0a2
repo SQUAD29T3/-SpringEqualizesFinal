@@ -1,0 +1,50 @@
+package br.com.equalizes.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "escola")
+public class Escola {
+	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@Column(name = "escola_id", nullable = false, updatable = false)
+	private long escolaId;
+	@Column(name = "cnpj", nullable = false, updatable = false, length = 14)
+	private long cnpj;
+	@Column(name = "nome", nullable = false)
+	private String nome;
+	@Column(name = "turnos")
+	private String turnos;
+	@Column(name = "qt_alunos")
+	private long qtAlunos;
+	@Column(name = "diretor")
+	private String diretor;
+	@Column(name = "vice_diretor")
+	private String viceDiretor;
+	@Column(name = "coordenador")
+	private String coordenador;
+	@Column(name = "secretaria")
+	private String secretaria;
+	@Column(name = "uf", length = 2)
+	private String uf;
+	@Column(name = "cep", length = 8)
+	private String cep;
+	@Column(name = "cidade")
+	private String cidade;
+	@Column(name = "bairro")
+	private String bairro;
+	@Column(name = "rua")
+	private String rua;
+	@Column(name = "numero")
+	private int numero;
+	@Column(name = "complemento")
+	private String complemento;
+	@Column(name = "email", nullable = false, updatable = true)
+	private String email;
+	@Column(name = "telefone", nullable = false, updatable = true, length = 13)
+	private long telefone;
+
+
+}

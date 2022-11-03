@@ -18,21 +18,6 @@ public class RotasSite {
 	}
 	
 
-	@GetMapping("/cadastroEscola")
-	// PÁGINA CADASTRO DE ESCOLAS
-	public ModelAndView cadastroEscola() {
-		ModelAndView modelAndView = new ModelAndView("site/parceiros-escolas");
-		return modelAndView;
-	}
-	
-	@GetMapping("/cadastroEmpresa")
-	// PÁGINA CADASTRO DE EMPRESAS
-	public ModelAndView cadastroEmpresa() {
-		ModelAndView modelAndView = new ModelAndView("site/parceiros-empresas");
-		return modelAndView;
-	}
-	
-
 	
 	@GetMapping("/login")
 	// PÁGINA LOGIN
@@ -41,8 +26,7 @@ public class RotasSite {
 		return modelAndView;
 	}
 
-	
-	
+
 	
 	
 }

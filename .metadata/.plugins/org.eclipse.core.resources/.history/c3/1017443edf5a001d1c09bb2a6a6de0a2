@@ -1,0 +1,29 @@
+package br.com.equalizes.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.equalizes.repository.EscolaRepository;
+
+
+@Controller
+public class EscolaController {
+	
+	@Autowired
+	private EscolaRepository escolaRepository;
+	
+	// === CADASTRO PARCEIROS => ESCOLAS
+	// CHAMA A VIEW CADASTRAR E PASSA UM OBJETO VAZIO
+	@GetMapping("/cadastroEscola")
+	// PÁGINA CADASTRO DE ESCOLAS
+	public ModelAndView cadastroEscola() {
+		ModelAndView modelAndView = new ModelAndView("site/parceiros-escolas");
+		return modelAndView;
+	}
+	
+	
+	
+
+}
