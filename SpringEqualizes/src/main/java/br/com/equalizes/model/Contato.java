@@ -1,6 +1,5 @@
 package br.com.equalizes.model;
 
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,146 +7,134 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-
-@Entity
+@Entity(name = "contato")
 @Table(name = "contato")
 public class Contato {
-	
-	// ATRIBUTOS
-	
+
+
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	// IDENTITY = CHAVE PRIMÁRIA E AUTOINCREMENT
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	
-	@Column(name = "nome", length = 50, nullable = false)
+	@Column(name = "contato_id", updatable = false, nullable = false)
+	private long contatoId;
+
+	@Column(name = "nome", updatable = false, nullable = false)
+	@NotBlank
 	private String nome;
-	
-	
-	@Column(name = "email", length = 50, nullable = false)
+
+	@Column(name = "email", updatable = false, nullable = false)
+	@Email
 	private String email;
-	
-	@Column(name = "assunto", length = 60, nullable = false)
-	private String assunto;
-	
-	@Column(name = "mensagem", nullable = false)
-	private String mensagem;
-	
-	@Column(name = "status", length = 20, nullable = true)
-	private String status;
-	
-	@Column(nullable = false, name = "dataContato")
-    @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate dataContato;	
-	
-	@Column(nullable = true, name = "dataResposta")
-	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dataResposta;	
-	
-	
-	public Contato() {}
+	@Column(name = "assunto_texto", updatable = false, nullable = false)
+		private String assuntoTexto;
+	@Column(name = "processado", updatable = true, nullable = false)
+	private boolean processado;
 
-
-	public Contato(Long id, String nome, String email, String assunto, String mensagem, String status,
-			LocalDate dataContato, LocalDate dataResposta) {
-		
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.assunto = assunto;
-		this.mensagem = mensagem;
-		this.status = status;
-		this.dataContato = dataContato;
-		this.dataResposta = dataResposta;
+	/**
+	 * @return the contatoId
+	 */
+	public long getContatoId() {
+		return contatoId;
 	}
 
-
-	public Long getId() {
-		return id;
+	/**
+	 * @param contatoId the contatoId to set
+	 */
+	public void setContatoId(final long contatoId) {
+		this.contatoId = contatoId;
 	}
 
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
+	/**
+	 * @return the nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 
-
-	public void setNome(String nome) {
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(final String nome) {
 		this.nome = nome;
 	}
 
-
+	/**
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
-
-	public void setEmail(String email) {
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
-
-	public String getAssunto() {
-		return assunto;
+	/**
+	 * @return the assuntoTexto
+	 */
+	public String getAssuntoTexto() {
+		return assuntoTexto;
 	}
 
-
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
+	/**
+	 * @param assuntoTexto the assuntoTexto to set
+	 */
+	public void setAssuntoTexto(final String assuntoTexto) {
+		this.assuntoTexto = assuntoTexto;
 	}
 
-
-	public String getMensagem() {
-		return mensagem;
+	/**
+	 * @return the processado
+	 */
+	public boolean isProcessado() {
+		return processado;
 	}
 
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	/**
+	 * @param processado the processado to set
+	 */
+	public void setProcessado(final boolean processado) {
+		this.processado = processado;
 	}
 
-
-	public String getStatus() {
-		return status;
+	/**
+	 * @param contatoId
+	 * @param nome
+	 * @param email
+	 * @param assuntoTexto
+	 * @param processado
+	 */
+	public Contato(final long contatoId, final String nome, final String email, final String assuntoTexto,
+			final boolean processado) {
+		this.contatoId = contatoId;
+		this.nome = nome;
+		this.email = email;
+		this.assuntoTexto = assuntoTexto;
+		this.processado = processado;
 	}
 
-
-	public void setStatus(String status) {
-		this.status = status;
+	/**
+	 * @param nome
+	 * @param email
+	 * @param assuntoTexto
+	 * @param processado
+	 */
+	public Contato(final String nome, final String email, final String assuntoTexto, final boolean processado) {
+		this.nome = nome;
+		this.email = email;
+		this.assuntoTexto = assuntoTexto;
+		this.processado = processado;
 	}
 
-
-	public LocalDate getDataContato() {
-		return dataContato;
+	/**
+	 *
+	 */
+	public Contato() {
 	}
-
-
-	public void setDataContato(LocalDate dataContato) {
-		this.dataContato = dataContato;
-	}
-
-
-	public LocalDate getDataResposta() {
-		return dataResposta;
-	}
-
-
-	public void setDataResposta(LocalDate dataResposta) {
-		this.dataResposta = dataResposta;
-	}
-
-
-	
-	
 
 }
