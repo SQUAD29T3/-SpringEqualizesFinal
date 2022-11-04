@@ -118,7 +118,7 @@
 
                         <div class="col-md-4 mt-3">
                             <label for="cnpj">Cnpj:</label> <br />
-                            <input type="text" name="cnpj" th:value="${session.escolaLogada.cnpj}" disabled />
+                            <input type="text" name="cnpj" th:value="${cnpj}" disabled />
                         </div>
 
                         <div class="col-md-2 mt-3">
@@ -128,7 +128,7 @@
 
                         <div class="col-md-2 mt-3">
                             <label for="alunos">Qtd. alunos:</label> <br />
-                            <input type="text" name="alunos" th:value="${session.escolaLogada.qtAlunos}" />
+                            <input type="text" name="alunos" th:value="${qtAlunos}" />
                         </div>
 
                     </div>
@@ -138,17 +138,17 @@
 
                         <div class="col-md-4 mt-3">
                             <label for="diretor">Diretor(a):</label>
-                            <input type="text" name="diretor" th:value="${session.escolaLogada.diretor}" />
+                            <input type="text" name="diretor" th:value="${diretor}" />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="vicediretor">Vice-diretor(a):</label>
-                            <input type="text" name="vicediretor" th:value="${session.escolaLogada.viceDiretor}" />
+                            <input type="text" name="vicediretor" th:value="${viceDiretor}" />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="coordenador">Coordenador(a):</label>
-                            <input type="text" name="coordenador" th:value="${session.escolaLogada.coordenador}" />
+                            <input type="text" name="coordenador" th:value="${coordenador}" />
                         </div>
 
                     </div>
@@ -157,17 +157,17 @@
 
                         <div class="col-md-4 mt-3">
                             <label for="secretaria">Secretário(a):</label>
-                            <input type="text" name="secretaria" th:value="${session.escolaLogada.secretaria}" maxlength="50" />
+                            <input type="text" name="secretaria" th:value="${secretaria}" maxlength="50" />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" th:value="${session.escolaLogada.email}" disabled />
+                            <input type="text" name="email" th:value="${email}" disabled />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="telefone">Telefone:</label>
-                            <input type="text" name="telefone" th:value="${session.escolaLogada.telefone}" maxlength="20" />
+                            <input type="text" name="telefone" th:value="${telefone}" maxlength="20" />
                         </div>
 
                     </div>
@@ -179,17 +179,17 @@
                         <h3>Endereço:</h3>
                         <div class="col-md-4 mt-3">
                             <label for="rua">Rua:</label>
-                            <input type="text" name="rua" th:value="${session.escolaLogada.rua}" disabled />
+                            <input type="text" name="rua" th:value="${rua}" disabled />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="numero">Nº:</label>
-                            <input type="text" name="numero" th:value="${session.escolaLogada.numero}" maxlength="6" />
+                            <input type="text" name="numero" th:value="${numero}" maxlength="6" />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="complemento">Complemento:</label>
-                            <input type="text" name="complemento" th:value="${session.escolaLogada.complemento}" maxlength="50" />
+                            <input type="text" name="complemento" th:value="${complemento}" maxlength="50" />
                         </div>
 
                     </div>
@@ -198,22 +198,22 @@
 
                         <div class="col-md-4 mt-3">
                             <label for="bairro">Bairro:</label>
-                            <input type="text" name="bairro" th:value="${session.escolaLogada.bairro}" disabled />
+                            <input type="text" name="bairro" disabled />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="cidade">Cidade:</label>
-                            <input type="text" name="cidade" th:value="${session.escolaLogada.cidade}" disabled />
+                            <input type="text" name="cidade" disabled />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="uf">Uf:</label>
-                            <input type="text" name="uf" th:value="${session.escolaLogada.uf}" disabled />
+                            <input type="text" name="uf" disabled />
                         </div>
 
                         <div class="col-md-4 mt-3">
                             <label for="cep">Cep:</label>
-                            <input type="text" name="cep" th:value="${session.escolaLogada.cep}" />
+                            <input type="text" name="cep" maxlength="8" />
                         </div>
 
                     </div>

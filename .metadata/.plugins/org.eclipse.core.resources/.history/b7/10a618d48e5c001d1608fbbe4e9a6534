@@ -24,8 +24,6 @@ public class AdminController {
 	}
 	
 
-	
-	// REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O  CADASTRO
 	@GetMapping("/{id}/gerarLoginEscola")
 	public ModelAndView editar(@PathVariable Long id) {

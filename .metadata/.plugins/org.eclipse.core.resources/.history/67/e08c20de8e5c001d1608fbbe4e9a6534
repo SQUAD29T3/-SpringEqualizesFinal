@@ -144,7 +144,7 @@
 
 						<div class="col-12 mt-4">
 
-							<input type="email" name="email" id="email" placeholder="Digite seu e-mail" required />
+							<input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
 
 						</div>
 

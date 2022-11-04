@@ -109,12 +109,12 @@
                         <h3>ATUALIZAÇÃO DE E-MAIL E/OU SENHA:</h3>
                         <div class="col-md-12 mt-3">
                             <label for="email">E-mail:</label>
-                            <input type="text" name="email" th:value="${session.escolaLogada.email}" maxlength="50" />
+                            <input type="text" name="email" th:value="${email}" maxlength="50" />
                         </div>
 
                         <div class="col-md-12 mt-3">
                             <label for="senha">Senha:</label>
-                            <input type="password" name="senha" th:value="${session.escolaLogada.senha}" maxlength="20" />
+                            <input type="password" name="senha"th:value="${senha}" maxlength="50" />
                         </div>
 
                         <div class="col-md-12 mt-3">
@@ -128,7 +128,7 @@
                         
                         <h3 class="bg-dark">EXCLUIR CADASTRO</h3>
 
-						<input type="hidden" name="id" th:value="${session.escolaLogada.id}" class="mt-4 p-2" />
+						<input type="text" name="id" th:value="${session.escolaLogada.id}" class="mt-4 p-2" />
 
 						<div class="row mt-5">
 							<p class="mb-5 text-danger">

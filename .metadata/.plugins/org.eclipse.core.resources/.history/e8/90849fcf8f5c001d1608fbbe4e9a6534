@@ -109,7 +109,7 @@
                         <h3>ATUALIZAÇÃO DE E-MAIL E/OU SENHA:</h3>
                         <div class="col-md-12 mt-3">
                             <label for="email">E-mail:</label>
-                            <input type="text" name="email" th:value="${session.escolaLogada.email}" maxlength="50" />
+                            <input type="text" name="email" th:value="${email}" maxlength="50" />
                         </div>
 
                         <div class="col-md-12 mt-3">

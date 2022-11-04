@@ -35,7 +35,7 @@ public class LoginController {
 		Escola escola = this.escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
 		
 		if(escola != null) {
-			session.setAttribute("escolaLogada", escola);
+			session.setAttribute("usuarioLogado", escola);
 			return "redirect:/perfilEscola";
 			
 		}
