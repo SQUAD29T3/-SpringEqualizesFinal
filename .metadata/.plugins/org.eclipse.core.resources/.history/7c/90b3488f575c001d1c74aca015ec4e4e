@@ -1,0 +1,28 @@
+package br.com.equalizes.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import br.com.equalizes.repository.EscolaRepository;
+import br.com.equalizes.repository.PerfilEscolaRepository;
+
+@Controller
+public class AdminController {
+	
+	@Autowired
+	private EscolaRepository escolaRepository;
+	
+	@Autowired
+	private PerfilEscolaRepository perfilEscolaRepository;
+	
+	@GetMapping("/admin")
+	// INICIALIZA A APLICAÇÃO
+	public String admin() {
+		return "admin/admin";
+	}
+	
+	
+	
+
+}

@@ -64,8 +64,11 @@ public class Empresa {
 	@Column(name = "complemento", length = 20, nullable = false)
 	private String complemento;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", length = 50, nullable = false)
 	private String email;
+	
+	@Column(length = 20, nullable = true)
+	private String senha;
 	
 	@Column(name = "telefone", nullable = false)
 	private String telefone;
@@ -81,12 +84,15 @@ public class Empresa {
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
 	
+	@Column(nullable = true, length = 10)
+	private String statusPerfil;
+	
 	public Empresa() {}
 
 	public Empresa(Long id, String cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
 			String propietario, String socios, String administrador, String cep, String uf, String cidade,
-			String bairro, String rua, String numero, String complemento, String email, String telefone,
-			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro) {
+			String bairro, String rua, String numero, String complemento, String email, String senha, String telefone,
+			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro, String statusPerfil) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -104,10 +110,12 @@ public class Empresa {
 		this.numero = numero;
 		this.complemento = complemento;
 		this.email = email;
+		this.senha = senha;
 		this.telefone = telefone;
 		this.dataCadastro = dataCadastro;
 		this.dataResposta = dataResposta;
 		this.statusCadastro = statusCadastro;
+		this.statusPerfil = statusPerfil;
 	}
 
 	public Long getId() {
@@ -238,6 +246,14 @@ public class Empresa {
 		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -269,49 +285,15 @@ public class Empresa {
 	public void setStatusCadastro(String statusCadastro) {
 		this.statusCadastro = statusCadastro;
 	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(administrador, ativEmpresarial, bairro, cep, cidade, cnpj, complemento, dataCadastro,
-				dataResposta, email, id, nomeFantasia, numero, propietario, razaoSocial, rua, socios, statusCadastro,
-				telefone, uf);
+
+	public String getStatusPerfil() {
+		return statusPerfil;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empresa other = (Empresa) obj;
-		return Objects.equals(administrador, other.administrador)
-				&& Objects.equals(ativEmpresarial, other.ativEmpresarial) && Objects.equals(bairro, other.bairro)
-				&& Objects.equals(cep, other.cep) && Objects.equals(cidade, other.cidade)
-				&& Objects.equals(cnpj, other.cnpj) && Objects.equals(complemento, other.complemento)
-				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(dataResposta, other.dataResposta)
-				&& Objects.equals(email, other.email) && Objects.equals(id, other.id)
-				&& Objects.equals(nomeFantasia, other.nomeFantasia) && Objects.equals(numero, other.numero)
-				&& Objects.equals(propietario, other.propietario) && Objects.equals(razaoSocial, other.razaoSocial)
-				&& Objects.equals(rua, other.rua) && Objects.equals(socios, other.socios)
-				&& Objects.equals(statusCadastro, other.statusCadastro) && Objects.equals(telefone, other.telefone)
-				&& Objects.equals(uf, other.uf);
+	public void setStatusPerfil(String statusPerfil) {
+		this.statusPerfil = statusPerfil;
 	}
 
-	@Override
-	public String toString() {
-		return "Empresa [id=" + id + ", cnpj=" + cnpj + ", nomeFantasia=" + nomeFantasia + ", razaoSocial="
-				+ razaoSocial + ", ativEmpresarial=" + ativEmpresarial + ", propietario=" + propietario + ", socios="
-				+ socios + ", administrador=" + administrador + ", cep=" + cep + ", uf=" + uf + ", cidade=" + cidade
-				+ ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
-				+ ", email=" + email + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro + ", dataResposta="
-				+ dataResposta + ", statusCadastro=" + statusCadastro + "]";
-	}
-	
-	
 	
 	
 	

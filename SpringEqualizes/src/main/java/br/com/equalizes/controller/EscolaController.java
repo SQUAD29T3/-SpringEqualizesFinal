@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.equalizes.model.Contato;
-import br.com.equalizes.model.Empresa;
 import br.com.equalizes.model.Escola;
 import br.com.equalizes.repository.EscolaRepository;
 
@@ -52,7 +50,7 @@ public class EscolaController {
 	// EXIBE TODOS OS CADASTROS PARA O ADM
 	@GetMapping("/listarEscolas")
 	public ModelAndView listarEscolas() {
-		ModelAndView mv = new ModelAndView("admin/parceiros-escolas/listar");
+		ModelAndView mv = new ModelAndView("admin/cadastro-escolas/listar");
 
 		List<Escola> escolas = escolaRepository.findAll();
 		mv.addObject("escolas", escolas);
@@ -61,11 +59,27 @@ public class EscolaController {
 	}
 	
 	
+	
+	// EXIBE TODOS OS CADASTROS DEFERIDOS PARA O ADM
+	@GetMapping("/listarEscolasAprovadas")
+	public ModelAndView listarEscolasAceitas(String status) {
+		ModelAndView mv = new ModelAndView("admin/parceiros-escolas/listar");
+		
+		status = "deferido";
+		
+		List<Escola> escolas = escolaRepository.findByStatus(status);
+		mv.addObject("escolas", escolas);
+
+		return mv;
+	}
+	
+	
+		
 	// == // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O REQUERIMENTO
 	@GetMapping("/{id}/responderSolicitacaoCadastroEscola")
 	public ModelAndView editar(@PathVariable Long id) {
-		ModelAndView mv = new ModelAndView("admin/parceiros-escolas/editar");
+		ModelAndView mv = new ModelAndView("admin/cadastro-escolas/editar");
 
 		Escola escolas = escolaRepository.getOne(id);
 		mv.addObject("escolas", escolas);

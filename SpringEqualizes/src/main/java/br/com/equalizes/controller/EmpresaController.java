@@ -52,7 +52,7 @@ public class EmpresaController {
 	// EXIBE TODOS OS CADASTROS PARA O ADM
 	@GetMapping("/listarEmpresas")
 	public ModelAndView listarEmpresas() {
-		ModelAndView mv = new ModelAndView("admin/parceiros-empresas/listar");
+		ModelAndView mv = new ModelAndView("admin/cadastro-empresas/listar");
 
 		List<Empresa> empresas = empresaRepository.findAll();
 		mv.addObject("empresas", empresas);
@@ -65,7 +65,7 @@ public class EmpresaController {
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O REQUERIMENTO
 	@GetMapping("/{id}/responderSolicitacaoCadastroEmpresa")
 	public ModelAndView editar(@PathVariable Long id) {
-		ModelAndView mv = new ModelAndView("admin/parceiros-empresas/editar");
+		ModelAndView mv = new ModelAndView("admin/cadastro-empresas/editar");
 
 		Empresa empresas = empresaRepository.getOne(id);
 		mv.addObject("empresas", empresas);

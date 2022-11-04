@@ -24,7 +24,7 @@
 
 
 
-	<title> Escolas cadastradas | Equalizes </title>
+	<title> Escolas aprovadas | Equalizes </title>
 
 </head>
 
@@ -48,7 +48,7 @@
 			<div id="menu-area">
 				<ul>
 
-					<a href="/admin">
+					<a href="">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -60,7 +60,7 @@
 						</li>
 					</a>
 
-					<a href="#">
+					<a href="/listarContatos">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -71,18 +71,27 @@
 						</li>
 					</a>
 
-					<a href="">
-						<li>
 
-							<span class="material-symbols-outlined">
+					<a href="">
+						<li class="nav-item dropdown">
+
+
+							<span class="material-symbols-outlined text-light">
 								group_add
 							</span>
 
-							SOLICITAÇÕES DE PARCERIAS
+
+							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">SOLICITAÇÃO DE PARCERIA</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item text-center btn-hover" href="/listarEscolas">ESCOLAS</a>
+
+								<hr class="dropdown-divider">
+
+								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
 
 						</li>
 					</a>
-
 
 					<a href="">
 						<li class="nav-item dropdown">
@@ -94,14 +103,16 @@
 							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">PARCEIROS</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-center btn-hover" href="">ESCOLAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEscolasAprovadas">ESCOLAS</a>
 
 								<hr class="dropdown-divider">
 
-								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
+								<a class="dropdown-item text-center btn-hover" href="">EMPRESAS</a>
 
 						</li>
 					</a>
+
 
 
 				</ul>
@@ -121,7 +132,7 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>Solicitações de contato</h1>
+				<h1>Escolas aprovadas</h1>
 			</div>
 		</div>
 
@@ -152,9 +163,9 @@
 							<td th:text="${escolas.statusCadastro}"></td>
 							<td th:text="${escolas.dataResposta}"></td>
 							<td>
-							
-								<a th:href="@{/{id}/responderSolicitacaoCadastroEscola (id=${escolas.id})}" class="btn btn-warning">
-									Responder
+
+								<a th:href="@{/{id}/gerarLoginEscola (id=${escolas.id})}" class="btn btn-warning">
+									Gerar login
 								</a>
 							</td>
 						</tr>

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,7 +17,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "escola")
 public class Escola {
-	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -52,8 +52,7 @@ public class Escola {
 	
 	@Column(name = "uf", length = 2, nullable = false)
 	private String uf;
-	
-	
+		
 	@Column(name = "cidade", length = 20, nullable = false)
 	private String cidade;
 	
@@ -72,6 +71,9 @@ public class Escola {
 	@Column(name = "email", length = 50, nullable = false)
 	private String email;
 	
+	@Column(length = 20, nullable = true)
+	private String senha;
+	
 	@Column(name = "telefone", length = 20, nullable = false)
 	private String telefone;
 
@@ -86,12 +88,15 @@ public class Escola {
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
 	
+	@Column(nullable = true, length = 10)
+	private String statusPerfil;
+	
 	public Escola() {}
 
 	public Escola(Long id, String cnpj, String nome, int turnos, int qtAlunos, String diretor, String viceDiretor,
 			String coordenador, String secretaria, String cep, String uf, String cidade, String bairro, String rua,
-			String numero, String complemento, String email, String telefone, LocalDate dataCadastro,
-			LocalDate dataResposta, String statusCadastro) {
+			String numero, String complemento, String email, String senha, String telefone, LocalDate dataCadastro,
+			LocalDate dataResposta, String statusCadastro, String statusPerfil) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -110,10 +115,12 @@ public class Escola {
 		this.numero = numero;
 		this.complemento = complemento;
 		this.email = email;
+		this.senha = senha;
 		this.telefone = telefone;
 		this.dataCadastro = dataCadastro;
 		this.dataResposta = dataResposta;
 		this.statusCadastro = statusCadastro;
+		this.statusPerfil = statusPerfil;
 	}
 
 	public Long getId() {
@@ -252,6 +259,14 @@ public class Escola {
 		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -284,42 +299,16 @@ public class Escola {
 		this.statusCadastro = statusCadastro;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(bairro, cep, cidade, cnpj, complemento, coordenador, dataCadastro, dataResposta, diretor,
-				email, id, nome, numero, qtAlunos, rua, secretaria, statusCadastro, telefone, turnos, uf, viceDiretor);
+	public String getStatusPerfil() {
+		return statusPerfil;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Escola other = (Escola) obj;
-		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
-				&& Objects.equals(cidade, other.cidade) && Objects.equals(cnpj, other.cnpj)
-				&& Objects.equals(complemento, other.complemento) && Objects.equals(coordenador, other.coordenador)
-				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(dataResposta, other.dataResposta)
-				&& Objects.equals(diretor, other.diretor) && Objects.equals(email, other.email)
-				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(numero, other.numero) && qtAlunos == other.qtAlunos && Objects.equals(rua, other.rua)
-				&& Objects.equals(secretaria, other.secretaria) && Objects.equals(statusCadastro, other.statusCadastro)
-				&& Objects.equals(telefone, other.telefone) && turnos == other.turnos && Objects.equals(uf, other.uf)
-				&& Objects.equals(viceDiretor, other.viceDiretor);
+	public void setStatusPerfil(String statusPerfil) {
+		this.statusPerfil = statusPerfil;
 	}
 
-	@Override
-	public String toString() {
-		return "Escola [id=" + id + ", cnpj=" + cnpj + ", nome=" + nome + ", turnos=" + turnos + ", qtAlunos="
-				+ qtAlunos + ", diretor=" + diretor + ", viceDiretor=" + viceDiretor + ", coordenador=" + coordenador
-				+ ", secretaria=" + secretaria + ", cep=" + cep + ", uf=" + uf + ", cidade=" + cidade + ", bairro="
-				+ bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", email=" + email
-				+ ", telefone=" + telefone + ", dataCadastro=" + dataCadastro + ", dataResposta=" + dataResposta
-				+ ", statusCadastro=" + statusCadastro + "]";
-	}
+	
+	
 	
 	
 	
