@@ -45,7 +45,7 @@
 			<div id="menu-area">
 				<ul>
 
-					<a href="/admin">
+					<a href="">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -57,7 +57,7 @@
 						</li>
 					</a>
 
-					<a href="#">
+					<a href="/listarContatos">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -68,18 +68,27 @@
 						</li>
 					</a>
 
-					<a href="">
-						<li>
 
-							<span class="material-symbols-outlined">
+					<a href="">
+						<li class="nav-item dropdown">
+
+
+							<span class="material-symbols-outlined text-light">
 								group_add
 							</span>
 
-							SOLICITAÇÕES DE PARCERIAS
+
+							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">SOLICITAÇÃO DE PARCERIA</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item text-center btn-hover" href="/listarEscolas">ESCOLAS</a>
+
+								<hr class="dropdown-divider">
+
+								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
 
 						</li>
 					</a>
-
 
 					<a href="">
 						<li class="nav-item dropdown">
@@ -91,11 +100,12 @@
 							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">PARCEIROS</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-center btn-hover" href="">ESCOLAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEscolasAprovadas">ESCOLAS</a>
 
 								<hr class="dropdown-divider">
 
-								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
+								<a class="dropdown-item text-center btn-hover" href="">EMPRESAS</a>
 
 						</li>
 					</a>
@@ -104,6 +114,7 @@
 				</ul>
 			</div>
 		</aside>
+
 
 		<!-- FIM MENU -->
 
@@ -182,7 +193,8 @@
 
 				<div class="col-12 mt-3">
 
-					<input type="text" name="status" th:value="*{status}" placeholder="Informe o status da solicitação" />
+					<input type="text" name="status" th:value="*{status}"
+						placeholder="Informe o status da solicitação" />
 
 				</div>
 

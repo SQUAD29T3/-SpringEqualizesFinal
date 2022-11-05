@@ -33,13 +33,11 @@
 			<div class="logo">
 				<img th:src="@{/img/logo_equalizes_white.png}" alt="logo">
 			</div>
-			<div class="logout">
-				<a href="#">
-					<span class="material-symbols-outlined">
-						logout
-					</span>
-				</a>
-			</div>
+			<form action="/logout" method="post" class="logout" onclick="submit()">
+				<span class="material-symbols-outlined">
+					logout
+				</span>
+			</form>
 		</header>
 		<!-- FIM HEADER -->
 
@@ -138,8 +136,9 @@
 										</a>
 									<td>
 									<td>
-										<a th:href="@{/{id}/excluirSolicitacao (id=${pedido.id})}" class="btn btn-danger"
-									onclick="return confirm('Tem certeza que deseja recusar o pedido?');">
+										<a th:href="@{/{id}/excluirSolicitacao (id=${pedido.id})}"
+											class="btn btn-danger"
+											onclick="return confirm('Tem certeza que deseja recusar o pedido?');">
 											Recusar
 										</a>
 									<td>

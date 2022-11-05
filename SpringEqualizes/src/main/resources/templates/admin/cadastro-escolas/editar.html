@@ -147,23 +147,24 @@
 
 
 			<div class="row">
-				<div class="col-md-4 mt-2">
+				<div class="col-md-8 mt-2">
 
 					<input type="text" name="nome" th:value="*{nome}" hidden />
-					
+
 					<label>NOME DA ESCOLA:</label><br />
-					<input type="text" th:value="*{nome}" disabled />
+					<input type="text" th:value="*{nome}" style="width: 100%;" disabled />
 
 				</div>
 
-				<div class="col-md-6 mt-2">
+				<div class="col-md-4 mt-2">
 
 					<input type="text" name="cnpj" th:value="*{cnpj}" hidden />
-					
+
 					<label>CNPJ:</label> <br />
-					<input type="text" th:value="*{cnpj}" disabled />
+					<input type="text" th:value="*{cnpj}" style="width: 100%;" disabled />
 
 				</div>
+
 			</div>
 
 
@@ -172,65 +173,28 @@
 
 				<div class="col-md-4 mt-2">
 
-					<input name="cep" th:value="*{cep}" hidden />
+					<input name="rua" th:value="*{rua}" hidden />
 
-					<label>CEP:</label> <br />
-					<input th:value="*{cep}" disabled />
-
+					<label>RUA:</label> <br />
+					<input th:value="*{rua}" style="width: 100%;" disabled />
 
 				</div>
 
 				<div class="col-md-4 mt-2">
 
-					<input name="rua" th:value="*{rua}" hidden />
-					
-					<label>RUA:</label> <br />
-					<input th:value="*{rua}" disabled />
-
-				</div>
-
-				<div class="col-md-2 mt-2">
-
 					<input name="numero" th:value="*{numero}" hidden />
-					
+
 					<label>Nº:</label> <br />
-					<input th:value="*{numero}" disabled />
+					<input th:value="*{numero}" style="width: 100%;" disabled />
 
 				</div>
 
 				<div class="col-md-4 mt-2">
 
 					<input name="complemento" th:value="*{complemento}" hidden />
-					
+
 					<label>COMPLEMENTO:</label> <br />
-					<input th:value="*{complemento}" disabled />
-
-				</div>
-
-				<div class="col-md-4 mt-2">
-
-					<input name="bairro" th:value="*{bairro}" hidden />
-					
-					<label>BAIRRO:</label> <br />
-					<input th:value="*{bairro}" disabled />
-
-				</div>
-
-				<div class="col-md-4 mt-2">
-
-					<input name="cidade" th:value="*{cidade}" hidden />
-					
-					<label>CIDADE:</label> <br />
-					<input th:value="*{cidade}" disabled />
-
-				</div>
-
-				<div class="col-md-12 mt-2">
-
-					<input name="uf" th:value="*{uf}" hidden />
-					
-					<label>CEP:</label> <br />
-					<input th:value="*{uf}" disabled />
+					<input th:value="*{complemento}" style="width: 100%;" disabled />
 
 				</div>
 
@@ -238,22 +202,64 @@
 
 
 			<div class="row mt-3">
-			
+
+				<div class="col-md-4 mt-2">
+
+					<input name="bairro" th:value="*{bairro}" hidden />
+
+					<label>BAIRRO:</label> <br />
+					<input th:value="*{bairro}" style="width: 100%;" disabled />
+
+				</div>
+
+				<div class="col-md-4 mt-2">
+
+					<input name="cidade" th:value="*{cidade}" hidden />
+
+					<label>CIDADE:</label> <br />
+					<input th:value="*{cidade}" style="width: 100%;" disabled />
+
+				</div>
+
+				<div class="col-md-1 mt-2">
+
+					<input name="uf" th:value="*{uf}" hidden />
+
+					<label>UF:</label> <br />
+					<input th:value="*{uf}" style="width: 100%;" disabled />
+
+				</div>
+
+
+				<div class="col-md-3 mt-2">
+
+					<input name="cep" th:value="*{cep}" hidden />
+
+					<label>CEP:</label> <br />
+					<input th:value="*{cep}" style="width: 100%;" disabled />
+
+				</div>
+
+			</div>
+
+
+			<div class="row mt-3">
+
 				<div class="col-md-4 mt-2">
 
 					<input name="telefone" th:value="*{telefone}" hidden />
-					
+
 					<label>TELEFONE:</label> <br />
-					<input th:value="*{telefone}" disabled />
+					<input th:value="*{telefone}" style="width: 100%;" disabled />
 
 				</div>
 
 				<div class="col-md-4 mt-2">
 
 					<input name="email" th:value="*{email}" hidden />
-					
-					<label>CEP:</label> <br />
-					<input th:value="*{email}" disabled />
+
+					<label>E-MAIL:</label> <br />
+					<input th:value="*{email}" style="width: 100%;" disabled />
 
 				</div>
 
@@ -261,7 +267,37 @@
 				<div class="col-md-4 mt-2">
 
 					<label>SENHA: </label> <br />
-					<input type="password" name="senha" placeholder="Defina uma senha" />
+					<input type="password" name="senha" th:value="*{senha}" style="width: 100%;"
+						placeholder="Defina uma senha" />
+
+				</div>
+
+
+			</div>
+
+
+			<div class="row mt-3">
+
+				<div class="col-md-4 mt-2">
+
+					<input type="date" name="dataCadastro" th:value="*{dataCadastro}" hidden />
+
+					<label>DATA CADASTRO:</label> <br />
+					<input type="date" th:value="*{dataCadastro}" style="width: 100%;" disabled />
+
+				</div>
+
+
+				<div class="col-md-4 mt-2">
+
+					<label>STATUS CADASTRO:</label> <br />
+					<select name="statusCadastro" class="p-2">
+
+						<option value="escolha" disabled selected>Selecione uma opção:</option>
+						<option value="Deferido">Deferido</option>
+						<option value="Indeferido">Indeferido</option>
+
+					</select>
 
 				</div>
 
@@ -284,32 +320,6 @@
 
 
 			<div class="row mt-3">
-				<div class="col-md-4 mt-2">
-
-					<label>STATUS CADASTRO:</label> <br />
-					<select name="statusCadastro" class="p-2">
-
-						<option value="escolha" disabled selected>Selecione uma opção:</option>
-						<option value="Deferido">Deferido!</option>
-						<option value="Indeferido">Indeferido!</option>
-
-					</select>
-
-				</div>
-
-			</div>
-
-
-			<div class="row mt-3">
-
-				<div class="col-md-4 mt-2">
-
-					<input type="date" name="dataCadastro" th:value="*{dataCadastro}" hidden />
-
-					<label>DATA CADASTRO:</label> <br />
-					<input type="date" th:value="*{dataCadastro}" />
-
-				</div>
 
 
 				<div class="col-md-4 mt-2">

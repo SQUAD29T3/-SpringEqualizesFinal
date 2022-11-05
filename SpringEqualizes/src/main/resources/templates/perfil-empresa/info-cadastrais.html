@@ -32,13 +32,11 @@
 			<div class="logo">
 				<img th:src="@{/img/logo_equalizes_white.png}" alt="logo">
 			</div>
-			<div class="logout">
-				<a href="#">
-					<span class="material-symbols-outlined">
-						logout
-					</span>
-				</a>
-			</div>
+			<form action="/logout" method="post" class="logout" onclick="submit()">
+				<span class="material-symbols-outlined">
+					logout
+				</span>
+			</form>
 		</header>
 		<!-- FIM HEADER -->
 
@@ -105,49 +103,53 @@
 
 						<div class="col-md-4 mt-3">
 							<label for="cnpj">cnpj:</label> <br />
-							<input type="text" name="cnpj" th:value="${cnpj}" disabled />
+							<input type="text" name="cnpj" th:value="${session.empresaLogada.cnpj}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="nome">Nome Fantasia:</label> <br />
-							<input type="text" name="nome" th:value="${nomeFantasia}" disabled />
+							<input type="text" name="nome" th:value="${session.empresaLogada.nomeFantasia}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="razao">Razão Social:</label> <br />
-							<input type="text" name="razaoSocial" th:value="${razaoSocial}" disabled />
+							<input type="text" name="razaoSocial" th:value="${session.empresaLogada.razaoSocial}"
+								disabled />
 						</div>
 
-						<div class="col-md-4 mt-3">
+						<!--	<div class="col-md-4 mt-3">
 							<label for="atividade">Atividade empresarial:</label> <br />
-							<input type="text" name="atividade" th:value="${atividade}" maxlength="10" />
-						</div>
+							<input type="text" name="atividade" th:value="${session.empresaLogada.atividade}" maxlength="10" />
+						</div> 
 
-
+-->
 						<div class="col-md-4 mt-3">
 							<label for="proprietario">Proprietário(a):</label>
-							<input type="text" name="proprietario" th:value="${propietario}" maxlength="50" />
+							<input type="text" name="proprietario" th:value="${session.empresaLogada.propietario}"
+								maxlength="50" />
 						</div>
 
 
 						<div class="col-md-4 mt-3">
 							<label for="socio">Sócio(a):</label>
-							<input type="text" name="socios" th:value="${socios}" maxlength="50" />
+							<input type="text" name="socios" th:value="${session.empresaLogada.socios}"
+								maxlength="50" />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="adm">Administrador(a):</label>
-							<input type="text" name="admnistrador" th:value="${administrador}" maxlength="50" />
+							<input type="text" name="admnistrador" th:value="${session.empresaLogada.administrador}"
+								maxlength="50" />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="email">E-mail:</label>
-							<input type="text" name="email" th:value="${email}" maxlength="50" />
+							<input type="text" name="email" th:value="${session.empresaLogada.email}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="telefone">Telefone:</label>
-							<input type="text" name="telefone" th:value="${telefone}" maxlength="15" />
+							<input type="text" name="telefone" th:value="${session.empresaLogada.telefone}" />
 						</div>
 
 
@@ -160,17 +162,18 @@
 						<h3>Endereço:</h3>
 						<div class="col-md-4 mt-3">
 							<label for="rua">Rua:</label>
-							<input type="text" name="rua" th:value="${rua}" disabled />
+							<input type="text" name="rua" th:value="${session.empresaLogada.rua}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="numero">Nº:</label>
-							<input type="text" name="numero" th:value="${numero}" maxlength="6" />
+							<input type="text" name="numero" th:value="${session.empresaLogada.numero}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="complemento">Complemento:</label>
-							<input type="text" name="complemento" th:value="${complemento}" maxlength="50" />
+							<input type="text" name="complemento" th:value="${session.empresaLogada.complemento}"
+								disabled />
 						</div>
 
 					</div>
@@ -179,22 +182,22 @@
 
 						<div class="col-md-4 mt-3">
 							<label for="bairro">Bairro:</label>
-							<input type="text" name="bairro" th:value="${bairro}" disabled />
+							<input type="text" name="bairro" th:value="${session.empresaLogada.bairro}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="cidade">Cidade:</label>
-							<input type="text" name="cidade" th:value="${cidade}" disabled />
+							<input type="text" name="cidade" th:value="${session.empresaLogada.cidade}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="uf">Uf:</label>
-							<input type="text" name="uf" th:value="${uf}" disabled />
+							<input type="text" name="uf" th:value="${session.empresaLogada.uf}" disabled />
 						</div>
 
 						<div class="col-md-4 mt-3">
 							<label for="cep">Cep:</label>
-							<input type="text" name="cep" th:value="${cep}" maxlength="8" />
+							<input type="text" name="cep" th:value="${session.empresaLogada.cep}" disabled />
 						</div>
 
 					</div>
