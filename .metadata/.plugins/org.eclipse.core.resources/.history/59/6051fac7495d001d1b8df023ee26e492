@@ -1,0 +1,16 @@
+package br.com.equalizes.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import br.com.equalizes.model.Pedido;
+
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+	
+	// SELECT PARA REALIZAR O LOGIN
+	@Query(value = "select * from pedido where status_pedido = 'em aberto'", nativeQuery = true)
+	public List<Pedido> emAberto();
+
+}

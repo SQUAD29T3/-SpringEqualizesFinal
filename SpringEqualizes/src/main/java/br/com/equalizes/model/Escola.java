@@ -1,6 +1,7 @@
 package br.com.equalizes.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,86 +18,89 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "escola")
 public class Escola {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "cnpj", length = 20, nullable = false, unique = true)
 	private String cnpj;
-	
+
 	@Column(name = "nomeEscola", nullable = false)
 	private String nome;
-	
+
 	@Column(name = "turnos")
 	private int turnos;
-	
+
 	@Column(name = "qt_alunos")
 	private int qtAlunos;
-	
+
 	@Column(name = "diretor")
 	private String diretor;
-	
+
 	@Column(name = "vice_diretor")
 	private String viceDiretor;
-	
+
 	@Column(name = "coordenador")
 	private String coordenador;
-	
+
 	@Column(name = "secretaria")
 	private String secretaria;
-	
 
 	@Column(name = "cep", length = 10)
 	private String cep;
-	
+
 	@Column(name = "uf", length = 2, nullable = false)
 	private String uf;
-		
+
 	@Column(name = "cidade", length = 20, nullable = false)
 	private String cidade;
-	
+
 	@Column(name = "bairro", length = 20, nullable = false)
 	private String bairro;
-	
+
 	@Column(name = "rua", length = 40, nullable = false)
 	private String rua;
-	
+
 	@Column(name = "numero", length = 6, nullable = false)
 	private String numero;
-	
+
 	@Column(name = "complemento", length = 20, nullable = false)
 	private String complemento;
-	
+
 	@Column(name = "email", length = 50, nullable = false)
 	private String email;
-	
+
 	@Column(length = 20, nullable = true)
 	private String senha;
-	
+
 	@Column(name = "telefone", length = 20, nullable = false)
 	private String telefone;
 
 	@Column(nullable = false, name = "dataCadastro")
-    @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate dataCadastro;
-	
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataCadastro;
+
 	@Column(nullable = true, name = "dataResposta")
 	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dataResposta;	
-	
+	private LocalDate dataResposta;
+
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
-	
+
 	@Column(nullable = true, length = 10)
 	private String statusPerfil;
-	
+
+	// CÓDIGO NOVO
+	@OneToMany(mappedBy = "escola")
+	private List<Pedido> pedido;
+
 	public Escola() {}
 
 	public Escola(Long id, String cnpj, String nome, int turnos, int qtAlunos, String diretor, String viceDiretor,
 			String coordenador, String secretaria, String cep, String uf, String cidade, String bairro, String rua,
 			String numero, String complemento, String email, String senha, String telefone, LocalDate dataCadastro,
-			LocalDate dataResposta, String statusCadastro, String statusPerfil) {
+			LocalDate dataResposta, String statusCadastro, String statusPerfil, List<Pedido> pedido) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -121,6 +125,7 @@ public class Escola {
 		this.dataResposta = dataResposta;
 		this.statusCadastro = statusCadastro;
 		this.statusPerfil = statusPerfil;
+		this.pedido = pedido;
 	}
 
 	public Long getId() {
@@ -307,10 +312,58 @@ public class Escola {
 		this.statusPerfil = statusPerfil;
 	}
 
-	
-	
-	
-	
-	
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
 
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bairro, cep, cidade, cnpj, complemento, coordenador, dataCadastro, dataResposta, diretor,
+				email, id, nome, numero, pedido, qtAlunos, rua, secretaria, senha, statusCadastro, statusPerfil,
+				telefone, turnos, uf, viceDiretor);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Escola other = (Escola) obj;
+		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
+				&& Objects.equals(cidade, other.cidade) && Objects.equals(cnpj, other.cnpj)
+				&& Objects.equals(complemento, other.complemento) && Objects.equals(coordenador, other.coordenador)
+				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(dataResposta, other.dataResposta)
+				&& Objects.equals(diretor, other.diretor) && Objects.equals(email, other.email)
+				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
+				&& Objects.equals(numero, other.numero) && Objects.equals(pedido, other.pedido)
+				&& qtAlunos == other.qtAlunos && Objects.equals(rua, other.rua)
+				&& Objects.equals(secretaria, other.secretaria) && Objects.equals(senha, other.senha)
+				&& Objects.equals(statusCadastro, other.statusCadastro)
+				&& Objects.equals(statusPerfil, other.statusPerfil) && Objects.equals(telefone, other.telefone)
+				&& turnos == other.turnos && Objects.equals(uf, other.uf)
+				&& Objects.equals(viceDiretor, other.viceDiretor);
+	}
+
+	@Override
+	public String toString() {
+		return "Escola [id=" + id + ", cnpj=" + cnpj + ", nome=" + nome + ", turnos=" + turnos + ", qtAlunos="
+				+ qtAlunos + ", diretor=" + diretor + ", viceDiretor=" + viceDiretor + ", coordenador=" + coordenador
+				+ ", secretaria=" + secretaria + ", cep=" + cep + ", uf=" + uf + ", cidade=" + cidade + ", bairro="
+				+ bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", email=" + email
+				+ ", senha=" + senha + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro + ", dataResposta="
+				+ dataResposta + ", statusCadastro=" + statusCadastro + ", statusPerfil=" + statusPerfil + ", pedido="
+				+ pedido + "]";
+	}
+
+	
+		
+	
+	
 }

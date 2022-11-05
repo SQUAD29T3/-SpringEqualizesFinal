@@ -1,0 +1,33 @@
+package br.com.equalizes.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.equalizes.model.Pedido;
+import br.com.equalizes.repository.PedidoRepository;
+
+@Controller
+public class PedidoController {
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@GetMapping("/fazerPedido")
+	// PÁGINA FAZER PEDIDO - ESCOLAS
+	public String fazerPedidos() {
+		return "perfil-escola/fazer-pedido";
+	}
+	
+	
+	public ModelAndView fazerPedidos() {
+		ModelAndView mv = new ModelAndView("perfil-escola/fazer-pedido");
+		mv.addObject("pedido", new Pedido());
+		return mv;
+	}
+	
+	
+	
+
+}

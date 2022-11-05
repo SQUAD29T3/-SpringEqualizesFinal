@@ -13,18 +13,6 @@ public class RotasPerfilEscola {
 		return "perfil-escola/perfil";
 	}
 	
-	@GetMapping("/fazerPedido")
-	// PÁGINA FAZER PEDIDO
-	public String fazerPedidos() {
-		return "perfil-escola/fazer-pedido";
-	}
-	
-	@GetMapping("/andamentoPedidos")
-	// PÁGINA ANDAMENTO DE PEDIDOS
-	public String andamentoPedidos() {
-		return "perfil-escola/andamento-pedidos";
-	}
-	
 	@GetMapping("/infoCadastrais")
 	// PÁGINA INFO. CADASTRAIS
 	public String infoCadEscola() {

@@ -71,11 +71,12 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<form class="andamentoPedidos" action="/andamentoPedidos" method="post" onclick="submit()">
+							<input type="text" name="escola" th:value="${session.escolaLogada.id}" hidden />
 							<span class="material-symbols-outlined">
 								query_stats
 							</span> ANDAMENTO DE PEDIDOS
-						</a>
+						</form>
 					</li>
 					<li>
 						<a href="/infoCadastrais">
@@ -102,17 +103,20 @@
 				<div class="row text-center mt-5">
 					<h3>SELECIONE O STATUS DO PEDIDO PARA VERIFICAR:</h3>
 
-					<form class="mt-2" action="" method="">
 
-						<select name="status" id="status" class="p-2" onchange="listar()">
-							<option value="escolha" disabled selected> Escolha: </option>
-							<option value="aberto">Em aberto</option>
-							<option value="andamento">Em andamento</option>
-							<option value="concluidos">Concluídos</option>
-							<option value="todos">Listar todos</option>
-						</select>
+					<div class="row mt-2">
+						<div class="col-12">
+							<select name="status" id="status" class="p-2" onchange="listar()">
+								<option value="escolha" disabled selected> Escolha: </option>
+								<option value="aberto">Em aberto</option>
+								<option value="andamento">Em andamento</option>
+								<option value="concluidos">Concluídos</option>
+								<option value="todos">Listar todos</option>
+							</select>
+						</div>
 
-					</form>
+					</div>
+
 
 					<div class="col-md-12 mt-5 aberto">
 
@@ -126,19 +130,30 @@
 									<th scope="col">Descrição</th>
 									<th scope="col">Data do Pedido</th>
 									<th scope="col">Status</th>
+									<th scope="col" colspan="2">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="pedido : ${pedidos}">
-									<th scope="row" th:text="${pedido.id}"></th>
-									<td th:text="${pedido.descricao}"></td>
-									<td th:text="${pedido.dataPedido}"></td>
-									<td th:text="${pedido.status}"></td>
+								<tr th:each="emAberto : ${pedido}">
+									<th scope="row" th:text="${emAberto.id}"></th>
+									<td th:text="${emAberto.descricao}"></td>
+									<td> <input type="date" th:value="${emAberto.dataPedido}" disabled /></td>
+									<td th:text="${emAberto.statusPedido}"></td>
 									<td>
-										<a th:href="@{/{id}/editarPedido (id=${pedido.id})}" class="btn btn-warning">
-											Editar
+										<a th:href="@{/{id}/editarPedido (id=${emAberto.id})}" class="btn btn-warning">
+											<span class="material-symbols-outlined">
+												edit
+											</span>
 										</a>
+									</td>
 									<td>
+										<a th:href="@{/{id}/excluirPedido (id=${emAberto.id})}" class="btn btn-danger"
+											onclick="return confirm('Tem certeza que deseja excluir o pedido?');">
+											<span class="material-symbols-outlined">
+												delete
+											</span>
+										</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -165,12 +180,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="pedido : ${pedidos}">
-									<th scope="row" th:text="${pedido.id}"></th>
-									<td th:text="${pedido.descricao}"></td>
-									<td th:text="${pedido.dataPedido}"></td>
-									<td th:text="${pedido.dataAceite}"></td>
-									<td th:text="${pedido.status}"></td>
+								<tr th:each="emAndamento : ${emAndamento}">
+									<th scope="row" th:text="${emAndamento.id}"></th>
+									<td th:text="${emAndamento.descricao}"></td>
+									<td> <input type="date" th:value="${emAndamento.dataPedido}" disabled /></td>
+									<td> <input type="date" th:value="${emAndamento.dataAceite}" disabled /></td>
+									<td th:text="${emAndamento.statusPedido}"></td>
 
 								</tr>
 							</tbody>
@@ -199,13 +214,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="pedido : ${pedidos}">
-									<th scope="row" th:text="${pedido.id}"></th>
-									<td th:text="${pedido.descricao}"></td>
-									<td th:text="${pedido.empresaProvedora}"></td>
-									<td th:text="${pedido.dataPedido}"></td>
-									<td th:text="${pedido.dataConclusao}"></td>
-									<td th:text="${pedido.status}"></td>
+								<tr th:each="concluido : ${concluido}">
+									<th scope="row" th:text="${concluido.id}"></th>
+									<td th:text="${concluido.descricao}"></td>
+									<td th:text="${concluido.empresaProvedora}"></td>
+									<td> <input type="date" th:value="${concluido.dataPedido}" disabled /></td>
+									<td> <input type="date" th:value="${concluido.dataConclusao}" disabled /></td>
+									<td th:text="${concluido.statusPedido}"></td>
 								</tr>
 							</tbody>
 						</table>

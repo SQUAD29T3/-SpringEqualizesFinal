@@ -1,0 +1,39 @@
+package br.com.equalizes.controller;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.equalizes.model.Contato;
+import br.com.equalizes.model.Pedido;
+import br.com.equalizes.repository.PedidoRepository;
+
+@Controller
+public class PedidoController {
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@GetMapping("/fazerPedido")
+	// PÁGINA FAZER PEDIDO - ESCOLAS
+	public ModelAndView fazerPedidos() {
+		ModelAndView mv = new ModelAndView("perfil-escola/fazer-pedido");
+		mv.addObject("pedido", new Pedido());
+		return mv;
+	}
+	
+	@PostMapping("/fazerPedido")
+	public ModelAndView solicitacaoContato(Pedido pedido) throws IOException {
+
+		ModelAndView mv = new ModelAndView("redirect:/fazer-pedido");
+		pedidoRepository.save(pedido);
+		return mv;
+	}
+	
+	
+
+}

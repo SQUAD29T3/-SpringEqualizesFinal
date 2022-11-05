@@ -72,11 +72,12 @@
 						</a>
 					</li>
 					<li>
-						<a href="/andamentoPedidos">
+						<form class="andamentoPedidos" action="/andamentoPedidos" method="post" onclick="submit()">
+							<input type="text" name="escola" th:value="${session.escolaLogada.id}" hidden />
 							<span class="material-symbols-outlined">
 								query_stats
 							</span> ANDAMENTO DE PEDIDOS
-						</a>
+						</form>
 					</li>
 					<li>
 						<a href="/infoCadastrais">

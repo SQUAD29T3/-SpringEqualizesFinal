@@ -1,4 +1,3 @@
-
 const statusPedido = document.querySelector('#status');
 const aberto = document.querySelector('.aberto')
 const novos = document.querySelector('.novos');
@@ -12,7 +11,7 @@ function listarPedido() {
 
     if (statusPedido.value == "novos") {
         AdicionarClass();
-        novos.classList.remove('novos');
+        novos.classList.remove('novos');       
 
     } else if (statusPedido.value == "andamento") {
         AdicionarClass();

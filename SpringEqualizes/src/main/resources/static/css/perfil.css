@@ -141,6 +141,31 @@ li a:hover {
     background-color: #fff;
 }
 
+
+
+/* LINK FORMS - ANDAMENTO DE PEDIDOS */
+
+.andamentoPedidos {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+    padding: 0.5rem 1.6rem;
+    color: #fff;
+	cursor: pointer;
+
+    transition: all 0.2s;
+}
+
+.andamentoPedidos:hover {
+    background-color: #fff;
+   	color: var(--azul);
+}
+
+/* FIM LINK ESPECIAL FORMS */
+
+
+
 main {
     background-color: #fff;
 }

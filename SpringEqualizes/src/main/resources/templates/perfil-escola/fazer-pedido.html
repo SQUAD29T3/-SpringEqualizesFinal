@@ -73,11 +73,12 @@
 						</a>
 					</li>
 					<li>
-						<a href="/andamentoPedidos">
+						<form class="andamentoPedidos" action="/andamentoPedidos" method="post" onclick="submit()">
+							<input type="text" name="escola" th:value="${session.escolaLogada.id}" hidden />
 							<span class="material-symbols-outlined">
 								query_stats
 							</span> ANDAMENTO DE PEDIDOS
-						</a>
+						</form>
 					</li>
 					<li>
 						<a href="/infoCadastrais">
@@ -106,16 +107,29 @@
 				<div class="row text-center mt-5">
 					<div class="col-md-12">
 
-						<form action="" method="">
+						<form method="post">
 
-							<input type="text" name="pedido" placeholder="Descreva o pedido aqui" />
+							<input type="text" name="escola" th:value="${session.escolaLogada.id}" hidden />
+							<input type="text" name="statusPedido" value="em aberto" hidden />
+							<input type="date" name="dataPedido" id="dataPedido" hidden />
 
+
+							<input type="text" name="descricao" placeholder="Descreva o pedido aqui" />
 
 							<input class="mt-3" type="submit" value="Solicitar">
+
+
 						</form>
 
 
 					</div>
+
+
+					<!-- VARIÁVEL DE ERRO 
+					<div class="alert alert-danger text-center mt-3" role="alert" th:text="${msg}"> </div>
+
+-->
+
 				</div>
 
 			</main>
@@ -124,6 +138,21 @@
 
 
 	</div>
+	
+	
+		<!-- INSERINDO VALOR AO INPUT DATA -->
+	<script>
+		const inputDate = document.querySelector('#dataPedido');
+		const dataHoje = new Date();
+
+		const d = dataHoje.getDate().toString().padStart(2, '0'); // Dia com 2 digitos;
+		const m = String(dataHoje.getMonth() + 1).padStart(2, '0'); // Mês com 2 digitos
+		const y = dataHoje.getFullYear(); // Ano com 4 digitos
+
+
+		inputDate.value = `${y}-${m}-${d}`;
+
+	</script>
 
 </body>
 

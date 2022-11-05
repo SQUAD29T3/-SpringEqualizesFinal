@@ -1,0 +1,62 @@
+package br.com.equalizes.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.equalizes.model.Contato;
+import br.com.equalizes.model.Pedido;
+import br.com.equalizes.repository.PedidoRepository;
+
+@Controller
+public class PedidoController {
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@GetMapping("/fazerPedido")
+	// PÁGINA FAZER PEDIDO - ESCOLAS
+	public ModelAndView fazerPedidos() {
+		ModelAndView mv = new ModelAndView("perfil-escola/fazer-pedido");
+		mv.addObject("pedido", new Pedido());
+		return mv;
+	}
+	
+	@PostMapping("/fazerPedido")
+	public ModelAndView solicitacaoContato(Pedido pedido, Model model) throws IOException {
+		ModelAndView mv = new ModelAndView("redirect:/fazerPedido");
+		
+		pedidoRepository.save(pedido);
+		
+		model.addAttribute("msg", "Pedido realizado com sucesso!");
+		return mv;
+	}
+	
+	
+
+	// PÁGINA ANDAMENTO DE PEDIDOS - LISTA OS PEDIDOS
+	@GetMapping("/andamentoPedidos")
+	public ModelAndView llistarPedidos() {
+		ModelAndView mv = new ModelAndView("perfil-escola/andamento-pedidos");
+
+		List<Pedido> pedido = pedidoRepository.buscarEmAberto();
+		mv.addObject("pedidosEmAberto", pedido);
+		
+		//List<Pedido> emAndamento = pedidoRepository.buscarEmAndamento();
+		//mv.addObject("pedidosEmAberto", emAndamento);
+
+		
+		
+		return mv;
+	}
+	
+	
+	
+
+}
