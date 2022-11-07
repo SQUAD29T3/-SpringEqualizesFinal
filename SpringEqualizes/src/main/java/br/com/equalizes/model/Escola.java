@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -24,9 +27,14 @@ public class Escola {
 	private Long id;
 
 	@Column(name = "cnpj", length = 20, nullable = false, unique = true)
+	@NotBlank
+	// Valido: 00.000.000/0000-00 | 00000000000000
+	// colocar isso em um erro
+	@Pattern(regexp = "\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}")
 	private String cnpj;
 
 	@Column(name = "nomeEscola", nullable = false)
+	@NotBlank
 	private String nome;
 
 	@Column(name = "turnos")
@@ -36,6 +44,7 @@ public class Escola {
 	private int qtAlunos;
 
 	@Column(name = "diretor")
+	@NotBlank
 	private String diretor;
 
 	@Column(name = "vice_diretor")
@@ -48,6 +57,7 @@ public class Escola {
 	private String secretaria;
 
 	@Column(name = "cep", length = 10)
+	@NotBlank
 	private String cep;
 
 	@Column(name = "uf", length = 2, nullable = false)
@@ -69,9 +79,12 @@ public class Escola {
 	private String complemento;
 
 	@Column(name = "email", length = 50, nullable = false)
+	@Email
 	private String email;
 
 	@Column(length = 20, nullable = true)
+	@NotBlank
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 	private String senha;
 
 	@Column(name = "telefone", length = 20, nullable = false)
@@ -95,7 +108,8 @@ public class Escola {
 	@OneToMany(mappedBy = "escola")
 	private List<Pedido> pedido;
 
-	public Escola() {}
+	public Escola() {
+	}
 
 	public Escola(Long id, String cnpj, String nome, int turnos, int qtAlunos, String diretor, String viceDiretor,
 			String coordenador, String secretaria, String cep, String uf, String cidade, String bairro, String rua,
@@ -362,8 +376,4 @@ public class Escola {
 				+ pedido + "]";
 	}
 
-	
-		
-	
-	
 }

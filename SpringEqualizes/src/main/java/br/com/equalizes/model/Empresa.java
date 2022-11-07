@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -16,78 +20,99 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "empresa")
 public class Empresa {
-	
-	
+	// TODO permissoes sao baseades no login
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	@Column(name = "cnpj", nullable = false, length = 20, unique = true)
+	@NotBlank
+	// Valido: 00.000.000/0000-00 | 00000000000000
+	// colocar isso em um erro
+	@Pattern(regexp = "\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}")
 	private String cnpj;
-	
+
 	@Column(name = "nomeFantasia", length = 60)
+	@NotBlank
 	private String nomeFantasia;
-	
+
 	@Column(name = "razaoSocial", length = 60, nullable = false)
+	@NotBlank
 	private String razaoSocial;
-	
+
 	@Column(name = "ativ_empresarial")
+	@NotBlank
 	private String ativEmpresarial;
-	
+
 	@Column(name = "propietario")
+	@NotBlank
 	private String propietario;
-	
+
 	@Column(name = "socios")
+	@NotBlank
 	private String socios;
-	
+
 	@Column(name = "administrador")
+	@NotBlank
 	private String administrador;
-	
+
 	@Column(name = "cep", length = 10)
+	@NotBlank
 	private String cep;
-	
+
 	@Column(name = "uf", length = 2, nullable = false)
+	@NotNull
 	private String uf;
-		
+
 	@Column(name = "cidade", length = 20, nullable = false)
+	@NotBlank
 	private String cidade;
-	
+
 	@Column(name = "bairro", length = 20, nullable = false)
+	@NotBlank
 	private String bairro;
-	
+
 	@Column(name = "rua", length = 40, nullable = false)
+	@NotBlank
 	private String rua;
-	
+
 	@Column(name = "numero", length = 6, nullable = false)
+	@NotBlank
 	private String numero;
-	
+
 	@Column(name = "complemento", length = 20, nullable = false)
+	@NotBlank
 	private String complemento;
-	
+
 	@Column(name = "email", length = 50, nullable = false)
+	@NotBlank
+	@Email
 	private String email;
-	
+
 	@Column(length = 20, nullable = true)
+	@NotBlank
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 	private String senha;
-	
+
 	@Column(name = "telefone", nullable = false)
+	@NotBlank
 	private String telefone;
-	
+
 	@Column(nullable = false, name = "dataCadastro")
-    @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate dataCadastro;	
-	
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataCadastro;
+
 	@Column(nullable = true, name = "dataResposta")
 	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dataResposta;	
-	
+	private LocalDate dataResposta;
+
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
-	
+
 	@Column(nullable = true, length = 10)
 	private String statusPerfil;
-	
-	public Empresa() {}
+
+	public Empresa() {
+	}
 
 	public Empresa(Long id, String cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
 			String propietario, String socios, String administrador, String cep, String uf, String cidade,
@@ -293,11 +318,5 @@ public class Empresa {
 	public void setStatusPerfil(String statusPerfil) {
 		this.statusPerfil = statusPerfil;
 	}
-
-	
-	
-	
-	
-	
 
 }
