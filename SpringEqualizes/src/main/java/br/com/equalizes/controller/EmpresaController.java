@@ -22,8 +22,8 @@ public class EmpresaController {
 
 	// === CADASTRO PARCEIROS => EMPRESA
 	// CHAMA A VIEW CADASTRAR E PASSA UM OBJETO VAZIO
-	@GetMapping("/cadastroEmpresa")
 	// PÁGINA CADASTRO DE EMPRESAS
+	@GetMapping("/cadastroEmpresa")
 	public ModelAndView cadastroEmpresa() {
 		return new ModelAndView("site/parceiros-empresas").addObject("cadastroEmpresa", new Empresa());
 	}
@@ -35,6 +35,8 @@ public class EmpresaController {
 		return new ModelAndView("success/success-cad-empresa");
 	}
 
+	// valida o objeto populado na pagina de cadastro
+	// salva no banco
 	@PostMapping("/cadastroEmpresa")
 	public ModelAndView cadastroEmpresa(@Valid final Empresa empresa) throws IOException {
 		empresaRepository.save(empresa);
@@ -42,6 +44,8 @@ public class EmpresaController {
 	}
 
 	// EXIBE TODOS OS CADASTROS PARA O ADM
+	// TODO verificacao de seguranca para usuario ADMIN
+	// /admin filterchain
 	@GetMapping("/listarEmpresas")
 	public ModelAndView listarEmpresas() {
 		return new ModelAndView("admin/cadastro-empresas/listar").addObject("empresas", empresaRepository.findAll());
@@ -50,17 +54,17 @@ public class EmpresaController {
 	// == // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
 	// REQUERIMENTO
-	@GetMapping("/{id}/responderSolicitacaoCadastroEmpresa")
-	public ModelAndView editar(@PathVariable final Long id) {
-		return new ModelAndView("admin/cadastro-empresas/editar").addObject("empresas", empresaRepository.findById(id));
+	@GetMapping("/{cnpj}/responderSolicitacaoCadastroEmpresa")
+	public ModelAndView editar(@PathVariable final Long cnpj) {
+		return new ModelAndView("admin/cadastro-empresas/editar").addObject("empresas",
+				empresaRepository.findByCnpj(cnpj));
 
 	}
 
 	// ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
-	@PostMapping("/{id}/responderSolicitacaoCadastroEmpresa")
+	@PostMapping("/{cnpj}/responderSolicitacaoCadastroEmpresa")
 	public ModelAndView editar(@Valid final Empresa empresa) {
 		empresaRepository.save(empresa);
 		return new ModelAndView("redirect:/listarEmpresas");
 	}
-
 }

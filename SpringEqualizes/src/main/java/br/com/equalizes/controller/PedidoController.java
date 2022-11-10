@@ -17,6 +17,7 @@ import br.com.equalizes.model.Pedido;
 import br.com.equalizes.repository.PedidoRepository;
 
 @Controller
+// TODO seguranca -acesso escola
 public class PedidoController {
 	@Autowired
 	private PedidoRepository pedidoRepository;
@@ -27,6 +28,7 @@ public class PedidoController {
 		return new ModelAndView("perfil-escola/fazer-pedido").addObject("pedido", new Pedido());
 	}
 
+	// pedido validado de acordo com o modelo
 	@PostMapping("/fazerPedido")
 	public ModelAndView solicitacaoContato(@Valid final Pedido pedido, final Model model) throws IOException {
 		pedidoRepository.save(pedido);
@@ -52,7 +54,14 @@ public class PedidoController {
 		return new ModelAndView("perfil-escola/pedido/editar").addObject("pedido", pedidoRepository.findById(id));
 	}
 
+	// TODO fechar pedido
+	// para empresa
+
+	// TODO aceitar pedido
+	// empresa
+
 	// ATUALIZA A SOLICITAÇÃO DE CONTATO
+	// TODO solicitacao de contato?
 	@PostMapping("/{id}/editarPedido")
 	public ModelAndView editar(@Valid final Pedido pedido) {
 		pedidoRepository.save(pedido);

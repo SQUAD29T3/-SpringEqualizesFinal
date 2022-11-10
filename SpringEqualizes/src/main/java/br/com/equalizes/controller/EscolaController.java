@@ -35,6 +35,8 @@ public class EscolaController {
 		return new ModelAndView("success/success-cad-escola");
 	}
 
+	// Valida e salva escola no banco
+	// segue pagina de cadastro
 	@PostMapping("/cadastroEscola")
 	public ModelAndView solicitacaoContato(final @Valid Escola escola) throws IOException {
 		escolaRepository.save(escola);
@@ -42,27 +44,32 @@ public class EscolaController {
 	}
 
 	// EXIBE TODOS OS CADASTROS PARA O ADM
+	// TODO seguranca
 	@GetMapping("/listarEscolas")
 	public ModelAndView listarEscolas() {
 		return new ModelAndView("admin/cadastro-escolas/listar").addObject(escolaRepository.findAll());
 	}
 
 	// EXIBE TODOS OS CADASTROS DEFERIDOS PARA O ADM
+	// TODO seguranca
+	// TODO implementar para empresa
 	@GetMapping("/listarEscolasAprovadas")
 	public ModelAndView listarEscolasAceitas(final String status) {
-		return new ModelAndView("admin/parceiros-escolas/listar").addObject(escolaRepository.findByStatus("deferido"));
+		return new ModelAndView("admin/parceiros-escolas/listar")
+				.addObject(escolaRepository.findByStatusCadastro("deferido"));
 	}
 
 	// == // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
 	// REQUERIMENTO
-	@GetMapping("/{id}/responderSolicitacaoCadastroEscola")
-	public ModelAndView editar(@PathVariable final Long id) {
-		return new ModelAndView("admin/cadastro-escolas/editar").addObject("escolas", escolaRepository.findById(id));
+	@GetMapping("/{cnpj}/responderSolicitacaoCadastroEscola")
+	public ModelAndView editar(@PathVariable final Long cnpj) {
+		return new ModelAndView("admin/cadastro-escolas/editar").addObject("escolas",
+				escolaRepository.findByCnpj(cnpj));
 	}
 
 	// ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
-	@PostMapping("/{id}/responderSolicitacaoCadastroEscola")
+	@PostMapping("/{cnpj}/responderSolicitacaoCadastroEscola")
 	public ModelAndView editar(final @Valid Escola escola) {
 		escolaRepository.save(escola);
 		return new ModelAndView("redirect:/listarEscolas");
