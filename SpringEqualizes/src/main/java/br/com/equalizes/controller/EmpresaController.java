@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +18,9 @@ import br.com.equalizes.repository.EmpresaRepository;
 @Controller
 public class EmpresaController {
 
-	@Autowired
+	// @Autowired
 	private EmpresaRepository empresaRepository;
+	private PasswordEncoder encoder;
 
 	// === CADASTRO PARCEIROS => EMPRESA
 	// CHAMA A VIEW CADASTRAR E PASSA UM OBJETO VAZIO
@@ -39,6 +41,10 @@ public class EmpresaController {
 	// salva no banco
 	@PostMapping("/cadastroEmpresa")
 	public ModelAndView cadastroEmpresa(@Valid final Empresa empresa) throws IOException {
+		// TODO testar
+		// Criptgrafa senha
+		// talvez gere problemas levando em conta o login
+		empresa.setSenha(encoder.encode(empresa.getSenha()));
 		empresaRepository.save(empresa);
 		return new ModelAndView("redirect:/cadastroRealizadoEmpresa");
 	}

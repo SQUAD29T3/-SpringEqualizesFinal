@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import br.com.equalizes.repository.EscolaRepository;
 @Controller
 public class EscolaController {
 
-	@Autowired
+	private PasswordEncoder encoder;
 	private EscolaRepository escolaRepository;
 
 	// === CADASTRO PARCEIROS => ESCOLAS
@@ -39,6 +40,9 @@ public class EscolaController {
 	// segue pagina de cadastro
 	@PostMapping("/cadastroEscola")
 	public ModelAndView solicitacaoContato(final @Valid Escola escola) throws IOException {
+		// TODO teste
+		// senha criptografada
+		escola.setSenha(encoder.encode(escola.getSenha()));
 		escolaRepository.save(escola);
 		return new ModelAndView("redirect:/cadastroRealizadoEscola");
 	}

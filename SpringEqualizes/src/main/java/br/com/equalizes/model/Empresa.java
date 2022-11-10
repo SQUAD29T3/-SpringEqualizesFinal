@@ -21,6 +21,35 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "empresa")
 public class Empresa {
 	// TODO permissoes sao baseades no login
+
+	@Override
+	public String toString() {
+		return "Empresa{" +
+				"id=" + id +
+				", cnpj=" + cnpj +
+				", nomeFantasia='" + nomeFantasia + '\'' +
+				", razaoSocial='" + razaoSocial + '\'' +
+				", ativEmpresarial='" + ativEmpresarial + '\'' +
+				", propietario='" + propietario + '\'' +
+				", socios='" + socios + '\'' +
+				", administrador='" + administrador + '\'' +
+				", cep=" + cep +
+				", uf='" + uf + '\'' +
+				", cidade='" + cidade + '\'' +
+				", bairro='" + bairro + '\'' +
+				", rua='" + rua + '\'' +
+				", numero=" + numero +
+				", complemento='" + complemento + '\'' +
+				", email='" + email + '\'' +
+				", senha='" + senha + '\'' +
+				", telefone=" + telefone +
+				", dataCadastro=" + dataCadastro +
+				", dataResposta=" + dataResposta +
+				", statusCadastro='" + statusCadastro + '\'' +
+				", statusPerfil='" + statusPerfil + '\'' +
+				'}';
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,10 +58,9 @@ public class Empresa {
 	// Valido: 00.000.000/0000-00 | 00000000000000
 	// colocar isso em um erro
 	@Pattern(regexp = "\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}")
-	private String cnpj;
+	private long cnpj;
 
 	@Column(name = "nomeFantasia", length = 60)
-	@NotBlank
 	private String nomeFantasia;
 
 	@Column(name = "razaoSocial", length = 60, nullable = false)
@@ -40,24 +68,20 @@ public class Empresa {
 	private String razaoSocial;
 
 	@Column(name = "ativ_empresarial")
-	@NotBlank
 	private String ativEmpresarial;
 
 	@Column(name = "propietario")
-	@NotBlank
 	private String propietario;
 
 	@Column(name = "socios")
-	@NotBlank
 	private String socios;
 
 	@Column(name = "administrador")
-	@NotBlank
 	private String administrador;
 
 	@Column(name = "cep", length = 10)
 	@NotBlank
-	private String cep;
+	private long cep;
 
 	@Column(name = "uf", length = 2, nullable = false)
 	@NotNull
@@ -77,7 +101,7 @@ public class Empresa {
 
 	@Column(name = "numero", length = 6, nullable = false)
 	@NotBlank
-	private String numero;
+	private long numero;
 
 	@Column(name = "complemento", length = 20, nullable = false)
 	@NotBlank
@@ -88,14 +112,13 @@ public class Empresa {
 	@Email
 	private String email;
 
-	@Column(length = 20, nullable = true)
-	@NotBlank
+	@Column(nullable = true)
 	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 	private String senha;
 
 	@Column(name = "telefone", nullable = false)
 	@NotBlank
-	private String telefone;
+	private long telefone;
 
 	@Column(nullable = false, name = "dataCadastro")
 	@DateTimeFormat(iso = ISO.DATE)
@@ -114,9 +137,9 @@ public class Empresa {
 	public Empresa() {
 	}
 
-	public Empresa(Long id, String cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
-			String propietario, String socios, String administrador, String cep, String uf, String cidade,
-			String bairro, String rua, String numero, String complemento, String email, String senha, String telefone,
+	public Empresa(Long id, long cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
+			String propietario, String socios, String administrador, long cep, String uf, String cidade, String bairro,
+			String rua, long numero, String complemento, String email, String senha, long telefone,
 			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro, String statusPerfil) {
 		super();
 		this.id = id;
@@ -151,11 +174,11 @@ public class Empresa {
 		this.id = id;
 	}
 
-	public String getCnpj() {
+	public long getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj) {
+	public void setCnpj(long cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -207,11 +230,11 @@ public class Empresa {
 		this.administrador = administrador;
 	}
 
-	public String getCep() {
+	public long getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
+	public void setCep(long cep) {
 		this.cep = cep;
 	}
 
@@ -247,11 +270,11 @@ public class Empresa {
 		this.rua = rua;
 	}
 
-	public String getNumero() {
+	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
+	public void setNumero(long numero) {
 		this.numero = numero;
 	}
 
@@ -279,11 +302,11 @@ public class Empresa {
 		this.senha = senha;
 	}
 
-	public String getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
 

@@ -13,7 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-  @Autowired private EscolaRepository escolaRepository;
+  // Autowired n costuma ser necessario
+  // de acordo com a documentacao
+  // @Autowired
+  private EscolaRepository escolaRepository;
 
   @GetMapping("/admin")
   // INICIALIZA A APLICAÇÃO
@@ -21,19 +24,28 @@ public class AdminController {
     return "admin/admin";
   }
 
-  // REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
-  // APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
-  // CADASTRO
+  // TODO olhar oq sera feito
+  //  REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
+  //  APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
+  //  CADASTRO
   @GetMapping("/{id}/gerarLoginEscola")
   public ModelAndView editar(@PathVariable final Long id) {
     return new ModelAndView("admin/parceiros-escolas/editar")
         .addObject("escola", escolaRepository.findById(id));
   }
 
-  // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
+  // TODO perfil
+  //  utilizar para pegar dados da escola
+  //  e gerar um user
+  //  com role escola
+  //  melhor metodo para seguranca
+  //  ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
   @PostMapping("/{id}/gerarLoginEscola")
   public ModelAndView editar(@Valid final Escola escola) {
     escolaRepository.save(escola);
     return new ModelAndView("redirect:/listarEscolasAprovadas");
   }
+
+  // TODO gerarloginEmpresa
+  // TODO gerarLoginbaseado no cnpj
 }

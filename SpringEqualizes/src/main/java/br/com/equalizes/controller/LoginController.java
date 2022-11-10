@@ -18,10 +18,8 @@ import br.com.equalizes.repository.EscolaRepository;
 @Controller
 public class LoginController {
 
-	@Autowired
 	private EscolaRepository escolaRepository;
 
-	@Autowired
 	private EmpresaRepository empresaRepository;
 
 	@GetMapping("/login")
@@ -30,16 +28,18 @@ public class LoginController {
 		return new ModelAndView("site/login");
 	}
 
+	// TODO rever isso
+	// levar em conta senhas criptografadas
 	@PostMapping("/logar")
 	// RECEBE MODEL E OBJETO COM O EMAIL E SENHA
 	public String logar(final Model model, @Valid final Escola userParams, @Valid final Empresa userEmpresa,
 			final HttpSession session) {
-		// TODO funcional //dps
+		// TODO funcional
 		// INSTÂNCIA DE USUÁRIO/PERFIL ESCOLA - RETORNA O OBJETO
-		final Escola escola = this.escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
+		final Escola escola = escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
 
 		// INSTÂNCIA DE USUÁRIO/PERFIL EMPRESA - RETORNA O OBJETO
-		final Empresa empresa = this.empresaRepository.Login(userEmpresa.getEmail(), userEmpresa.getSenha());
+		final Empresa empresa = empresaRepository.Login(userEmpresa.getEmail(), userEmpresa.getSenha());
 
 		if (escola != null) {
 			session.setAttribute("escolaLogada", escola);
@@ -53,6 +53,9 @@ public class LoginController {
 		model.addAttribute("erro", "Email e/ou senha inválidos!");
 		return "redirect:/login";
 	}
+
+	// TODO juntar login com cadastro
+	// autenticacao
 
 	// LOGOUT - ENCERRA A SESSÃO
 	@PostMapping("/logout")

@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,15 +24,45 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Escola {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Override
+	public String toString() {
+		return "Escola{" +
+				"id=" + id +
+				", cnpj=" + cnpj +
+				", nome='" + nome + '\'' +
+				", turnos=" + turnos +
+				", qtAlunos=" + qtAlunos +
+				", diretor='" + diretor + '\'' +
+				", viceDiretor='" + viceDiretor + '\'' +
+				", coordenador='" + coordenador + '\'' +
+				", secretaria='" + secretaria + '\'' +
+				", cep=" + cep +
+				", uf='" + uf + '\'' +
+				", cidade='" + cidade + '\'' +
+				", bairro='" + bairro + '\'' +
+				", rua='" + rua + '\'' +
+				", numero=" + numero +
+				", complemento='" + complemento + '\'' +
+				", email='" + email + '\'' +
+				", senha='" + senha + '\'' +
+				", telefone=" + telefone +
+				", dataCadastro=" + dataCadastro +
+				", dataResposta=" + dataResposta +
+				", statusCadastro='" + statusCadastro + '\'' +
+				", statusPerfil='" + statusPerfil + '\'' +
+				", pedido=" + pedido +
+				'}';
+	}
 
 	@Column(name = "cnpj", length = 20, nullable = false, unique = true)
 	@NotBlank
 	// Valido: 00.000.000/0000-00 | 00000000000000
 	// colocar isso em um erro
 	@Pattern(regexp = "\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}")
-	private String cnpj;
+	private long cnpj;
 
 	@Column(name = "nomeEscola", nullable = false)
 	@NotBlank
@@ -44,7 +75,6 @@ public class Escola {
 	private int qtAlunos;
 
 	@Column(name = "diretor")
-	@NotBlank
 	private String diretor;
 
 	@Column(name = "vice_diretor")
@@ -58,22 +88,27 @@ public class Escola {
 
 	@Column(name = "cep", length = 10)
 	@NotBlank
-	private String cep;
+	private long cep;
 
 	@Column(name = "uf", length = 2, nullable = false)
+	@NotBlank
 	private String uf;
 
 	@Column(name = "cidade", length = 20, nullable = false)
+	@NotBlank
 	private String cidade;
 
 	@Column(name = "bairro", length = 20, nullable = false)
+	@NotBlank
 	private String bairro;
 
 	@Column(name = "rua", length = 40, nullable = false)
+	@NotBlank
 	private String rua;
 
 	@Column(name = "numero", length = 6, nullable = false)
-	private String numero;
+	@NotBlank
+	private long numero;
 
 	@Column(name = "complemento", length = 20, nullable = false)
 	private String complemento;
@@ -83,12 +118,12 @@ public class Escola {
 	private String email;
 
 	@Column(length = 20, nullable = true)
-	@NotBlank
 	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
 	private String senha;
 
 	@Column(name = "telefone", length = 20, nullable = false)
-	private String telefone;
+	@NotNull
+	private long telefone;
 
 	@Column(nullable = false, name = "dataCadastro")
 	@DateTimeFormat(iso = ISO.DATE)
@@ -111,10 +146,12 @@ public class Escola {
 	public Escola() {
 	}
 
-	public Escola(Long id, String cnpj, String nome, int turnos, int qtAlunos, String diretor, String viceDiretor,
-			String coordenador, String secretaria, String cep, String uf, String cidade, String bairro, String rua,
-			String numero, String complemento, String email, String senha, String telefone, LocalDate dataCadastro,
-			LocalDate dataResposta, String statusCadastro, String statusPerfil, List<Pedido> pedido) {
+	public Escola(final Long id, final long cnpj, final String nome, final int turnos, final int qtAlunos,
+			final String diretor, final String viceDiretor, final String coordenador, final String secretaria,
+			final long cep, final String uf, final String cidade, final String bairro, final String rua,
+			final long numero, final String complemento, final String email, final String senha, final long telefone,
+			final LocalDate dataCadastro, final LocalDate dataResposta, final String statusCadastro,
+			final String statusPerfil, final List<Pedido> pedido) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -146,15 +183,15 @@ public class Escola {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
-	public String getCnpj() {
+	public long getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj) {
+	public void setCnpj(final long cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -162,7 +199,7 @@ public class Escola {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(final String nome) {
 		this.nome = nome;
 	}
 
@@ -170,7 +207,7 @@ public class Escola {
 		return turnos;
 	}
 
-	public void setTurnos(int turnos) {
+	public void setTurnos(final int turnos) {
 		this.turnos = turnos;
 	}
 
@@ -178,7 +215,7 @@ public class Escola {
 		return qtAlunos;
 	}
 
-	public void setQtAlunos(int qtAlunos) {
+	public void setQtAlunos(final int qtAlunos) {
 		this.qtAlunos = qtAlunos;
 	}
 
@@ -186,7 +223,7 @@ public class Escola {
 		return diretor;
 	}
 
-	public void setDiretor(String diretor) {
+	public void setDiretor(final String diretor) {
 		this.diretor = diretor;
 	}
 
@@ -194,7 +231,7 @@ public class Escola {
 		return viceDiretor;
 	}
 
-	public void setViceDiretor(String viceDiretor) {
+	public void setViceDiretor(final String viceDiretor) {
 		this.viceDiretor = viceDiretor;
 	}
 
@@ -202,7 +239,7 @@ public class Escola {
 		return coordenador;
 	}
 
-	public void setCoordenador(String coordenador) {
+	public void setCoordenador(final String coordenador) {
 		this.coordenador = coordenador;
 	}
 
@@ -210,15 +247,15 @@ public class Escola {
 		return secretaria;
 	}
 
-	public void setSecretaria(String secretaria) {
+	public void setSecretaria(final String secretaria) {
 		this.secretaria = secretaria;
 	}
 
-	public String getCep() {
+	public long getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
+	public void setCep(final long cep) {
 		this.cep = cep;
 	}
 
@@ -226,7 +263,7 @@ public class Escola {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf(final String uf) {
 		this.uf = uf;
 	}
 
@@ -234,7 +271,7 @@ public class Escola {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	public void setCidade(final String cidade) {
 		this.cidade = cidade;
 	}
 
@@ -242,7 +279,7 @@ public class Escola {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	public void setBairro(final String bairro) {
 		this.bairro = bairro;
 	}
 
@@ -250,15 +287,15 @@ public class Escola {
 		return rua;
 	}
 
-	public void setRua(String rua) {
+	public void setRua(final String rua) {
 		this.rua = rua;
 	}
 
-	public String getNumero() {
+	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
+	public void setNumero(final long numero) {
 		this.numero = numero;
 	}
 
@@ -266,7 +303,7 @@ public class Escola {
 		return complemento;
 	}
 
-	public void setComplemento(String complemento) {
+	public void setComplemento(final String complemento) {
 		this.complemento = complemento;
 	}
 
@@ -274,7 +311,7 @@ public class Escola {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -282,15 +319,15 @@ public class Escola {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(final String senha) {
 		this.senha = senha;
 	}
 
-	public String getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
+	public void setTelefone(final long telefone) {
 		this.telefone = telefone;
 	}
 
@@ -298,7 +335,7 @@ public class Escola {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(final LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -306,7 +343,7 @@ public class Escola {
 		return dataResposta;
 	}
 
-	public void setDataResposta(LocalDate dataResposta) {
+	public void setDataResposta(final LocalDate dataResposta) {
 		this.dataResposta = dataResposta;
 	}
 
@@ -314,7 +351,7 @@ public class Escola {
 		return statusCadastro;
 	}
 
-	public void setStatusCadastro(String statusCadastro) {
+	public void setStatusCadastro(final String statusCadastro) {
 		this.statusCadastro = statusCadastro;
 	}
 
@@ -322,7 +359,7 @@ public class Escola {
 		return statusPerfil;
 	}
 
-	public void setStatusPerfil(String statusPerfil) {
+	public void setStatusPerfil(final String statusPerfil) {
 		this.statusPerfil = statusPerfil;
 	}
 
@@ -330,7 +367,7 @@ public class Escola {
 		return pedido;
 	}
 
-	public void setPedido(List<Pedido> pedido) {
+	public void setPedido(final List<Pedido> pedido) {
 		this.pedido = pedido;
 	}
 
@@ -342,14 +379,14 @@ public class Escola {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Escola other = (Escola) obj;
+		final Escola other = (Escola) obj;
 		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
 				&& Objects.equals(cidade, other.cidade) && Objects.equals(cnpj, other.cnpj)
 				&& Objects.equals(complemento, other.complemento) && Objects.equals(coordenador, other.coordenador)
@@ -363,17 +400,6 @@ public class Escola {
 				&& Objects.equals(statusPerfil, other.statusPerfil) && Objects.equals(telefone, other.telefone)
 				&& turnos == other.turnos && Objects.equals(uf, other.uf)
 				&& Objects.equals(viceDiretor, other.viceDiretor);
-	}
-
-	@Override
-	public String toString() {
-		return "Escola [id=" + id + ", cnpj=" + cnpj + ", nome=" + nome + ", turnos=" + turnos + ", qtAlunos="
-				+ qtAlunos + ", diretor=" + diretor + ", viceDiretor=" + viceDiretor + ", coordenador=" + coordenador
-				+ ", secretaria=" + secretaria + ", cep=" + cep + ", uf=" + uf + ", cidade=" + cidade + ", bairro="
-				+ bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", email=" + email
-				+ ", senha=" + senha + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro + ", dataResposta="
-				+ dataResposta + ", statusCadastro=" + statusCadastro + ", statusPerfil=" + statusPerfil + ", pedido="
-				+ pedido + "]";
 	}
 
 }
