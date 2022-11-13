@@ -16,52 +16,50 @@ import br.com.equalizes.repository.EscolaRepository;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private EscolaRepository escolaRepository;
-	
+
 	@Autowired
 	private EmpresaRepository empresaRepository;
-	
-	
+
 	@GetMapping("/login")
 	// PÁGINA LOGIN
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView("site/login");
 		return mv;
 	}
-	
+
 	@PostMapping("/logar")
 	// RECEBE MODEL E OBJETO COM O EMAIL E SENHA
 	public String logar(Model model, Escola userParams, Empresa userEmpresa, HttpSession session) {
-		
 
 		// INSTÂNCIA DE USUÁRIO/PERFIL ESCOLA - RETORNA O OBJETO
 		Escola escola = this.escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
-		
+
 		// INSTÂNCIA DE USUÁRIO/PERFIL EMPRESA - RETORNA O OBJETO
 		Empresa empresa = this.empresaRepository.Login(userEmpresa.getEmail(), userEmpresa.getSenha());
-		
-		if(escola != null) {
+
+		if (escola != null) {
 			session.setAttribute("escolaLogada", escola);
 			return "redirect:/perfilEscola";
-			
+
 		} else if (empresa != null) {
 			session.setAttribute("empresaLogada", empresa);
 			return "redirect:/perfilEmpresa";
 		}
-		
+
 		model.addAttribute("erro", "Email e/ou senha inválidos!");
-		return "redirect:/login";
+		// PARA QUE A MSG DE ERRO FUNCIONE, O RETORNO PRECISA ESTAR COM O CAMINHO DA VIEW COMPLETO
+		return "site/login";
+
 	}
-	
-	
+
 	// LOGOUT - ENCERRA A SESSÃO
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/login";	
+		return "redirect:/login";
 	}
-	
-	
+
 }

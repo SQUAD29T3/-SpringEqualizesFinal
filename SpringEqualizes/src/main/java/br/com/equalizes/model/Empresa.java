@@ -1,6 +1,7 @@
 package br.com.equalizes.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -86,6 +88,10 @@ public class Empresa {
 	
 	@Column(nullable = true, length = 10)
 	private String statusPerfil;
+	
+	// CÓDIGO NOVO
+	@OneToMany(mappedBy = "empresa")
+	private List<Pedido> pedido;
 	
 	public Empresa() {}
 
@@ -294,8 +300,48 @@ public class Empresa {
 		this.statusPerfil = statusPerfil;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(administrador, ativEmpresarial, bairro, cep, cidade, cnpj, complemento, dataCadastro,
+				dataResposta, email, id, nomeFantasia, numero, propietario, razaoSocial, rua, senha, socios,
+				statusCadastro, statusPerfil, telefone, uf);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(administrador, other.administrador)
+				&& Objects.equals(ativEmpresarial, other.ativEmpresarial) && Objects.equals(bairro, other.bairro)
+				&& Objects.equals(cep, other.cep) && Objects.equals(cidade, other.cidade)
+				&& Objects.equals(cnpj, other.cnpj) && Objects.equals(complemento, other.complemento)
+				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(dataResposta, other.dataResposta)
+				&& Objects.equals(email, other.email) && Objects.equals(id, other.id)
+				&& Objects.equals(nomeFantasia, other.nomeFantasia) && Objects.equals(numero, other.numero)
+				&& Objects.equals(propietario, other.propietario) && Objects.equals(razaoSocial, other.razaoSocial)
+				&& Objects.equals(rua, other.rua) && Objects.equals(senha, other.senha)
+				&& Objects.equals(socios, other.socios) && Objects.equals(statusCadastro, other.statusCadastro)
+				&& Objects.equals(statusPerfil, other.statusPerfil) && Objects.equals(telefone, other.telefone)
+				&& Objects.equals(uf, other.uf);
+	}
 	
 	
+
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", cnpj=" + cnpj + ", nomeFantasia=" + nomeFantasia + ", razaoSocial="
+				+ razaoSocial + ", ativEmpresarial=" + ativEmpresarial + ", propietario=" + propietario + ", socios="
+				+ socios + ", administrador=" + administrador + ", cep=" + cep + ", uf=" + uf + ", cidade=" + cidade
+				+ ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
+				+ ", email=" + email + ", senha=" + senha + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro
+				+ ", dataResposta=" + dataResposta + ", statusCadastro=" + statusCadastro + ", statusPerfil="
+				+ statusPerfil + "]";
+	}
 	
 	
 	

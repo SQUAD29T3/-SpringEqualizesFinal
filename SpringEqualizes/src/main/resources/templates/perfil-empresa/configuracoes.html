@@ -65,19 +65,21 @@
 						</a>
 					</li>
 					<li>
-						<a href="/pedidos">
+						<form class="andamentoPedidos" action="/pedidos" method="post" onclick="submit()">
+							<input type="text" name="empresa" th:value="${session.empresaLogada.id}" hidden />
 							<span class="material-symbols-outlined">
 								sync_alt
 							</span> PEDIDOS
-						</a>
+						</form>
 					</li>
 
 					<li>
-						<a href="/informacoesCadastrais">
+						<form class="andamentoPedidos" action="/pedidos" method="post" onclick="submit()">
+							<input type="text" name="empresa" th:value="${session.empresaLogada.id}" hidden />
 							<span class="material-symbols-outlined">
-								info
-							</span> INFO. CADASTRAIS
-						</a>
+								sync_alt
+							</span> PEDIDOS
+						</form>
 					</li>
 					<li>
 						<a href="#">

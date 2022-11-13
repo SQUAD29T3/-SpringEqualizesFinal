@@ -6,10 +6,14 @@
     <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat.ISO"/>
     <fullyQualifiedTypeName name="br.com.equalizes.model.Contato"/>
     <fullyQualifiedTypeName name="antlr.collections.List"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
-    <fullyQualifiedTypeName name="br.com.equalizes.model.Empresa"/>
     <fullyQualifiedTypeName name="br.com.equalizes.model.PerfilEscola"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="br.com.equalizes.repository.EscolaRepository"/>
+    <fullyQualifiedTypeName name="br.com.equalizes.repository.EmpresaRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="br.com.equalizes.model.Escola"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="br.com.equalizes.model.Empresa"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
 </qualifiedTypeNameHistroy>

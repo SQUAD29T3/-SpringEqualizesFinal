@@ -1,0 +1,61 @@
+package br.com.equalizes.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.equalizes.model.Escola;
+import br.com.equalizes.model.Pedido;
+import br.com.equalizes.repository.EmpresaRepository;
+import br.com.equalizes.repository.PedidoRepository;
+
+@Controller
+public class RotasPerfilEmpresa {
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+
+	
+	@GetMapping("/perfilEmpresa")
+	// PÁGINA INICIAL
+	public String inicio() {
+		return "perfil-empresa/perfil";
+	}
+	
+	@GetMapping("/pedidos")
+	// PÁGINA PEDIDOS
+	public ModelAndView pedidos(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("perfil-empresa/pedidos");
+		
+		// = SELECTS PARA EMPRESA
+		// SELECIONA OS PEDIDOS CONCLUÍDOS
+		List<Pedido> novos = pedidoRepository.buscarNovosPedidos();
+		mv.addObject("novos", novos);
+		
+		return mv;
+	}
+	
+	@GetMapping("/informacoesCadastrais")
+	// PÁGINA INFO. CADASTRAIS
+	public String infoCadEmpresa() {
+		return "perfil-empresa/info-cadastrais";
+	}
+	
+	@GetMapping("/configuracoesEmpresa")
+	// PÁGINA CONFIGURAÇÕES
+	public String configuracoes() {
+		return "perfil-empresa/configuracoes";
+	}
+	
+	
+	
+	
+	
+}
