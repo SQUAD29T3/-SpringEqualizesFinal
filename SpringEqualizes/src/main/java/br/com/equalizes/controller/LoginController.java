@@ -1,6 +1,7 @@
 package br.com.equalizes.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.equalizes.model.Escola;
 import br.com.equalizes.model.Empresa;
+import br.com.equalizes.model.Escola;
 import br.com.equalizes.repository.EmpresaRepository;
 import br.com.equalizes.repository.EscolaRepository;
 
@@ -26,13 +27,13 @@ public class LoginController {
 	@GetMapping("/login")
 	// PÁGINA LOGIN
 	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView("site/login");
-		return mv;
+		return new ModelAndView("site/login");
 	}
 
 	@PostMapping("/logar")
 	// RECEBE MODEL E OBJETO COM O EMAIL E SENHA
-	public String logar(Model model, Escola userParams, Empresa userEmpresa, HttpSession session) {
+
+	public String logar(Model model, Escola userParams, Empresa userEmpresa, String opc, HttpSession session) {
 
 		// INSTÂNCIA DE USUÁRIO/PERFIL ESCOLA - RETORNA O OBJETO
 		Escola escola = this.escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
@@ -40,11 +41,11 @@ public class LoginController {
 		// INSTÂNCIA DE USUÁRIO/PERFIL EMPRESA - RETORNA O OBJETO
 		Empresa empresa = this.empresaRepository.Login(userEmpresa.getEmail(), userEmpresa.getSenha());
 
-		if (escola != null) {
+		if (escola != null && opc.equals("escola")) {
 			session.setAttribute("escolaLogada", escola);
 			return "redirect:/perfilEscola";
 
-		} else if (empresa != null) {
+		} else if (empresa != null && opc.equals("empresa")) {
 			session.setAttribute("empresaLogada", empresa);
 			return "redirect:/perfilEmpresa";
 		}
@@ -57,9 +58,10 @@ public class LoginController {
 
 	// LOGOUT - ENCERRA A SESSÃO
 	@PostMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(final HttpSession session) {
 		session.invalidate();
 		return "redirect:/login";
 	}
 
+	
 }

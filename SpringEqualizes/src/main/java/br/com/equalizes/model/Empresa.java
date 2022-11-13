@@ -18,87 +18,88 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "empresa")
 public class Empresa {
-	
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "cnpj", nullable = false, length = 20, unique = true)
 	private String cnpj;
-	
+
 	@Column(name = "nomeFantasia", length = 60)
 	private String nomeFantasia;
-	
+
 	@Column(name = "razaoSocial", length = 60, nullable = false)
 	private String razaoSocial;
-	
+
 	@Column(name = "ativ_empresarial")
 	private String ativEmpresarial;
-	
+
 	@Column(name = "propietario")
 	private String propietario;
-	
+
 	@Column(name = "socios")
 	private String socios;
-	
+
 	@Column(name = "administrador")
 	private String administrador;
-	
+
 	@Column(name = "cep", length = 10)
 	private String cep;
-	
+
 	@Column(name = "uf", length = 2, nullable = false)
 	private String uf;
-		
+
 	@Column(name = "cidade", length = 20, nullable = false)
 	private String cidade;
-	
-	@Column(name = "bairro", length = 20, nullable = false)
+
+	@Column(name = "bairro", length = 30, nullable = false)
 	private String bairro;
-	
+
 	@Column(name = "rua", length = 40, nullable = false)
 	private String rua;
-	
+
 	@Column(name = "numero", length = 6, nullable = false)
 	private String numero;
-	
+
 	@Column(name = "complemento", length = 20, nullable = false)
 	private String complemento;
-	
+
 	@Column(name = "email", length = 50, nullable = false)
 	private String email;
-	
+
 	@Column(length = 20, nullable = true)
 	private String senha;
-	
+
 	@Column(name = "telefone", nullable = false)
 	private String telefone;
-	
+
 	@Column(nullable = false, name = "dataCadastro")
-    @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate dataCadastro;	
-	
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate dataCadastro;
+
 	@Column(nullable = true, name = "dataResposta")
 	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dataResposta;	
-	
+	private LocalDate dataResposta;
+
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
-	
+
 	@Column(nullable = true, length = 10)
 	private String statusPerfil;
-	
-	// CÓDIGO NOVO
+
+	// UMA EMPRESA PODE ACEITAR MUITOS PEDIDOS
 	@OneToMany(mappedBy = "empresa")
 	private List<Pedido> pedido;
-	
-	public Empresa() {}
+
+	public Empresa() {
+	}
 
 	public Empresa(Long id, String cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
 			String propietario, String socios, String administrador, String cep, String uf, String cidade,
 			String bairro, String rua, String numero, String complemento, String email, String senha, String telefone,
-			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro, String statusPerfil) {
+			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro, String statusPerfil,
+			List<Pedido> pedido) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -122,6 +123,7 @@ public class Empresa {
 		this.dataResposta = dataResposta;
 		this.statusCadastro = statusCadastro;
 		this.statusPerfil = statusPerfil;
+		this.pedido = pedido;
 	}
 
 	public Long getId() {
@@ -300,10 +302,18 @@ public class Empresa {
 		this.statusPerfil = statusPerfil;
 	}
 
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(administrador, ativEmpresarial, bairro, cep, cidade, cnpj, complemento, dataCadastro,
-				dataResposta, email, id, nomeFantasia, numero, propietario, razaoSocial, rua, senha, socios,
+				dataResposta, email, id, nomeFantasia, numero, pedido, propietario, razaoSocial, rua, senha, socios,
 				statusCadastro, statusPerfil, telefone, uf);
 	}
 
@@ -329,8 +339,6 @@ public class Empresa {
 				&& Objects.equals(statusPerfil, other.statusPerfil) && Objects.equals(telefone, other.telefone)
 				&& Objects.equals(uf, other.uf);
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -340,10 +348,7 @@ public class Empresa {
 				+ ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
 				+ ", email=" + email + ", senha=" + senha + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro
 				+ ", dataResposta=" + dataResposta + ", statusCadastro=" + statusCadastro + ", statusPerfil="
-				+ statusPerfil + "]";
+				+ statusPerfil + ", pedido=" + pedido + "]";
 	}
-	
-	
-	
 
 }

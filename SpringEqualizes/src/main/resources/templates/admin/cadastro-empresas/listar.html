@@ -136,8 +136,8 @@
 							<th scope="col">Telefone</th>
 							<th scope="col">E-mail</th>
 							<th scope="col">Data Cadastro</th>
-							<th scope="col">Status</th>
 							<th scope="col">Data Resposta</th>
+							<th scope="col">Status</th>
 							<th scope="col" colspan="2">Ações</th>
 						</tr>
 					</thead>
@@ -148,12 +148,15 @@
 							<td th:text="${empresas.cnpj}"></td>
 							<td th:text="${empresas.telefone}"></td>
 							<td th:text="${empresas.email}"></td>
-							<td th:text="${empresas.dataCadastro}"></td>
+							<td> <input type="date" class="text-center" th:value="${empresas.dataCadastro}" disabled />
+							</td>
+							<td> <input type="date" class="text-center" th:value="${empresas.dataResposta}" disabled />
+							</td>
 							<td th:text="${empresas.statusCadastro}"></td>
-							<td th:text="${empresas.dataResposta}"></td>
 							<td>
-							
-								<a th:href="@{/{id}/responderSolicitacaoCadastroEmpresa (id=${empresas.id})}" class="btn btn-warning">
+
+								<a th:href="@{/{id}/responderSolicitacaoCadastroEmpresa (id=${empresas.id})}"
+									class="btn btn-warning">
 									Responder
 								</a>
 							</td>

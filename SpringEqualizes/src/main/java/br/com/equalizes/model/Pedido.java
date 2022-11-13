@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -24,9 +25,12 @@ public class Pedido {
 	private Long id;
 
 	@Column(name = "descricao", nullable = false)
+	@NotBlank
 	private String descricao;
 
+	// TODO bool?
 	@Column(nullable = false)
+	@NotBlank
 	private String statusPedido;
 
 	@Column(nullable = false)
@@ -44,6 +48,7 @@ public class Pedido {
 	// MUITOS PEDIDOS PODEM ESTAR RELACIONADOS COM UMA ESCOLA
 	@ManyToOne
 	@JoinColumn(name = "escola_id")
+	@NotBlank
 	private Escola escola;
 	
 	// MUITOS PEDIDOS PODEM SER ACEITOS POR MUITAS ESCOLAS

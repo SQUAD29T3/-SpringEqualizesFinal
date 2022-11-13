@@ -56,7 +56,7 @@ public class Escola {
 	@Column(name = "cidade", length = 20, nullable = false)
 	private String cidade;
 
-	@Column(name = "bairro", length = 20, nullable = false)
+	@Column(name = "bairro", length = 30, nullable = false)
 	private String bairro;
 
 	@Column(name = "rua", length = 40, nullable = false)
@@ -91,11 +91,13 @@ public class Escola {
 	@Column(nullable = true, length = 10)
 	private String statusPerfil;
 
-	// CÓDIGO NOVO
+
+	// UMA ESCOLA PODE FAZER MUITOS PEDIDOS
 	@OneToMany(mappedBy = "escola")
 	private List<Pedido> pedido;
 
-	public Escola() {}
+	public Escola() {
+	}
 
 	public Escola(Long id, String cnpj, String nome, int turnos, int qtAlunos, String diretor, String viceDiretor,
 			String coordenador, String secretaria, String cep, String uf, String cidade, String bairro, String rua,
@@ -342,8 +344,7 @@ public class Escola {
 				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(dataResposta, other.dataResposta)
 				&& Objects.equals(diretor, other.diretor) && Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(numero, other.numero) && Objects.equals(pedido, other.pedido)
-				&& qtAlunos == other.qtAlunos && Objects.equals(rua, other.rua)
+				&& Objects.equals(pedido, other.pedido) && qtAlunos == other.qtAlunos && Objects.equals(rua, other.rua)
 				&& Objects.equals(secretaria, other.secretaria) && Objects.equals(senha, other.senha)
 				&& Objects.equals(statusCadastro, other.statusCadastro)
 				&& Objects.equals(statusPerfil, other.statusPerfil) && Objects.equals(telefone, other.telefone)
@@ -362,8 +363,6 @@ public class Escola {
 				+ pedido + "]";
 	}
 
-	
-		
 	
 	
 }

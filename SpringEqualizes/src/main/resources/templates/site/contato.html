@@ -118,18 +118,18 @@
 				<!-- INÍCIO FORMULÁRIO -->
 				<div class="col-12">
 
-					<form method="post" th:object="${contatos}">
+					<form action="/contato" method="post" th:object="${contatos}">
 
 						<div class="col-12">
 
-							<input type="text" name="nome" id="nome_contato" required placeholder="Digite seu nome">
+							<input type="text" name="nome" id="nome_contato" placeholder="Digite seu nome" required />
 
 						</div>
 
 						<div class="col-12 mt-3">
 
 							<input type="email" name="email" id="email_contato" placeholder="Digite seu e-mail"
-								required>
+								required />
 
 						</div>
 
@@ -159,7 +159,7 @@
 
 							<input type="date" class="form-control" name="dataContato" 	id="dataContato"  hidden />
 
-							<input type="submit" value="Enviar">
+							<input type="submit" value="Enviar" />
 
 						</div>
 

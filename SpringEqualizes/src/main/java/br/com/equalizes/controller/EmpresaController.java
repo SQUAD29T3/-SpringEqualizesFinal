@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.equalizes.model.Contato;
 import br.com.equalizes.model.Empresa;
+import br.com.equalizes.model.Escola;
 import br.com.equalizes.repository.EmpresaRepository;
 
 
@@ -59,6 +59,21 @@ public class EmpresaController {
 
 		return mv;
 	}
+	
+	
+	// EXIBE TODOS OS CADASTROS DEFERIDOS PARA O ADM
+	@GetMapping("/listarEmpresasAprovadas")
+	public ModelAndView listarEscolasAceitas(String status) {
+		ModelAndView mv = new ModelAndView("admin/parceiros-empresas/listar");
+		
+		List<Empresa> empresas = empresaRepository.findByStatus("deferido");
+		mv.addObject("empresas", empresas);
+
+		return mv;
+	}
+	
+	
+		
 
 	
 	// == // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA

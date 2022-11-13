@@ -158,20 +158,27 @@
 							<td th:text="${contatos.email}"></td>
 							<td th:text="${contatos.assunto}"></td>
 							<td th:text="${contatos.mensagem}"></td>
-							<td th:text="${contatos.dataContato}"></td>
+							<td> <input type="date" class="text-center" th:value="${contatos.dataContato}" disabled /></td>
 							<td th:text="${contatos.status}"></td>
-							<td th:text="${contatos.dataResposta}"></td>
+							<td> <input type="date" class="text-center" th:value="${contatos.dataResposta}" disabled /></td>
 							<td>
 
 								<a th:href="@{/{id}/responderSolicitacaoContato (id=${contatos.id})}"
 									class="btn btn-warning">
-									Responder
+
+									<span class="material-symbols-outlined">
+										edit
+									</span>
+
 								</a>
 							</td>
 							<td>
 								<a th:href="@{/{id}/excluirContato (id=${contatos.id})}" class="btn btn-danger"
 									onclick="return confirm('Tem certeza que deseja excluir o contato?');">
-									Excluir
+
+									<span class="material-symbols-outlined">
+										delete
+									</span>
 
 							</td>
 						</tr>

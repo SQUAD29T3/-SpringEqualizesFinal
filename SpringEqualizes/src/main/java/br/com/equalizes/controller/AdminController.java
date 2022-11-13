@@ -23,7 +23,6 @@ public class AdminController {
 		return "admin/admin";
 	}
 	
-
 	
 	// REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O  CADASTRO

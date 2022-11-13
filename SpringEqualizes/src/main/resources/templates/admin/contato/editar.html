@@ -180,21 +180,29 @@
 				<div class="col-12 mt-3">
 
 					<input type="date" name="dataContato" th:value="*{dataContato}" hidden />
-					<p>Data Contato: <strong th:text="*{dataContato}"></strong> </p>
+
+					<p>Data Contato: <input type="date" th:value="*{dataContato}" disabled /> </p>
 
 
 				</div>
 
 				<div class="col-12 mt-3">
 
-					<input type="date" class="bg-warning" name="dataResposta" id="dataResposta" />
+					<p>Data Resposta: <input type="date" name="dataResposta" id="dataResposta" />
+					</p>
+
 
 				</div>
 
 				<div class="col-12 mt-3">
 
-					<input type="text" name="status" th:value="*{status}"
-						placeholder="Informe o status da solicitação" />
+					<label for="status">Selecione o status para o contato:</label>
+					<select class="p-2" name="status" th:value="*{status}">
+						<option value="----" disabled selected>Escolha</option>
+						<option value="respondido">Respondido</option>
+						<option value="em aberto">Em aberto</option>
+
+					</select>
 
 				</div>
 

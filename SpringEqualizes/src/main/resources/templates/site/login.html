@@ -121,7 +121,7 @@
 				<div class="col-md-6 text-center d-flex align-items-center">
 
 
-					<form class="mt-2" action="/logar" method="post">
+					<form class="mt-2" action="/logar" method="post" id="logar">
 
 						<div class="col-12 text-center">
 
@@ -134,7 +134,7 @@
 
 						<div class="col-md-12 mt-3 mb-2 text-center d-flex justify-content-center gap-2">
 
-							<input type="radio" name="opc" value="escola" id="escolas" /> <label for="escolas"> Escolas
+							<input type="radio" name="opc" value="escola" id="escolas" required /> <label for="escolas"> Escolas
 							</label>
 
 							<input type="radio" name="opc" value="empresa" id="empresas" /> <label for="empresas">
@@ -167,7 +167,7 @@
 							<div class="alert alert-danger text-center mt-3" role="alert" th:if="${erro} != null"
 								th:text="${erro}"> </div>
 
-							<input type="submit" value="Entrar" />
+							<input type="submit" value="Entrar" id="entrar" />
 
 
 						</div>
