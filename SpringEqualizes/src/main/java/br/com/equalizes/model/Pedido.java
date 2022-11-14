@@ -28,10 +28,14 @@ public class Pedido {
 	@NotBlank
 	private String descricao;
 
-	// TODO bool?
 	@Column(nullable = false)
-	@NotBlank
 	private String statusPedido;
+
+	@Column(name = "transportadora")
+	private String transportadora;
+
+	@Column(name = "cod_rastreio")
+	private String codRastreio;
 
 	@Column(nullable = false)
 	@DateTimeFormat(iso = ISO.DATE)
@@ -48,7 +52,6 @@ public class Pedido {
 	// MUITOS PEDIDOS PODEM ESTAR RELACIONADOS COM UMA ESCOLA
 	@ManyToOne
 	@JoinColumn(name = "escola_id")
-	@NotBlank
 	private Escola escola;
 	
 	// MUITOS PEDIDOS PODEM SER ACEITOS POR MUITAS ESCOLAS
@@ -59,12 +62,14 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, String descricao, String statusPedido, LocalDate dataPedido, LocalDate dataAceite,
-			LocalDate dataConclusao, Escola escola, Empresa empresa) {
+	public Pedido(Long id, @NotBlank String descricao, String statusPedido, String transportadora, String codRastreio,
+			LocalDate dataPedido, LocalDate dataAceite, LocalDate dataConclusao, Escola escola, Empresa empresa) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.statusPedido = statusPedido;
+		this.transportadora = transportadora;
+		this.codRastreio = codRastreio;
 		this.dataPedido = dataPedido;
 		this.dataAceite = dataAceite;
 		this.dataConclusao = dataConclusao;
@@ -94,6 +99,22 @@ public class Pedido {
 
 	public void setStatusPedido(String statusPedido) {
 		this.statusPedido = statusPedido;
+	}
+
+	public String getTransportadora() {
+		return transportadora;
+	}
+
+	public void setTransportadora(String transportadora) {
+		this.transportadora = transportadora;
+	}
+
+	public String getCodRastreio() {
+		return codRastreio;
+	}
+
+	public void setCodRastreio(String codRastreio) {
+		this.codRastreio = codRastreio;
 	}
 
 	public LocalDate getDataPedido() {
@@ -138,7 +159,8 @@ public class Pedido {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataAceite, dataConclusao, dataPedido, descricao, empresa, escola, id, statusPedido);
+		return Objects.hash(codRastreio, dataAceite, dataConclusao, dataPedido, descricao, empresa, escola, id,
+				statusPedido, transportadora);
 	}
 
 	@Override
@@ -150,17 +172,19 @@ public class Pedido {
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		return Objects.equals(dataAceite, other.dataAceite) && Objects.equals(dataConclusao, other.dataConclusao)
-				&& Objects.equals(dataPedido, other.dataPedido) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(empresa, other.empresa) && Objects.equals(escola, other.escola)
-				&& Objects.equals(id, other.id) && Objects.equals(statusPedido, other.statusPedido);
+		return Objects.equals(codRastreio, other.codRastreio) && Objects.equals(dataAceite, other.dataAceite)
+				&& Objects.equals(dataConclusao, other.dataConclusao) && Objects.equals(dataPedido, other.dataPedido)
+				&& Objects.equals(descricao, other.descricao) && Objects.equals(empresa, other.empresa)
+				&& Objects.equals(escola, other.escola) && Objects.equals(id, other.id)
+				&& Objects.equals(statusPedido, other.statusPedido)
+				&& Objects.equals(transportadora, other.transportadora);
 	}
 
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", descricao=" + descricao + ", statusPedido=" + statusPedido + ", dataPedido="
-				+ dataPedido + ", dataAceite=" + dataAceite + ", dataConclusao=" + dataConclusao + ", escola=" + escola
-				+ ", empresa=" + empresa + "]";
+		return "Pedido [id=" + id + ", descricao=" + descricao + ", statusPedido=" + statusPedido + ", transportadora="
+				+ transportadora + ", codRastreio=" + codRastreio + ", dataPedido=" + dataPedido + ", dataAceite="
+				+ dataAceite + ", dataConclusao=" + dataConclusao + ", escola=" + escola + ", empresa=" + empresa + "]";
 	}
 
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.equalizes.model.Empresa;
+import br.com.equalizes.model.Escola;
 import br.com.equalizes.model.Pedido;
 import br.com.equalizes.repository.EmpresaRepository;
 import br.com.equalizes.repository.PedidoRepository;
@@ -80,11 +81,54 @@ public class RotasPerfilEmpresa {
 	}
 	
 	
+	
+	// ATUALIZANDO UM PEDIDO - ADICIONANDO A TRANSPORTADORA E CÓDIGO DE RASTREAMENTO
+	
+	// == CHAMA A VIEW COM OS DADOS DO PEDIDO
+	// APENAS LISTA O E MOSTRA OS CAMPOS P/ EDIÇÃO
+	@GetMapping("/{id}/atualizarPedido")
+	public ModelAndView atualizarPedido(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-empresa/atualizarPedido");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
+	
+	
+	// ATUALIZA O PEDIDO COM AS INFORMAÇÕES DE RASTREAMENTO
+	@PostMapping("/{id}/atualizarPedido")
+	public ModelAndView atualizarPedido(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("redirect:/perfilEmpresa");
+		pedidoRepository.save(pedido);
+
+		return mv;
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/informacoesCadastrais")
 	// PÁGINA INFO. CADASTRAIS
 	public String infoCadEmpresa() {
 		return "perfil-empresa/info-cadastrais";
 	}
+	
+	  	// ATUALIZA OS DADOS
+	@PostMapping("/informacoesCadastrais")
+	// PÁGINA INFO. CADASTRAIS
+	public ModelAndView editar(Empresa empresa) {
+		ModelAndView mv = new ModelAndView("redirect:/informacoesCadastrais");
+		empresaRepository.save(empresa);
+		return mv;
+	}
+	  	
+	
+	
+	
+	
 
 	@GetMapping("/configuracoesEmpresa")
 	// PÁGINA CONFIGURAÇÕES

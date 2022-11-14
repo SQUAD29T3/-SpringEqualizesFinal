@@ -177,15 +177,17 @@
 									<th scope="col">Data do Pedido</th>
 									<th scope="col">Data de aceite</th>
 									<th scope="col">Status</th>
+									<th scope="col">Rastreamento</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="emAndamento : ${emAndamento}">
 									<th scope="row" th:text="${emAndamento.id}"></th>
 									<td th:text="${emAndamento.descricao}"></td>
-									<td> <input type="date" th:value="${emAndamento.dataPedido}" disabled /></td>
-									<td> <input type="date" th:value="${emAndamento.dataAceite}" disabled /></td>
+									<td> <input type="date" class="text-center" th:value="${emAndamento.dataPedido}" disabled /></td>
+									<td> <input type="date" class="text-center" th:value="${emAndamento.dataAceite}" disabled /></td>
 									<td th:text="${emAndamento.statusPedido}"></td>
+									<td><span class="material-symbols-outlined"> visibility </span></td>
 
 								</tr>
 							</tbody>

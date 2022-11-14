@@ -23,13 +23,13 @@ public class Empresa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "cnpj", nullable = false, length = 20, unique = true)
+	@Column(name = "cnpj", length = 20, unique = true)
 	private String cnpj;
 
 	@Column(name = "nomeFantasia", length = 60)
 	private String nomeFantasia;
 
-	@Column(name = "razaoSocial", length = 60, nullable = false)
+	@Column(name = "razaoSocial", length = 60)
 	private String razaoSocial;
 
 	@Column(name = "ativ_empresarial")
@@ -47,45 +47,45 @@ public class Empresa {
 	@Column(name = "cep", length = 10)
 	private String cep;
 
-	@Column(name = "uf", length = 2, nullable = false)
+	@Column(name = "uf", length = 2)
 	private String uf;
 
-	@Column(name = "cidade", length = 20, nullable = false)
+	@Column(name = "cidade", length = 20)
 	private String cidade;
 
-	@Column(name = "bairro", length = 30, nullable = false)
+	@Column(name = "bairro", length = 30)
 	private String bairro;
 
-	@Column(name = "rua", length = 40, nullable = false)
+	@Column(name = "rua", length = 40)
 	private String rua;
 
-	@Column(name = "numero", length = 6, nullable = false)
+	@Column(name = "numero", length = 6)
 	private String numero;
 
-	@Column(name = "complemento", length = 20, nullable = false)
+	@Column(name = "complemento", length = 20)
 	private String complemento;
 
-	@Column(name = "email", length = 50, nullable = false)
+	@Column(name = "email", length = 50)
 	private String email;
 
-	@Column(length = 20, nullable = true)
+	@Column(length = 20)
 	private String senha;
 
-	@Column(name = "telefone", nullable = false)
+	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(nullable = false, name = "dataCadastro")
+	@Column(name = "dataCadastro")
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dataCadastro;
 
-	@Column(nullable = true, name = "dataResposta")
+	@Column(name = "dataResposta")
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dataResposta;
 
 	@Column(name = "statusCadastro", length = 15)
 	private String statusCadastro;
 
-	@Column(nullable = true, length = 10)
+	@Column(length = 10)
 	private String statusPerfil;
 
 	// UMA EMPRESA PODE ACEITAR MUITOS PEDIDOS
@@ -186,7 +186,7 @@ public class Empresa {
 		return administrador;
 	}
 
-	public void setAdministrador(String administrador) {
+	public void setAdmnistrador(String administrador) {
 		this.administrador = administrador;
 	}
 

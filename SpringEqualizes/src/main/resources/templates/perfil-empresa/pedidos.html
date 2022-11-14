@@ -167,6 +167,7 @@
 									<th scope="col">Data do Pedido</th>
 									<th scope="col">Data aceite</th>
 									<th scope="col">Status</th>
+									<th scope="col">Atualizar</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -177,6 +178,15 @@
 									<td th:text="${emAndamento.dataPedido}"></td>
 									<td th:text="${emAndamento.dataAceite}"></td>
 									<td th:text="${emAndamento.statusPedido}"></td>
+									<td>
+
+										<a th:href="@{/{id}/atualizarPedido (id=${emAndamento.id})}" class="btn btn-warning">
+											<span class="btn material-symbols-outlined">
+												edit
+											</span>
+										</a>
+
+									</td>
 								</tr>
 							</tbody>
 						</table>

@@ -25,15 +25,19 @@ public class PedidoController {
 	@GetMapping("/fazerPedido")
 	// PÁGINA FAZER PEDIDO - ESCOLAS
 	public ModelAndView fazerPedidos() {
-		return new ModelAndView("perfil-escola/fazer-pedido").addObject("pedido", new Pedido());
+		ModelAndView mv = new ModelAndView("perfil-escola/fazer-pedido");
+		mv.addObject("pedido", new Pedido());
+		return mv;
 	}
 
-	// pedido validado de acordo com o modelo
 	@PostMapping("/fazerPedido")
-	public ModelAndView solicitacaoContato(@Valid final Pedido pedido, final Model model) throws IOException {
+	public ModelAndView solicitacaoContato(Pedido pedido, Model model) throws IOException {
+		ModelAndView mv = new ModelAndView("redirect:/fazerPedido");
+
 		pedidoRepository.save(pedido);
+
 		model.addAttribute("msg", "Pedido realizado com sucesso!");
-		return new ModelAndView("redirect:/fazerPedido");
+		return mv;
 	}
 
 	// == APENAS A ESCOLA TÊM ACESSO
@@ -41,21 +45,20 @@ public class PedidoController {
 	@PostMapping("/andamentoPedidos")
 	public ModelAndView listarPedidos(Escola escola) {
 		ModelAndView mv = new ModelAndView("perfil-escola/andamento-pedidos");
-		
+
 		// = SELECTS PARA ESCOLA
 		// SELECIONA OS PEDIDOS EM ABERTO
 		List<Pedido> emAberto = pedidoRepository.buscarEmAberto(escola.getId());
 		mv.addObject("pedido", emAberto);
-		
+
 		// SELECIONA OS PEDIDOS EM ANDAMENTO
 		List<Pedido> emAndamento = pedidoRepository.buscarEmAndamento(escola.getId());
 		mv.addObject("emAndamento", emAndamento);
-		
+
 		// SELECIONA OS PEDIDOS CONCLUÍDOS
 		List<Pedido> concluido = pedidoRepository.buscarConcluido(escola.getId());
 		mv.addObject("concluido", concluido);
-		
-		
+
 		return mv;
 	}
 
@@ -63,24 +66,31 @@ public class PedidoController {
 	// APENAS LISTA OS DADOS DO PEDIDO E MOSTRA OS CAMPOS P/ ATUALIZAR O
 	// REQUERIMENTO
 	@GetMapping("/{id}/editarPedido")
-	public ModelAndView editar(@PathVariable final Long id) {
-		return new ModelAndView("perfil-escola/pedido/editar").addObject("pedido", pedidoRepository.findById(id));
+	public ModelAndView editar(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-escola/pedido/editar");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
 	}
 
-
-	// ATUALIZA A SOLICITAÇÃO DE PEDIDO
+	// ATUALIZA A SOLICITAÇÃO DE CONTATO
 	@PostMapping("/{id}/editarPedido")
 	public ModelAndView editar(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("redirect:/fazerPedido");
 		pedidoRepository.save(pedido);
-		return new ModelAndView("redirect:/fazerPedido");
+
+		return mv;
 	}
 
+		
 	// == EXCLUI UM PEDIDO
 	@GetMapping("/{id}/excluirPedido")
-	public ModelAndView excluir(@PathVariable final Long id) {
+	public ModelAndView excluir(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("redirect:/fazerPedido");
 		pedidoRepository.deleteById(id);
-		return new ModelAndView("redirect:/fazerPedido");
+		return mv;
 	}
-	
-	
+
 }
