@@ -60,7 +60,7 @@
 						</li>
 					</a>
 
-					<a href="#">
+					<a href="/listarContatos">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -71,18 +71,27 @@
 						</li>
 					</a>
 
-					<a href="">
-						<li>
 
-							<span class="material-symbols-outlined">
+					<a href="">
+						<li class="nav-item dropdown">
+
+
+							<span class="material-symbols-outlined text-light">
 								group_add
 							</span>
 
-							SOLICITAÇÕES DE PARCERIAS
+
+							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">SOLICITAÇÃO DE PARCERIA</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item text-center btn-hover" href="/listarEscolas">ESCOLAS</a>
+
+								<hr class="dropdown-divider">
+
+								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
 
 						</li>
 					</a>
-
 
 					<a href="">
 						<li class="nav-item dropdown">
@@ -94,11 +103,13 @@
 							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">PARCEIROS</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-center btn-hover" href="/listarEscolas">ESCOLAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEscolasAprovadas">ESCOLAS</a>
 
 								<hr class="dropdown-divider">
 
-								<a class="dropdown-item text-center btn-hover" href="/listarEmpresas">EMPRESAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEmpresasAprovadas">EMPRESAS</a>
 
 						</li>
 					</a>

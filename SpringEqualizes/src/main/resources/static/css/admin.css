@@ -203,6 +203,31 @@ main {
 }
 
 
+/* INÍCIO ADM */
+.col-sm-4 > a {
+	background-color: #164B66;
+	color:  #fff;
+	transition: all 0.2s;
+	gap: 1rem;
+	padding: 1rem;
+	
+	display: flex !important;
+	flex-direction: column !important;
+	
+}
+
+.col-sm-4 a:hover {
+	background-color: #0C7EB3;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
 h1 {
 	color: #164B66;
 	text-align: center;

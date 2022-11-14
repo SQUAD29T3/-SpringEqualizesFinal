@@ -48,7 +48,7 @@
 			<div id="menu-area">
 				<ul>
 
-					<a href="">
+					<a href="/admin">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -108,7 +108,8 @@
 
 								<hr class="dropdown-divider">
 
-								<a class="dropdown-item text-center btn-hover" href="">EMPRESAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEmpresasAprovadas">EMPRESAS</a>
 
 						</li>
 					</a>
@@ -158,11 +159,13 @@
 							<td th:text="${escolas.cnpj}"></td>
 							<td th:text="${escolas.telefone}"></td>
 							<td th:text="${escolas.email}"></td>
-							<td> <input type="date" class="text-center" th:value="${escolas.dataCadastro}" disabled /></td>
-							<td> <input type="date" class="text-center" th:value="${escolas.dataResposta}" disabled /></td>
+							<td> <input type="date" class="text-center" th:value="${escolas.dataCadastro}" disabled />
+							</td>
+							<td> <input type="date" class="text-center" th:value="${escolas.dataResposta}" disabled />
+							</td>
 							<td th:text="${escolas.statusCadastro}"></td>
-							
-							
+
+
 							<td>
 
 								<a th:href="@{/{id}/responderSolicitacaoCadastroEscola (id=${escolas.id})}"

@@ -44,7 +44,7 @@ public class RotasPerfilEscola {
 	}
 
 	
-	// ATUALIZA OS DADOS
+	// ATUALIZA O EMAIL E/OU SENHA
 	@PostMapping("/configuracoesEscola")
 	// PÁGINA CONFIGURAÇÕES
 	public ModelAndView configuracoes(Escola escola) {
@@ -52,9 +52,6 @@ public class RotasPerfilEscola {
 		escolaRepository.save(escola);
 		return mv;
 	}
-	
-	
-	
 	
 	
 	

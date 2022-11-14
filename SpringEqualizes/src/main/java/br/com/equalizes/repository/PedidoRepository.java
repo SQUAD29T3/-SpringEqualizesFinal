@@ -34,6 +34,10 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	@Query(value = "select * from pedido where status_pedido = 'em andamento' and empresa_id = :empresa", nativeQuery = true)
 	public List<Pedido> buscarPorEmpresa(Long empresa);
 	
+	// SELECIONA OS PEDIDOS CONCLUÍDOS
+	@Query(value = "select * from pedido where status_pedido like 'concluido' and empresa_id = :empresa", nativeQuery = true)
+	public List<Pedido> findConcluido(Long empresa);
+	
 	
 	
 }

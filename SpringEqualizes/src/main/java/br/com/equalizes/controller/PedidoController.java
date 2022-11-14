@@ -3,8 +3,6 @@ package br.com.equalizes.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.equalizes.model.Empresa;
 import br.com.equalizes.model.Escola;
 import br.com.equalizes.model.Pedido;
 import br.com.equalizes.repository.PedidoRepository;
 
 @Controller
 public class PedidoController {
+	
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
@@ -40,7 +40,7 @@ public class PedidoController {
 		return mv;
 	}
 
-	// == APENAS A ESCOLA TÊM ACESSO
+	// == APENAS A ESCOLA TEM ACESSO
 	// PÁGINA ANDAMENTO DE PEDIDOS - LISTA OS PEDIDOS
 	@PostMapping("/andamentoPedidos")
 	public ModelAndView listarPedidos(Escola escola) {
@@ -61,7 +61,8 @@ public class PedidoController {
 
 		return mv;
 	}
-
+	
+	
 	// == // ATUALIZA A SOLICITAÇÃO DE PEDIDO
 	// APENAS LISTA OS DADOS DO PEDIDO E MOSTRA OS CAMPOS P/ ATUALIZAR O
 	// REQUERIMENTO
@@ -93,4 +94,136 @@ public class PedidoController {
 		return mv;
 	}
 
+	
+	
+	// == CHAMA A VIEW COM  INFORMAÇÕES SOBRE O RASTREAMENTO
+	@GetMapping("/{id}/rastreamento")
+	public ModelAndView rastreamento(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-escola/pedido/rastreamento");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
+	
+	
+	
+	// == CHAMA A VIEW COM  INFORMAÇÕES SOBRE O PEDIDO RECEBIDO
+	@GetMapping("/{id}/confirmarRecebimento")
+	public ModelAndView confirmRecebimento(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-escola/pedido/confirm-pedido-recebido");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
+	
+	
+	// ATUALIZA O STATUS DO PEDIDO PARA CONCLUÍDO
+	@PostMapping("/{id}/confirmarRecebimento")
+	public ModelAndView confirmRecebimento(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("redirect:/fazerPedido");
+		pedidoRepository.save(pedido);
+
+		return mv;
+	}
+	
+	
+	
+	// == APENAS A EMPRESA TEM ACESSO
+	// PÁGINA ANDAMENTO DE PEDIDOS - LISTA OS PEDIDOS
+	
+	@PostMapping("/pedidos")
+	// PÁGINA PEDIDOS
+	public ModelAndView pedidos(Empresa empresa) {
+		ModelAndView mv = new ModelAndView("perfil-empresa/pedidos");
+
+		// = SELECTS PARA EMPRESA
+		// SELECIONA OS PEDIDOS CONCLUÍDOS
+		List<Pedido> novos = pedidoRepository.buscarNovosPedidos();		
+		mv.addObject("novos", novos);
+		
+		// SELECIONA OS PEDIDOS EM ANDAMENTO
+		List<Pedido> emAndamento = pedidoRepository.buscarPorEmpresa(empresa.getId());
+		mv.addObject("emAndamento", emAndamento);
+		
+		// SELECIONA OS PEDIDOS CONCLUÍDOS
+		List<Pedido> concluido = pedidoRepository.findConcluido(empresa.getId());
+		mv.addObject("concluido", concluido);
+		
+				
+		return mv;
+	}
+
+	
+	
+	// ACEITANDO UM PEDIDO
+	
+	// == CHAMA A VIEW COM OS DADOS DO PEDIDO
+	// APENAS LISTA O E MOSTRA OS CAMPOS P/ EDIÇÃO
+	@GetMapping("/{id}/aceitarPedido")
+	public ModelAndView aceitarPedido(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-empresa/confirmarDoacao");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
+
+	
+	// ATUALIZA O CADASTRO
+	@PostMapping("/{id}/aceitarPedido")
+	public ModelAndView aceitarPedido(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("redirect:/pedidoAceito");
+		pedidoRepository.save(pedido);
+
+		return mv;
+	}
+
+	
+	@GetMapping("/pedidoAceito")
+	// PÁGINA INFO. CADASTRAIS
+	public String pedidoAceito() {
+		return "perfil-empresa/pedidoAceito";
+	}
+	
+	
+	
+	// ATUALIZANDO UM PEDIDO - ADICIONANDO A TRANSPORTADORA E CÓDIGO DE RASTREAMENTO
+	
+	// == CHAMA A VIEW COM OS DADOS DO PEDIDO
+	// APENAS LISTA O E MOSTRA OS CAMPOS P/ EDIÇÃO
+	@GetMapping("/{id}/atualizarPedido")
+	public ModelAndView atualizarPedido(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("perfil-empresa/atualizarPedido");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
+	
+	
+	// ATUALIZA O PEDIDO COM AS INFORMAÇÕES DE RASTREAMENTO
+	@PostMapping("/{id}/atualizarPedido")
+	public ModelAndView atualizarPedido(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("redirect:/perfilEmpresa");
+		pedidoRepository.save(pedido);
+
+		return mv;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

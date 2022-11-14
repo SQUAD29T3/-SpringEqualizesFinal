@@ -48,7 +48,7 @@
 			<div id="menu-area">
 				<ul>
 
-					<a href="">
+					<a href="/admin">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -108,11 +108,11 @@
 
 								<hr class="dropdown-divider">
 
-								<a class="dropdown-item text-center btn-hover" href="">EMPRESAS</a>
+								<a class="dropdown-item text-center btn-hover"
+									href="/listarEmpresasAprovadas">EMPRESAS</a>
 
 						</li>
 					</a>
-
 
 
 				</ul>
@@ -163,13 +163,13 @@
 							<td> <input type="date" th:value="${empresas.dataResposta}" disabled /></td>
 							<td th:text="${empresas.statusCadastro}"></td>
 
-						<!--	<td>
+							<!--	<td>
 
 								<a th:href="@{/{id}/gerarLoginEscola (id=${escolas.id})}" class="btn btn-warning">
 									Gerar login
 								</a>
 							</td> -->
-							
+
 						</tr>
 					</tbody>
 				</table>
