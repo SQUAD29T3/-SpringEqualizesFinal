@@ -59,21 +59,19 @@ a:hover {
     color: var(--azul);
 }
 
-.logout > span {
+.logout {
     padding: 0.5rem;
     color: #fff;
     cursor: pointer;
 }
 
-.logout > span:hover {
+.logout:hover {
     background-color: #fff;
     color: #ff0000;
     border-radius: 50%;
     padding: 0.5rem;
 
 }
-
-
 
 
 /* MENU */

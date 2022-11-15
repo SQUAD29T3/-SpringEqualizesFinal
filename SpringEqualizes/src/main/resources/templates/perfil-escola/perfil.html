@@ -35,11 +35,38 @@
 				<img th:src="@{/img/logo_equalizes_white.png}" alt="logo">
 			</div>
 
-			<form action="/logout" method="post" class="logout" onclick="submit()">
-				<span class="material-symbols-outlined">
-					logout
-				</span>
-			</form>
+
+			<!-- BOTÃO GATILHO MODAL trigger modal -->
+			<button type="button" class="btn material-symbols-outlined logout" data-bs-toggle="modal"
+				data-bs-target="#staticBackdrop">
+				logout
+			</button>
+
+
+			<!-- MODAL -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Logout</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							Você tem certeza que deseja sair?
+						</div>
+						<div class="modal-footer">
+
+							<form action="/logout" method="post">
+								<button type="submit" class="btn btn-primary">Sim, sair.</button>
+							</form>
+
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</header>
 		<!-- FIM HEADER -->

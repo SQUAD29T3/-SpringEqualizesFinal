@@ -34,11 +34,40 @@
 			<div class="logo">
 				<img th:src="@{/img/logo_equalizes_white.png}" alt="logo">
 			</div>
-			<form action="/logout" method="post" class="logout" onclick="submit()">
-				<span class="material-symbols-outlined">
-					logout
-				</span>
-			</form>
+
+			<!-- BOTÃO GATILHO MODAL trigger modal -->
+			<button type="button" class="btn material-symbols-outlined logout" data-bs-toggle="modal"
+				data-bs-target="#staticBackdrop">
+				logout
+			</button>
+
+
+			<!-- MODAL -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Logout</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							Você tem certeza que deseja sair?
+						</div>
+						<div class="modal-footer">
+
+							<form action="/logout" method="post">
+								<button type="submit" class="btn btn-primary">Sim, sair.</button>
+							</form>
+
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 		</header>
 		<!-- FIM HEADER -->
 
@@ -100,11 +129,12 @@
 			<main class="col-md-9">
 
 				<h2>CONFIRME O RECEBIMENTO DO PEDIDO</h2>
-				
+
 				<div class="alert bg-warning text-center">
-				
-				<span> <strong>ATENÇÃO: </strong>Antes de confirmar, verifique se as informações abaixo conferem com o pedido. </span>
-				
+
+					<span> <strong>ATENÇÃO: </strong>Antes de confirmar, verifique se as informações abaixo conferem com
+						o pedido. </span>
+
 				</div>
 
 
@@ -128,7 +158,8 @@
 								<input type="text" name="transportadora" th:field="*{transportadora}"
 									placeholder="Nome da transportadora" hidden />
 
-								<input type="text" th:field="*{transportadora}" placeholder="Nome da transportadora" disabled />
+								<input type="text" th:field="*{transportadora}" placeholder="Nome da transportadora"
+									disabled />
 
 							</div>
 
@@ -163,7 +194,7 @@
 							</div>
 
 
-					<!--		<div class="col-md-4 mt-3">
+							<!--		<div class="col-md-4 mt-3">
 
 								<label class="form-label" for="escola">Solicitante:</label>
 
@@ -206,7 +237,7 @@
 								<input type="date" th:field="*{dataAceite}" disabled />
 
 							</div>
-							
+
 							<div class="col-md-4 mt-3">
 
 								<label class="form-label" for="dataAceite">Empresa doadora:</label>
@@ -221,15 +252,15 @@
 						</div>
 
 
-					<div class="row mt-3">
+						<div class="row mt-3">
 
-						<div class="col-12 mb-3 text-justify">
-						
-							<button class="mt-5 p-3" style='width: 100%;'> CONFIRMAR </button>
+							<div class="col-12 mb-3 text-justify">
+
+								<button class="mt-5 p-3" style='width: 100%;'> CONFIRMAR </button>
+
+							</div>
 
 						</div>
-
-					</div>
 
 
 
@@ -246,9 +277,9 @@
 
 
 	</div>
-	
-	
-		<!-- INSERINDO VALOR AO INPUT DATA -->
+
+
+	<!-- INSERINDO VALOR AO INPUT DATA -->
 	<script>
 		const inputDate = document.querySelector('#dataConclusao');
 		const dataHoje = new Date();
