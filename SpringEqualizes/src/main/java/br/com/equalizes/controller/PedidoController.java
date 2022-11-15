@@ -215,10 +215,34 @@ public class PedidoController {
 
 		return mv;
 	}
+	
+	
+	
+	// LISTA TODOS OS PEDIDOS PARA O ADMIN
+	
+	@GetMapping("/doacoes")
+	// PÁGINA PEDIDOS
+	public ModelAndView doacoes(Pedido pedido) {
+		ModelAndView mv = new ModelAndView("admin/doacoes/listar");
+
+		// SELECIONA OS PEDIDOS CONCLUÍDOS
+		List<Pedido> pedidos = pedidoRepository.findAll();		
+		mv.addObject("pedidos", pedidos);
+					
+		return mv;
+	}
 
 	
-	
-	
+	// == CHAMA A VIEW COM  DETALHES SOBRE O PEDIDO
+	@GetMapping("/{id}/detalhesPedido")
+	public ModelAndView detalhes(@PathVariable Long id) {
+		ModelAndView mv = new ModelAndView("admin/doacoes/detalhes");
+
+		Pedido pedido = pedidoRepository.getOne(id);
+		mv.addObject("pedido", pedido);
+
+		return mv;
+	}
 	
 	
 	

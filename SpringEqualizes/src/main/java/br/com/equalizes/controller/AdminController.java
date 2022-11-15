@@ -1,20 +1,15 @@
 package br.com.equalizes.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import br.com.equalizes.model.Escola;
-import br.com.equalizes.repository.EscolaRepository;
 
 @Controller
 public class AdminController {
 	
-	@Autowired
-	private EscolaRepository escolaRepository;
+//	@Autowired
+//	private EscolaRepository escolaRepository;
 	
 	
 	@GetMapping("/admin")
@@ -24,6 +19,7 @@ public class AdminController {
 	}
 	
 	
+	/*
 	// REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
 	// APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O  CADASTRO
 	@GetMapping("/{id}/gerarLoginEscola")
@@ -47,6 +43,6 @@ public class AdminController {
 		return mv;
 	}
 
-	
+	*/
 
 }
