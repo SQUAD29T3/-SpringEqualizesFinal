@@ -23,6 +23,16 @@ public interface EscolaRepository extends JpaRepository<Escola, Long> {
 	// VERIFICA SE HÁ ALGUM CADASTRO COM O CNPJ INSERIDO
 	@Query(value="select * from escola where cnpj = :cnpj", nativeQuery = true)
 	public Escola findByCnpj(String cnpj);
+	
+	
+	// VERIFICA QUANTOS CADASTROS HÁ NO BD
+	@Query(value="Select count(*) id, cnpj, nome_escola, qt_alunos, turnos, diretor, vice_diretor, coordenador, secretaria, "
+			+ "  rua, complemento, numero, bairro, cidade, uf, cep, data_cadastro,"
+			+ " data_resposta, status_cadastro, status_perfil, telefone, email, senha from escola;", nativeQuery = true)
+	public Escola totalPerfisAtivos();
 
+	
+	
+	
 
 }

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import br.com.equalizes.model.Empresa;
-import br.com.equalizes.model.Escola;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
@@ -25,6 +24,11 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 	@Query(value="select * from empresa where cnpj = :cnpj", nativeQuery = true)
 	public Empresa findByCnpj(String cnpj);
 	
+	
+	// VERIFICA QUANTOS CADASTROS HÁ NO BD
+	@Query(value="Select count(*) id, cnpj, razao_social, nome_fantasia, propietario, socios, ativ_empresarial, administrador, rua, complemento, numero, bairro, cidade, uf, cep, data_cadastro,"
+			+ " data_resposta, status_cadastro, status_perfil, telefone, email, senha from empresa;", nativeQuery = true)
+	public Empresa PerfisAtivosTotal();
 	
 
 }

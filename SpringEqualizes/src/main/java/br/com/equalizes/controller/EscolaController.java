@@ -59,7 +59,6 @@ public class EscolaController {
 		}
 		
 		
-		
 		escolaRepository.save(escola);
 		return mv;
 	}
@@ -111,6 +110,17 @@ public class EscolaController {
 
 		return mv;
 	}
+	
+	
+	
+	// == EXCLUI PERFIL - NÃO IMPLEMENTADO
+	@PostMapping("/desativarPerfilEscola")
+	public ModelAndView desativarPerfilEscola(Escola escola) {
+		ModelAndView mv = new ModelAndView("redirect:/login");
+		escolaRepository.delete(escola);
+		return mv;
+	}
+	
 	
 	
 		

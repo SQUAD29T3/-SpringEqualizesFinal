@@ -30,7 +30,6 @@ public class EmpresaController {
 		mv.addObject("cadastroEmpresa", new Empresa());
 		return mv;
 	}
-	
 
 	// VERIFICA SE HÁ ALGUM CADASTRO PARA O CNPJ INFORMADO, CASO NULL, CADASTRA.
 	@PostMapping("/cadastroEmpresa")
@@ -42,7 +41,7 @@ public class EmpresaController {
 
 			if (empresaRepository.findByCnpj(empresa.getCnpj()) != null) {
 				ModelAndView modelAndView = new ModelAndView("site/parceiros-empresas");
-				
+
 				model.addAttribute("msg", "Já existe um cadastro para o CNPJ informado: " + empresa.getCnpj() + ".");
 				return modelAndView;
 			}
@@ -55,8 +54,7 @@ public class EmpresaController {
 		empresaRepository.save(empresa);
 		return mv;
 	}
-	
-	
+
 	// VIEW DE CONFIRMAÇÃO DE CADASTRO
 	@GetMapping("/cadastroRealizadoEmpresa")
 	// PÁGINA CADASTRO DE ESCOLAS
@@ -64,8 +62,6 @@ public class EmpresaController {
 		ModelAndView mv = new ModelAndView("success/success-cad-empresa");
 		return mv;
 	}
-	
-	
 
 	// EXIBE TODOS OS CADASTROS PARA O ADM
 	@GetMapping("/listarEmpresas")
@@ -108,6 +104,14 @@ public class EmpresaController {
 		ModelAndView mv = new ModelAndView("redirect:/listarEmpresas");
 		empresaRepository.save(empresa);
 
+		return mv;
+	}
+
+	// == EXCLUI PERFIL - NÃO IMPLEMENTADO
+	@PostMapping("/desativarPerfilEmpresa")
+	public ModelAndView desativarPerfilEmpresa(Empresa empresa) {
+		ModelAndView mv = new ModelAndView("redirect:/login");
+		empresaRepository.delete(empresa);
 		return mv;
 	}
 

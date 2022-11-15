@@ -53,10 +53,10 @@ public class Escola {
 	@Column(name = "uf", length = 2)
 	private String uf;
 
-	@Column(name = "cidade", length = 20)
+	@Column(name = "cidade", length = 40)
 	private String cidade;
 
-	@Column(name = "bairro", length = 30)
+	@Column(name = "bairro", length = 40)
 	private String bairro;
 
 	@Column(name = "rua", length = 40)

@@ -13,6 +13,9 @@
 	<!-- ICON DO SITE (E) -->
 	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
 
+	<!-- ICON SITE REMIXICON -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 	<!-- GOOGLE ICON -->
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -234,6 +237,35 @@
 		</div>
 
 
+		<!-- GRÁFICOS -->
+		<div class="row mt-5">
+
+			<input th:object="${escolas}" th:value="*{id}" id="totalEscolas" hidden />
+			<input th:object="${empresas}" th:value="*{id}" id="totalEmpresas" hidden />
+
+			<!-- GRÁFICO PERFIS ATIVOS -->
+			<div class="col-md-6">
+				<div id="piechart"></div>
+			</div>
+
+
+			<input th:object="${pedidos}" th:value="*{id}" id="totalPedidos" hidden />
+			<input th:object="${emAberto}" th:value="*{id}" id="totalEmAberto" hidden />
+			<input th:object="${emAndamento}" th:value="*{id}" id="totalEmAndamento" hidden />
+			<input th:object="${concluido}" th:value="*{id}" id="totalConcluido" hidden />
+
+			<!-- TOTAL DE PEDIDOS  -->
+			<!-- GRÁFICO PEDIDOS COM BASE NO STATUS-->
+			<div class="col-md-6">
+				<div id="piechartPedidos"></div>
+			</div>
+
+
+
+		</div>
+		<!-- GRÁFICOS -->
+
+
 
 
 	</main>
@@ -278,9 +310,6 @@
 	<!-- FIM RODAPÉ -->
 
 
-
-
-
 	<!-- JAVASCRIPT EXTERNO -->
 	<script th:src="@{/js/all.js}"></script>
 
@@ -288,6 +317,105 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
+
+
+	<!-- GOOGLE CHARTS -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+
+		/* TOTAL DE CADASTROS ATIVOS - ESCOLAS / EMPRESAS */
+
+		const totalEsc = document.querySelector('#totalEscolas').value;
+		const escola = parseInt(totalEsc);
+
+		const totalEmp = document.querySelector('#totalEmpresas').value;
+		const empresa = parseInt(totalEmp);
+
+
+		/* TOTAL DE PEDIDOS - ESCOLAS / EMPRESAS */
+
+		const abertoTotal = document.querySelector('#totalEmAberto').value;
+		const aberto = parseInt(abertoTotal);
+
+		const andamentoTotal = document.querySelector('#totalEmAndamento').value;
+		const andamento = parseInt(andamentoTotal);
+
+		const concluidoTotal = document.querySelector('#totalConcluido').value;
+		const concluido = parseInt(concluidoTotal)
+
+
+
+		google.charts.load('current', {'packages': ['corechart']});
+		google.charts.setOnLoadCallback(drawChart,);
+
+		function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Tipo de parceria', 'Total'],
+				['Escolas', escola],
+				['Empresas', empresa]
+
+			]);
+
+			var dados = google.visualization.arrayToDataTable([
+				['Pedidos', 'Total'],
+				['Em aberto', aberto],
+				['Em andamento', andamento],
+				['Concluídos', concluido]
+			]);
+
+			var options = {
+				title: 'INSTITUIÇÕES PARCEIRAS - CADASTROS APROVADOS'
+
+			};
+
+			var option = {
+					title: 'PEDIDOS REALIZADOS'
+			};
+
+
+			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+			chart.draw(data, options);
+
+			var newChart = new google.visualization.PieChart(document.getElementById('piechartPedidos'));
+			newChart.draw(dados, option);
+
+		}
+
+	</script>
+
+
+	<script>
+		/*
+				function drawChart() {
+		
+					var dados = google.visualization.arrayToDataTable([
+						['Pedidos', 'Total'],
+						['Em aberto', aberto],
+						['Em andamento', andamento],
+						['Concluídos', concluido]
+					]);
+		
+		
+					var option = {
+						chart: {
+							title: 'PEDIDOS REALIZADOS'
+						},
+						heigth: 900,
+						width: 500
+					};
+		
+					var chart = new google.visualization.PieChart(document.getElementById('piechartPedidos'));
+		
+					chart.draw(dados, option);
+		
+				}
+		
+		*/
+	</script>
+
+
 
 </body>
 

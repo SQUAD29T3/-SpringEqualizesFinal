@@ -39,5 +39,25 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	public List<Pedido> findConcluido(Long empresa);
 	
 	
+	// CONTA OS PEDIDOS
+	@Query(value = "select count(*) id, data_aceite, data_conclusao, data_pedido, descricao,"
+			+ " status_pedido, empresa_id, escola_id, cod_rastreio, transportadora from pedido", nativeQuery = true)
+	public Pedido totalPedidos();
+	
+	// CONTA OS PEDIDOS EM ABERTO
+	@Query(value = "select count(*) id, data_aceite, data_conclusao, data_pedido, descricao,"
+			+ " status_pedido, empresa_id, escola_id, cod_rastreio, transportadora from pedido where status_pedido = 'em aberto'", nativeQuery = true)
+	public Pedido totalEmAberto();
+	
+	// CONTA OS PEDIDOS EM ANDAMENTO
+	@Query(value = "select count(*) id, data_aceite, data_conclusao, data_pedido, descricao,"
+			+ " status_pedido, empresa_id, escola_id, cod_rastreio, transportadora from pedido where status_pedido = 'em andamento'", nativeQuery = true)
+	public Pedido totalEmAndamento();
+	
+	// CONTA OS PEDIDOS CONCLUÍDOS
+	@Query(value = "select count(*) id, data_aceite, data_conclusao, data_pedido, descricao,"
+			+ " status_pedido, empresa_id, escola_id, cod_rastreio, transportadora from pedido where status_pedido = 'concluido'", nativeQuery = true)
+	public Pedido totalConcluido();
+	
 	
 }
