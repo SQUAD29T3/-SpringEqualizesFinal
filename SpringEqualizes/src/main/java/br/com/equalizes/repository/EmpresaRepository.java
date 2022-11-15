@@ -19,5 +19,12 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 	// SELECT PARA REALIZAR O LOGIN
 	@Query(value = "select * from empresa where email = :email and senha = :senha", nativeQuery = true)
 	public Empresa Login(String email, String senha);
+	
+	
+	// VERIFICA SE HÁ ALGUM CADASTRO COM O CNPJ INSERIDO
+	@Query(value="select * from empresa where cnpj = :cnpj", nativeQuery = true)
+	public Empresa findByCnpj(String cnpj);
+	
+	
 
 }

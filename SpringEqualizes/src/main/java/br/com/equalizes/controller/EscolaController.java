@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,9 +40,26 @@ public class EscolaController {
 	}
 
 	@PostMapping("/cadastroEscola")
-	public ModelAndView solicitacaoContato(Escola escola) throws IOException {
+	public ModelAndView solicitacaoContato(Escola escola, Model model) throws IOException {
 
 		ModelAndView mv = new ModelAndView("redirect:/cadastroRealizadoEscola");
+		
+		try {
+
+			if (escolaRepository.findByCnpj(escola.getCnpj()) != null) {
+				ModelAndView modelAndView = new ModelAndView("site/parceiros-escolas");
+				
+				model.addAttribute("msg", "Já existe um cadastro para o CNPJ informado: " + escola.getCnpj() + ".");
+				return modelAndView;
+			}
+			;
+
+		} finally {
+
+		}
+		
+		
+		
 		escolaRepository.save(escola);
 		return mv;
 	}
