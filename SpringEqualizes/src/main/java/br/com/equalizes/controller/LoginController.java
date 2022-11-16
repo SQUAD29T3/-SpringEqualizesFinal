@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,8 @@ import br.com.equalizes.repository.EscolaRepository;
 @Controller
 public class LoginController {
 
-	@Autowired
 	private EscolaRepository escolaRepository;
-
-	@Autowired
+	private PasswordEncoder encoder;
 	private EmpresaRepository empresaRepository;
 
 	@GetMapping("/login")
@@ -30,31 +29,34 @@ public class LoginController {
 		return new ModelAndView("site/login");
 	}
 
+	// TODO rever isso
+	// levar em conta senhas criptografadas
 	@PostMapping("/logar")
 	// RECEBE MODEL E OBJETO COM O EMAIL E SENHA
-
-	public String logar(Model model, Escola userParams, Empresa userEmpresa, String opc, HttpSession session) {
-
+	public String logar(final Model model, @Valid final Escola userEscola, @Valid final Empresa userEmpresa,
+			final HttpSession session) {
+		// TODO funcional
 		// INSTÂNCIA DE USUÁRIO/PERFIL ESCOLA - RETORNA O OBJETO
-		Escola escola = this.escolaRepository.Login(userParams.getEmail(), userParams.getSenha());
+		final Escola escola = escolaRepository.Login(userEscola.getEmail());
 
 		// INSTÂNCIA DE USUÁRIO/PERFIL EMPRESA - RETORNA O OBJETO
-		Empresa empresa = this.empresaRepository.Login(userEmpresa.getEmail(), userEmpresa.getSenha());
+		final Empresa empresa = empresaRepository.Login(userEmpresa.getEmail());
 
-		if (escola != null && opc.equals("escola")) {
+		if (escola != null && encoder.matches(userEscola.getSenha(), escola.getSenha())) {
 			session.setAttribute("escolaLogada", escola);
 			return "redirect:/perfilEscola";
 
-		} else if (empresa != null && opc.equals("empresa")) {
+		} else if (empresa != null && encoder.matches(userEmpresa.getSenha(), empresa.getSenha())) {
 			session.setAttribute("empresaLogada", empresa);
 			return "redirect:/perfilEmpresa";
 		}
 
 		model.addAttribute("erro", "Email e/ou senha inválidos!");
-		// PARA QUE A MSG DE ERRO FUNCIONE, O RETORNO PRECISA ESTAR COM O CAMINHO DA VIEW COMPLETO
-		return "site/login";
-
+		return "redirect:/login";
 	}
+
+	// TODO juntar login com cadastro
+	// autenticacao
 
 	// LOGOUT - ENCERRA A SESSÃO
 	@PostMapping("/logout")
@@ -63,5 +65,4 @@ public class LoginController {
 		return "redirect:/login";
 	}
 
-	
 }
