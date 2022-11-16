@@ -13,6 +13,9 @@
 	<!-- ICON DO SITE (E) -->
 	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
 
+	<!-- ICON SITE REMIXICON -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 
 	<!-- GOOGLE ICON -->
 	<link rel="stylesheet"
@@ -115,6 +118,29 @@
 					</a>
 
 
+					<a href="#">
+						<li>
+
+							<span class="material-symbols-outlined">
+								volunteer_activism
+							</span>
+							DOAÇÕES
+						</li>
+					</a>
+
+
+					<a href="/">
+						<li>
+
+							<span class="material-symbols-outlined">
+								logout
+							</span>
+
+							SAIR
+
+						</li>
+					</a>
+
 				</ul>
 			</div>
 		</aside>
@@ -130,61 +156,74 @@
 
 	<main class="container mb-3">
 
-
-
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>Acompanhar doações</h1>
 			</div>
 		</div>
 
-		<div class="row" id="table">
-			<div class="col-12" id="table">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Id do Pedido</th>
-							<th scope="col">Descrição</th>
-							<th scope="col">Solicitante</th>
-							<th scope="col">Doadora</th>
-							<th scope="col">Data Solicitação</th>
-							<th scope="col">Data Conclusão</th>
-							<th scope="col">Status</th>
 
-							<th scope="col">Detalhes</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="pedidos : ${pedidos}">
-							<th scope="row" th:text="${pedidos.id}"></th>
-							<td th:text="${pedidos.descricao}"></td>
-							<td th:text="${pedidos.escola.nome}"></td>
-							<td th:text="${pedidos.empresa.razaoSocial}"></td>
-							<td> <input type="date" class="text-center" th:value="${pedidos.dataPedido}" disabled />
-							</td>
-							<td> <input type="date" class="text-center" th:value="${pedidos.dataConclusao}" disabled />
-							</td>
-							<td th:text="${pedidos.statusPedido}"></td>
 
-							<td>
+		<div class="mt-3 text-dark" th:each="pedidos : ${pedidos}" style="border: 0.1rem solid #164B66; padding: 1rem;">
 
-								<a th:href="@{/{id}/detalhesPedido (id=${pedidos.id})}"
-									class="btn btn-warning">
+			<div class="row">
 
-									<span class="material-symbols-outlined">
-										visibility
-									</span>
+				<div class="col-9 p-3"><strong class="text-danger">Informações do pedido</strong></div>
 
-								</a>
-							</td>
+				<div class="col-3 p-3 d-flex gap-3">
 
-						</tr>
-					</tbody>
-				</table>
+					<a th:href="@{/{id}/detalhesPedido (id=${pedidos.id})}" class="btn btn-warning">
+
+						<p class="d-flex flex-column">  <span class="material-symbols-outlined">
+								visibility
+							</span>
+							
+							<strong> Detalhes </strong>
+						</p>
+					</a>
+
+
+				</div>
+
 			</div>
+
+
+			<div class="row">
+				<p><strong>Id do pedido: </strong> <span th:text="${pedidos.id}"> </span></p>
+			</div>
+
+			<div class="row">
+				<p><strong>Descrição: </strong> <span th:text="${pedidos.descricao}"> </span></p>
+			</div>
+
+			<div class="row">
+				<p><strong>Solicitante: </strong> <span th:text="${pedidos.escola.nome}"> </span></p>
+			</div>
+
+			<div class="row">
+				<p><strong>Doadora: </strong> <span th:text="${pedidos.empresa.razaoSocial}"> </span></p>
+			</div>
+
+
+			<div class="row">
+				<p><strong>Data Solicitação: </strong> <input type="date" class="text-center"
+						th:value="${pedidos.dataPedido}" disabled /></p>
+			</div>
+
+			<div class="row">
+				<p><strong>Data Conclusão: </strong> <input type="date" class="text-center"
+						th:value="${pedidos.dataConclusao}" disabled /></p>
+			</div>
+
+
+			<div class="row">
+				<p><strong>Status: </strong> <span th:text="${pedidos.statusPedido}"> </span></p>
+			</div>
+
+
 		</div>
 
-
+	
 	</main>
 
 

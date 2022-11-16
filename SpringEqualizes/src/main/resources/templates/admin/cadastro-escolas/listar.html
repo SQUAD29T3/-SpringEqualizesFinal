@@ -13,6 +13,9 @@
 	<!-- ICON DO SITE (E) -->
 	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
 
+	<!-- ICON SITE REMIXICON -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 
 	<!-- GOOGLE ICON -->
 	<link rel="stylesheet"
@@ -84,7 +87,7 @@
 							<a class="dropdown-toggle text-light" href="#" id="dropdownId" data-bs-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">SOLICITAÇÃO DE PARCERIA</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-center btn-hover" href="/listarEscolas">ESCOLAS</a>
+								<a class="dropdown-item text-center btn-hover" href="#">ESCOLAS</a>
 
 								<hr class="dropdown-divider">
 
@@ -115,12 +118,34 @@
 					</a>
 
 
+					<a href="/doacoes">
+						<li>
+
+							<span class="material-symbols-outlined">
+								volunteer_activism
+							</span>
+							DOAÇÕES
+						</li>
+					</a>
+
+
+					<a href="/">
+						<li>
+
+							<span class="material-symbols-outlined">
+								logout
+							</span>
+
+							SAIR
+
+						</li>
+					</a>
+
 				</ul>
 			</div>
 		</aside>
 
 		<!-- FIM MENU -->
-
 
 	</header>
 
@@ -136,47 +161,41 @@
 			</div>
 		</div>
 
-		<div class="row" id="table">
-			<div class="col-12" id="table">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Nome da Escola</th>
-							<th scope="col">CNPJ</th>
-							<th scope="col">Telefone</th>
-							<th scope="col">E-mail</th>
-							<th scope="col">Data Cadastro</th>
-							<th scope="col">Data Resposta</th>
-							<th scope="col">Status</th>
-							<th scope="col" colspan="2">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="escolas : ${escolas}">
-							<th scope="row" th:text="${escolas.id}"></th>
-							<td th:text="${escolas.nome}"></td>
-							<td th:text="${escolas.cnpj}"></td>
-							<td th:text="${escolas.telefone}"></td>
-							<td th:text="${escolas.email}"></td>
-							<td> <input type="date" class="text-center" th:value="${escolas.dataCadastro}" disabled />
-							</td>
-							<td> <input type="date" class="text-center" th:value="${escolas.dataResposta}" disabled />
-							</td>
-							<td th:text="${escolas.statusCadastro}"></td>
 
 
-							<td>
 
-								<a th:href="@{/{id}/responderSolicitacaoCadastroEscola (id=${escolas.id})}"
-									class="btn btn-warning">
-									Responder
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		<div class="text-dark mt-3" th:each="escolas : ${escolas}" style="border: 0.1rem solid #164B66; padding: 1rem;">
+
+			<div class="row">
+
+				<div class"col-8"><strong class="text-danger">Informações cadastro</strong></div>
+
+				<p><strong>Id:</strong> <span th:text="${escolas.id}"></span></p>
+				<p><strong>Razão Social: </strong><span th:text="${escolas.nome}"></span></p>
+				<p><strong>CNPJ: </strong><span th:text="${escolas.cnpj}"></span></p>
+				<p><strong>Telefone: </strong><span th:text="${escolas.telefone}"></span></p>
+				<p><strong>E-mail: </strong><span th:text="${escolas.email}"></span></p>
+				<p><strong>Data Cadastro: </strong><span> <input type="date" class="text-center"
+							th:value="${escolas.dataCadastro}" disabled /></span></p>
+				<p><strong>Data Resposta: </strong><span> <input type="date" class="text-center"
+							th:value="${escolas.dataResposta}" disabled /></span></p>
+				<p><strong>Status Cadastro: </strong><span th:text="${escolas.statusCadastro}"></span></p>
+
+
+				<div class="col-4">
+
+					<a class="btn btn-warning" style="font-size: 1.6rem;"
+						th:href="@{/{id}/responderSolicitacaoCadastroEscola (id=${escolas.id})}">
+						Responder
+					</a>
+
+				</div>
+
+
+
 			</div>
+
+
 		</div>
 
 

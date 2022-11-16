@@ -203,8 +203,8 @@
 									<th scope="row" th:text="${emAndamento.id}"></th>
 									<td th:text="${emAndamento.escola.nome}"></td>
 									<td th:text="${emAndamento.descricao}"></td>
-									<td th:text="${emAndamento.dataPedido}"></td>
-									<td th:text="${emAndamento.dataAceite}"></td>
+									<td> <input type="date" class="text-center" th:value="${emAndamento.dataPedido}" disabled /></td>
+									<td> <input type="date" class="text-center" th:value="${emAndamento.dataAceite}" disabled /></td>
 									<td th:text="${emAndamento.statusPedido}"></td>
 									<td>
 

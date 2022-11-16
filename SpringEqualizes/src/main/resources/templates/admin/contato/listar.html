@@ -13,6 +13,9 @@
 	<!-- ICON DO SITE (E) -->
 	<link rel="shortcut icon" th:href="@{/img/icon.jpg}" type="image/x-icon">
 
+	<!-- ICON SITE REMIXICON -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 
 	<!-- GOOGLE ICON -->
 	<link rel="stylesheet"
@@ -60,7 +63,7 @@
 						</li>
 					</a>
 
-					<a href="/listarContatos">
+					<a href="#">
 						<li>
 
 							<span class="material-symbols-outlined">
@@ -115,12 +118,34 @@
 					</a>
 
 
+					<a href="/doacoes">
+						<li>
+
+							<span class="material-symbols-outlined">
+								volunteer_activism
+							</span>
+							DOAÇÕES
+						</li>
+					</a>
+
+
+					<a href="/">
+						<li>
+
+							<span class="material-symbols-outlined">
+								logout
+							</span>
+
+							SAIR
+
+						</li>
+					</a>
+
 				</ul>
 			</div>
 		</aside>
 
 		<!-- FIM MENU -->
-
 
 	</header>
 
@@ -130,14 +155,21 @@
 
 	<main class="container mb-3">
 
-<!-- OUTRA POSSIBILIDADE DE ORGANIZAR OS DADOS - TESTAR POSTERIORMENTE
-		<div class="container mt-4 text-dark border" th:each="contatos : ${contatos}">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Solicitações de contato</h1>
+			</div>
+		</div>
+
+
+		<div class="mt-3 text-dark" th:each="contatos : ${contatos}"
+			style="border: 0.1rem solid #164B66; padding: 1rem;">
 
 			<div class="row">
 
-				<div class="col-10 p-3"><strong>Informações do contato</strong></div>
+				<div class="col-8 p-3"><strong class="text-danger">Informações do contato</strong></div>
 
-				<div class="col-2 p-3 d-flex gap-3">
+				<div class="col-4 p-3 d-flex gap-3">
 					<a th:href="@{/{id}/responderSolicitacaoContato (id=${contatos.id})}" class="btn btn-warning">
 
 						<span class="material-symbols-outlined">
@@ -160,151 +192,54 @@
 
 
 			<div class="row">
-				<div class"col-4">
-					<span>Id do contato</span>
-				</div>
 
-				<div class"col-8" th:text="${contatos.id}"></div>
+				<p><strong>Id do contato: </strong> <span th:text="${contatos.id}"> </span></p>
 			</div>
 
 
 			<div class="row">
-				<div class"col-4">
-					Nome do contato:
-				</div>
 
-				<div class"col-8" th:text="${contatos.nome}">
-
-				</div>
-
+				<p><strong>Nome do contato: </strong> <span th:text="${contatos.nome}"> </span></p>
 
 			</div>
 
 
 			<div class="row">
-				<div class"col-4">
-					E-mail do contato:
-				</div>
 
-				<div class"col-8" th:text="${contatos.email}">
+				<p><strong>E-mail do contato: </strong> <span th:text="${contatos.email}"> </span></p>
 
-				</div>
 			</div>
 
 			<div class="row">
-				<div class"col-4">
-					Assunto:
-				</div>
-				<div class"col-8" th:text="${contatos.assunto}"></div>
+				<p><strong>Assunto: </strong> <span th:text="${contatos.assunto}"> </span></p>
 			</div>
 
 
 			<div class="row d-flex flex-column-reverse">
-				<div class"col-4">
-					Mensagem:
-				</div>
 
-				<div class"col-8" th:text="${contatos.mensagem}"></div>
+				<p><strong>Mensagem: </strong> <span th:text="${contatos.mensagem}"> </span></p>
 
 			</div>
 
 
 			<div class="row">
-				<div class"col-4">
-					Data contato:
-				</div>
-				<div class"col-8">
+				<p><strong>Data contato: </strong> <input type="date" class="text-center"
+						th:value="${contatos.dataContato}" disabled /></p>
+			</div>
 
-					<input type="date" class="text-center" th:value="${contatos.dataContato}" disabled />
 
-				</div>
+			<div class="row">
+				<p><strong>Status contato: </strong> <span th:text="${contatos.status}"> </span></p>
 			</div>
 
 			<div class="row">
-				<div class"col-12">
-					Status contato:
-				</div>
-
-				<div class"col-12" th:text="${contatos.status}"></div>
-			</div>
-
-			<div class="row">
-				<div class"col-12">
-					Data resposta:
-				</div>
-
-				<div class"col-12">
-					<input type="date" class="text-center" th:value="${contatos.dataResposta}" disabled />
-				</div>
+				<p><strong>Data resposta: </strong> <input type="date" class="text-center"
+						th:value="${contatos.dataResposta}" disabled /></p>
 
 			</div>
-
-
 
 		</div>
 
--->
-
-
-		<div class="row">
-			<div class="col-sm-12">
-				<h1>Solicitações de contato</h1>
-			</div>
-		</div>
-
-		<div class="row" id="table">
-			<div class="col-12" id="table">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Nome</th>
-							<th scope="col">E-mail</th>
-							<th scope="col">Assunto</th>
-							<th scope="col">Mensagem</th>
-							<th scope="col">Data solicitação</th>
-							<th scope="col">Status</th>
-							<th scope="col">Data Resposta</th>
-							<th scope="col" colspan="2">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="contatos : ${contatos}">
-							<th scope="row" th:text="${contatos.id}"></th>
-							<td th:text="${contatos.nome}"></td>
-							<td th:text="${contatos.email}"></td>
-							<td th:text="${contatos.assunto}"></td>
-							<td th:text="${contatos.mensagem}"></td>
-							<td> <input type="date" class="text-center" th:value="${contatos.dataContato}" disabled />
-							</td>
-							<td th:text="${contatos.status}"></td>
-							<td> <input type="date" class="text-center" th:value="${contatos.dataResposta}" disabled />
-							</td>
-							<td>
-
-								<a th:href="@{/{id}/responderSolicitacaoContato (id=${contatos.id})}"
-									class="btn btn-warning">
-
-									<span class="material-symbols-outlined">
-										edit
-									</span>
-
-								</a>
-							</td>
-							<td>
-								<a th:href="@{/{id}/excluirContato (id=${contatos.id})}" class="btn btn-danger"
-									onclick="return confirm('Tem certeza que deseja excluir o contato?');">
-
-									<span class="material-symbols-outlined">
-										delete
-									</span>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
 
 
 	</main>
