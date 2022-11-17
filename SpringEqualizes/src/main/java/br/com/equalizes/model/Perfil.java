@@ -1,77 +1,83 @@
 package br.com.equalizes.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+@Entity
+@Table(name = "perfil")
 public class Perfil {
+  @Id
+  @Column(name = "perfil_id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-  private int id;
-
+  @Column(name = "email", length = 50, nullable = false)
+  @NotBlank
+  @Email
+  private String email;
   private boolean enabled;
-  private boolean accountNonExpired;
-  private boolean credentialNonExpired;
-  private boolean accountNonLocked;
-  // private Collection<? extends GrantedAuthority> authorities;
 
   public boolean isEnabled() {
     return enabled;
   }
 
-  public void setEnabled(final boolean enabled) {
+  public void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
 
-  public boolean isAccountNonExpired() {
-    return accountNonExpired;
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinTable(name = "perfil_roles", joinColumns = @JoinColumn(name = "perfil_id"), inverseJoinColumns = @JoinColumn(name = "acesso_id"))
+  private Set<Acessos> acessos = new HashSet<>();
+
+  @Column(nullable = true)
+  @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
+  private String senha;
+
+  public String getEmail() {
+    return email;
   }
 
-  public void setAccountNonExpired(final boolean accountNonExpired) {
-    this.accountNonExpired = accountNonExpired;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
-  public boolean isCredentialNonExpired() {
-    return credentialNonExpired;
-  }
-
-  protected Perfil() {
-  };
-
-  public void setCredentialNonExpired(final boolean credentialNonExpired) {
-    this.credentialNonExpired = credentialNonExpired;
-  }
-
-  public boolean isAccountNonLocked() {
-    return accountNonLocked;
-  }
-
-  public boolean isCredentialsNonExpired() {
-    return false;
-  }
-
-  public void setAccountNonLocked(final boolean accountNonLocked) {
-    this.accountNonLocked = accountNonLocked;
-  }
-
-  // @Override
-  // public Collection<? extends GrantedAuthority> getAuthorities() {
-  // return authorities;
-  // }
-
-  public String getPassword() {
-    return null;
-  }
-
-  public String getUsername() {
-    return null;
-  }
-
-  // public void setAuthorities(final Collection<? extends GrantedAuthority>
-  // authorities) {
-  // this.authorities = authorities;
-  // }
-
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(final int id) {
+  public void setId(Long id) {
     this.id = id;
   }
+
+  public Set<Acessos> getAcessos() {
+    return acessos;
+  }
+
+  public void setAcessos(Set<Acessos> acessos) {
+    this.acessos = acessos;
+  }
+
+  public String getSenha() {
+    return senha;
+  }
+
+  public void setSenha(String senha) {
+    this.senha = senha;
+  }
+
 }

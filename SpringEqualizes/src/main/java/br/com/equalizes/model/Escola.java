@@ -29,32 +29,22 @@ public class Escola {
 
 	@Override
 	public String toString() {
-		return "Escola{" +
-				"id=" + id +
-				", cnpj=" + cnpj +
-				", nome='" + nome + '\'' +
-				", turnos=" + turnos +
-				", qtAlunos=" + qtAlunos +
-				", diretor='" + diretor + '\'' +
-				", viceDiretor='" + viceDiretor + '\'' +
-				", coordenador='" + coordenador + '\'' +
-				", secretaria='" + secretaria + '\'' +
-				", cep=" + cep +
-				", uf='" + uf + '\'' +
-				", cidade='" + cidade + '\'' +
-				", bairro='" + bairro + '\'' +
-				", rua='" + rua + '\'' +
-				", numero=" + numero +
-				", complemento='" + complemento + '\'' +
-				", email='" + email + '\'' +
-				", senha='" + senha + '\'' +
-				", telefone=" + telefone +
-				", dataCadastro=" + dataCadastro +
-				", dataResposta=" + dataResposta +
-				", statusCadastro='" + statusCadastro + '\'' +
-				", statusPerfil='" + statusPerfil + '\'' +
-				", pedido=" + pedido +
-				'}';
+		return "Escola{" + "id=" + id + ", cnpj=" + cnpj + ", nome='" + nome + '\'' + ", turnos=" + turnos
+				+ ", qtAlunos=" + qtAlunos + ", diretor='" + diretor + '\'' + ", viceDiretor='" + viceDiretor + '\''
+				+ ", coordenador='" + coordenador + '\'' + ", secretaria='" + secretaria + '\'' + ", cep=" + cep
+				+ ", uf='" + uf + '\'' + ", cidade='" + cidade + '\'' + ", bairro='" + bairro + '\'' + ", rua='" + rua
+				+ '\'' + ", numero=" + numero + ", complemento='" + complemento + '\'' + ", email='" + email + '\''
+				+ ", senha='" + senha + '\'' + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro
+				+ ", dataResposta=" + dataResposta + ", statusCadastro='" + statusCadastro + '\'' + ", statusPerfil='"
+				+ statusPerfil + '\'' + ", pedido=" + pedido + '}';
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Column(name = "cnpj", length = 20, nullable = false, unique = true)
@@ -63,6 +53,8 @@ public class Escola {
 	// colocar isso em um erro
 	@Pattern(regexp = "\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}")
 	private long cnpj;
+
+	private String role;
 
 	@Column(name = "nomeEscola", nullable = false)
 	@NotBlank

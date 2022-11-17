@@ -23,8 +23,8 @@ public interface EscolaRepository extends JpaRepository<Escola, Long> {
 	public List<Escola> findByStatusCadastro(String status);
 
 	// SELECT PARA REALIZAR O LOGIN
-	@Query(value = "select * from escola where email = :email and senha = :senha", nativeQuery = true)
-	public Escola Login(String email, String senha);
+	@Query(value = "select * from escola where email = :email", nativeQuery = true)
+	public Escola Login(String email);
 
 	public Optional<Escola> findByCnpj(Long cnpj);
 

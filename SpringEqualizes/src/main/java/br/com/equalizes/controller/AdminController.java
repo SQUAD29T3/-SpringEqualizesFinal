@@ -25,21 +25,20 @@ public class AdminController {
   }
 
   // TODO olhar oq sera feito
-  //  REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
-  //  APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
-  //  CADASTRO
+  // REVER ESTE CÓDIGO SE SERÁ UTILIZADO OU NÃO
+  // APENAS LISTA OS DADOS DO SOLICITANTE E MOSTRA OS CAMPOS P/ ATUALIZAR O
+  // CADASTRO
   @GetMapping("/{id}/gerarLoginEscola")
   public ModelAndView editar(@PathVariable final Long id) {
-    return new ModelAndView("admin/parceiros-escolas/editar")
-        .addObject("escola", escolaRepository.findById(id));
+    return new ModelAndView("admin/parceiros-escolas/editar").addObject("escola", escolaRepository.findById(id));
   }
 
   // TODO perfil
-  //  utilizar para pegar dados da escola
-  //  e gerar um user
-  //  com role escola
-  //  melhor metodo para seguranca
-  //  ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
+  // utilizar para pegar dados da escola
+  // e gerar um user
+  // com role escola
+  // melhor metodo para seguranca
+  // ATUALIZA A SOLICITAÇÃO DE CADASTRO - EMPRESA
   @PostMapping("/{id}/gerarLoginEscola")
   public ModelAndView editar(@Valid final Escola escola) {
     escolaRepository.save(escola);
@@ -48,4 +47,5 @@ public class AdminController {
 
   // TODO gerarloginEmpresa
   // TODO gerarLoginbaseado no cnpj
+
 }

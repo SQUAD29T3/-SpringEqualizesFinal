@@ -20,7 +20,6 @@ public class EmpresaController {
 
 	// @Autowired
 	private EmpresaRepository empresaRepository;
-	private PasswordEncoder encoder;
 
 	// === CADASTRO PARCEIROS => EMPRESA
 	// CHAMA A VIEW CADASTRAR E PASSA UM OBJETO VAZIO
@@ -44,7 +43,6 @@ public class EmpresaController {
 		// TODO testar
 		// Criptgrafa senha
 		// talvez gere problemas levando em conta o login
-		empresa.setSenha(encoder.encode(empresa.getSenha()));
 		empresaRepository.save(empresa);
 		return new ModelAndView("redirect:/cadastroRealizadoEmpresa");
 	}

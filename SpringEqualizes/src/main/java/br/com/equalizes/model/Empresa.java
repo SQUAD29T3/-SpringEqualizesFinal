@@ -1,13 +1,19 @@
 package br.com.equalizes.model;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -20,34 +26,19 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "empresa")
 public class Empresa {
-	// TODO permissoes sao baseades no login
+	// REVIEW refatorar empresa e escola
+	// separar usuario em outra classe
 
 	@Override
 	public String toString() {
-		return "Empresa{" +
-				"id=" + id +
-				", cnpj=" + cnpj +
-				", nomeFantasia='" + nomeFantasia + '\'' +
-				", razaoSocial='" + razaoSocial + '\'' +
-				", ativEmpresarial='" + ativEmpresarial + '\'' +
-				", propietario='" + propietario + '\'' +
-				", socios='" + socios + '\'' +
-				", administrador='" + administrador + '\'' +
-				", cep=" + cep +
-				", uf='" + uf + '\'' +
-				", cidade='" + cidade + '\'' +
-				", bairro='" + bairro + '\'' +
-				", rua='" + rua + '\'' +
-				", numero=" + numero +
-				", complemento='" + complemento + '\'' +
-				", email='" + email + '\'' +
-				", senha='" + senha + '\'' +
-				", telefone=" + telefone +
-				", dataCadastro=" + dataCadastro +
-				", dataResposta=" + dataResposta +
-				", statusCadastro='" + statusCadastro + '\'' +
-				", statusPerfil='" + statusPerfil + '\'' +
-				'}';
+		return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + ", nomeFantasia='" + nomeFantasia + '\'' + ", razaoSocial='"
+				+ razaoSocial + '\'' + ", ativEmpresarial='" + ativEmpresarial + '\'' + ", propietario='" + propietario
+				+ '\'' + ", socios='" + socios + '\'' + ", administrador='" + administrador + '\'' + ", cep=" + cep
+				+ ", uf='" + uf + '\'' + ", cidade='" + cidade + '\'' + ", bairro='" + bairro + '\'' + ", rua='" + rua
+				+ '\'' + ", numero=" + numero + ", complemento='" + complemento + '\'' + ", email='" + email + '\''
+				+ ", senha='" + '\'' + ", telefone=" + telefone + ", dataCadastro=" + dataCadastro + ", dataResposta="
+				+ dataResposta + ", statusCadastro='" + statusCadastro + '\'' + ", statusPerfil='" + statusPerfil + '\''
+				+ '}';
 	}
 
 	@Id
@@ -112,13 +103,12 @@ public class Empresa {
 	@Email
 	private String email;
 
-	@Column(nullable = true)
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
-	private String senha;
-
 	@Column(name = "telefone", nullable = false)
 	@NotBlank
 	private long telefone;
+
+	// FIXME
+	// separar usuario da escola
 
 	@Column(nullable = false, name = "dataCadastro")
 	@DateTimeFormat(iso = ISO.DATE)
@@ -137,10 +127,12 @@ public class Empresa {
 	public Empresa() {
 	}
 
-	public Empresa(Long id, long cnpj, String nomeFantasia, String razaoSocial, String ativEmpresarial,
-			String propietario, String socios, String administrador, long cep, String uf, String cidade, String bairro,
-			String rua, long numero, String complemento, String email, String senha, long telefone,
-			LocalDate dataCadastro, LocalDate dataResposta, String statusCadastro, String statusPerfil) {
+	public Empresa(final Long id, final long cnpj, final String nomeFantasia, final String razaoSocial,
+			final String ativEmpresarial, final String propietario, final String socios, final String administrador,
+			final long cep, final String uf, final String cidade, final String bairro, final String rua,
+			final long numero, final String complemento, final String email, final long telefone,
+			final LocalDate dataCadastro, final LocalDate dataResposta, final String statusCadastro,
+			final String statusPerfil) {
 		super();
 		this.id = id;
 		this.cnpj = cnpj;
@@ -158,7 +150,6 @@ public class Empresa {
 		this.numero = numero;
 		this.complemento = complemento;
 		this.email = email;
-		this.senha = senha;
 		this.telefone = telefone;
 		this.dataCadastro = dataCadastro;
 		this.dataResposta = dataResposta;
@@ -170,7 +161,7 @@ public class Empresa {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -178,7 +169,7 @@ public class Empresa {
 		return cnpj;
 	}
 
-	public void setCnpj(long cnpj) {
+	public void setCnpj(final long cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -186,7 +177,7 @@ public class Empresa {
 		return nomeFantasia;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
+	public void setNomeFantasia(final String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;
 	}
 
@@ -194,7 +185,7 @@ public class Empresa {
 		return razaoSocial;
 	}
 
-	public void setRazaoSocial(String razaoSocial) {
+	public void setRazaoSocial(final String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -202,7 +193,7 @@ public class Empresa {
 		return ativEmpresarial;
 	}
 
-	public void setAtivEmpresarial(String ativEmpresarial) {
+	public void setAtivEmpresarial(final String ativEmpresarial) {
 		this.ativEmpresarial = ativEmpresarial;
 	}
 
@@ -210,7 +201,7 @@ public class Empresa {
 		return propietario;
 	}
 
-	public void setPropietario(String propietario) {
+	public void setPropietario(final String propietario) {
 		this.propietario = propietario;
 	}
 
@@ -218,7 +209,7 @@ public class Empresa {
 		return socios;
 	}
 
-	public void setSocios(String socios) {
+	public void setSocios(final String socios) {
 		this.socios = socios;
 	}
 
@@ -226,7 +217,7 @@ public class Empresa {
 		return administrador;
 	}
 
-	public void setAdministrador(String administrador) {
+	public void setAdministrador(final String administrador) {
 		this.administrador = administrador;
 	}
 
@@ -234,7 +225,7 @@ public class Empresa {
 		return cep;
 	}
 
-	public void setCep(long cep) {
+	public void setCep(final long cep) {
 		this.cep = cep;
 	}
 
@@ -242,7 +233,7 @@ public class Empresa {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf(final String uf) {
 		this.uf = uf;
 	}
 
@@ -250,7 +241,7 @@ public class Empresa {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	public void setCidade(final String cidade) {
 		this.cidade = cidade;
 	}
 
@@ -258,7 +249,7 @@ public class Empresa {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	public void setBairro(final String bairro) {
 		this.bairro = bairro;
 	}
 
@@ -266,7 +257,7 @@ public class Empresa {
 		return rua;
 	}
 
-	public void setRua(String rua) {
+	public void setRua(final String rua) {
 		this.rua = rua;
 	}
 
@@ -274,7 +265,7 @@ public class Empresa {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(final long numero) {
 		this.numero = numero;
 	}
 
@@ -282,7 +273,7 @@ public class Empresa {
 		return complemento;
 	}
 
-	public void setComplemento(String complemento) {
+	public void setComplemento(final String complemento) {
 		this.complemento = complemento;
 	}
 
@@ -290,23 +281,15 @@ public class Empresa {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(long telefone) {
+	public void setTelefone(final long telefone) {
 		this.telefone = telefone;
 	}
 
@@ -314,7 +297,7 @@ public class Empresa {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(final LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -322,7 +305,7 @@ public class Empresa {
 		return dataResposta;
 	}
 
-	public void setDataResposta(LocalDate dataResposta) {
+	public void setDataResposta(final LocalDate dataResposta) {
 		this.dataResposta = dataResposta;
 	}
 
@@ -330,7 +313,7 @@ public class Empresa {
 		return statusCadastro;
 	}
 
-	public void setStatusCadastro(String statusCadastro) {
+	public void setStatusCadastro(final String statusCadastro) {
 		this.statusCadastro = statusCadastro;
 	}
 
@@ -338,7 +321,7 @@ public class Empresa {
 		return statusPerfil;
 	}
 
-	public void setStatusPerfil(String statusPerfil) {
+	public void setStatusPerfil(final String statusPerfil) {
 		this.statusPerfil = statusPerfil;
 	}
 

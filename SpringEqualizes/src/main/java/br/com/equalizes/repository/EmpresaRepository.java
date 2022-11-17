@@ -10,8 +10,8 @@ import br.com.equalizes.model.Empresa;
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
 	// SELECT PARA REALIZAR O LOGIN
-	@Query(value = "select * from empresa where email = :email and senha = :senha", nativeQuery = true)
-	public Empresa Login(String email, String senha);
+	@Query(value = "select * from empresa where email = :email", nativeQuery = true)
+	public Empresa Login(String email);
 
 	public Optional<Empresa> findByCnpj(Long cnpj);
 }
