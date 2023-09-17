@@ -165,7 +165,7 @@
 								<tr th:each="emAberto : ${pedido}">
 									<th scope="row" th:text="${emAberto.id}"></th>
 									<td th:text="${emAberto.descricao}"></td>
-									<td> <input type="date" th:value="${emAberto.dataPedido}" disabled /></td>
+									<td> <input type="date" class="text-center" th:value="${emAberto.dataPedido}" disabled /></td>
 									<td th:text="${emAberto.statusPedido}"></td>
 									<td>
 										<a th:href="@{/{id}/editarPedido (id=${emAberto.id})}" class="btn btn-warning">
